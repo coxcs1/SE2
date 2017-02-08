@@ -1,0 +1,33 @@
+﻿<Page x:Class="se2_loon_hh.Forms.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="600"
+      Title="MainPage" Height="{Binding WindowHeight}" Width="{Binding WindowWidth}">
+    <DockPanel>
+        <!-- Right now these items size with the window, it kind of looks ugly when maximized, maybe change -->
+        <Grid DockPanel.Dock="Top">
+            <Viewbox>
+                <TextBlock FontFamily="Kristen ITC" TextWrapping="Wrap" Text="Hope House Management System" />
+            </Viewbox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button x:Name="AddClientButton" Content="Add Client" Margin="10" Click="AddClientButton_Click" Grid.Column="1" Grid.Row="0"/>
+            <Button x:Name="ViewClientsButton" Content="View Clients" Margin="10" Grid.Column="1" Grid.Row="1" Click="ViewClientsButton_Click"/>
+            <Button x:Name="ExitButton" Content="Exit" Margin="10" Grid.Column="1" Grid.Row="2" Click="ExitButton_Click"/>
+        </Grid>
+    </DockPanel>
+</Page>
