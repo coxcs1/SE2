@@ -9,48 +9,77 @@
       Title="AddClientPage" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth + 5}">
     <!--The Height and Width Bindings are for making sure the document controls are displayed-->
     <!--TODO: Pretty much every input element will require a name for parsing later -->
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
             <Grid>
-                <Button HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
-                <Button HorizontalAlignment="Right" Margin="5" VerticalAlignment="Top" Width="100" Name="SubmitButton" Click="SubmitButton_Click">Submit</Button>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="SubmitButton" Click="SubmitButton_Click">Submit</Button>
             </Grid>
             <Separator/>
         </StackPanel>
         <FlowDocumentPageViewer HorizontalContentAlignment="Center">
-            <FlowDocument PagePadding="5" PageWidth="500">
+            <FlowDocument PagePadding="5" PageWidth="500"> <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
                 <Paragraph>
-                    <GroupBox Header="Name" Width="400">
+                    <GroupBox Header="Name">
                         <StackPanel>
                             <Grid>
-                                <Label HorizontalAlignment="Left">First Name:</Label>
-                                <TextBox Margin="5" Width="250" HorizontalAlignment="Right"/>
+                                <Label>First Name:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Middle Name:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Middle Name:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Last Name:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Last Name:</Label>
+                                <TextBox/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Address" Width="400">
+                    <GroupBox Header="Address">
                         <StackPanel>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Street Address:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Street Address:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">City:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>City:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">State/District:</Label>
-                                <ComboBox HorizontalAlignment="Right" Margin="5" Width="250">
+                                <Label>State/District:</Label>
+                                <ComboBox>
                                     <ComboBoxItem>Alabama</ComboBoxItem>
                                     <ComboBoxItem>Alaska</ComboBoxItem>
                                     <ComboBoxItem>Arizona</ComboBoxItem>
@@ -105,40 +134,40 @@
                                 </ComboBox>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Zip:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Zip:</Label>
+                                <TextBox/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Phone" Width="400">
+                    <GroupBox Header="Phone">
                         <StackPanel>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Home Phone:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Home Phone:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Cell Phone:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Cell Phone:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Work Phone:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Work Phone:</Label>
+                                <TextBox/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Birthday" Width="400">
+                    <GroupBox Header="Birthday">
                         <StackPanel>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Year:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Year:</Label>
+                                <TextBox/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Month:</Label>
-                                <ComboBox HorizontalAlignment="Right" Margin="5" Width="250">
+                                <Label>Month:</Label>
+                                <ComboBox>
                                     <ComboBoxItem>January</ComboBoxItem>
                                     <ComboBoxItem>February</ComboBoxItem>
                                     <ComboBoxItem>March</ComboBoxItem>
@@ -154,17 +183,17 @@
                                 </ComboBox>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Day:</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <Label>Day:</Label>
+                                <TextBox/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Marital Status" Width="400">
+                    <GroupBox Header="Marital Status">
                         <StackPanel>
                             <Grid>
-                                <ComboBox HorizontalAlignment="Right"  Margin="5" Width="250">
+                                <ComboBox>
                                     <ComboBoxItem>Single</ComboBoxItem>
                                     <ComboBoxItem>Married</ComboBoxItem>
                                     <ComboBoxItem>Seperated</ComboBoxItem>
@@ -174,26 +203,26 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Race" Width="400">
+                    <GroupBox Header="Race">
                         <StackPanel>
                             <Grid>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250"></TextBox>
+                                <TextBox/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <Border Width="475" BorderBrush="#FFD5DFE5" BorderThickness="1" CornerRadius="3,3,3,3">
+                    <Border Width="475">
                         <StackPanel>
                             <Grid>
-                                <Label HorizontalAlignment="Left">How did you hear about us?</Label>
-                                <TextBox HorizontalAlignment="Right" Margin="5" Width="250" Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"></TextBox>
+                                <Label>How did you hear about us?</Label>
+                                <TextBox Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
                             </Grid>
                             <Grid>
-                                <Label HorizontalAlignment="Left">Have you recieved services from us in the past?</Label>
-                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                                    <RadioButton Margin="5">Yes</RadioButton>
-                                    <RadioButton Margin="5">No</RadioButton>
+                                <Label>Have you recieved services from us in the past?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
                                 </StackPanel>
                             </Grid>
                         </StackPanel>

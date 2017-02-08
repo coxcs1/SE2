@@ -23,7 +23,7 @@ namespace se2_loon_hh.Forms
         public AddClientPage()
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.DataContext = this; // This is for allowing the height and width of the page to be bound to the window height and width
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
