@@ -39,10 +39,5 @@ namespace se2_loon_hh.Forms
         {
             Application.Current.Shutdown();
         }
-
-        public static implicit operator Window(MainPage v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -163,10 +163,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\hopehouse.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="HopeHouseDB.Context.tt">
