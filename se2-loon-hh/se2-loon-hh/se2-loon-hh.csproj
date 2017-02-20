@@ -80,6 +80,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassAttendance.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientProgramCurriculum.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientProgramCurriculumAttribute.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Organization.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationContact.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramCurriculum.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramCurriculumAttribute.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Volunteer.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Page Include="Forms\AddClientPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,7 +122,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddressChange.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Application.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Child.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientFather.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="College.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employment.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Father.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddClientPage.xaml.cs">
@@ -111,6 +165,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GEDeducation.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HighSchool.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="HopeHouseDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,6 +185,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HopeHouseDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OtherEducation.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pregnancy.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
