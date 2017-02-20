@@ -39,9 +39,9 @@ namespace se2_loon_hh
         public string ContinuedWithMP { get; set; }
         public string Reward { get; set; }
     
-        public virtual Client Client { get; set; }
         public virtual ProgramCurriculum ProgramCurriculum { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientProgramCurriculumAttribute> ClientProgramCurriculumAttributes { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

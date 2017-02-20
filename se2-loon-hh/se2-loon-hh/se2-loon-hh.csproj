@@ -80,10 +80,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassAttendance.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientProgramCurriculum.cs">
@@ -92,10 +98,16 @@
     <Compile Include="ClientProgramCurriculumAttribute.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Donation.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Organization.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="OrganizationContact.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PregnancyHistory.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs">
@@ -105,6 +117,12 @@
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ProgramCurriculumAttribute.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequested.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Volunteer.cs">
@@ -125,13 +143,7 @@
     <Compile Include="AddressChange.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Application.cs">
-      <DependentUpon>HopeHouseDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Child.cs">
-      <DependentUpon>HopeHouseDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Client.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientFather.cs">

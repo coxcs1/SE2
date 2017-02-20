@@ -74,7 +74,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ApplicationId" Type="integer" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="LastName" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
@@ -165,6 +164,16 @@
           <Property Name="ApplicationId" Type="integer" />
           <Property Name="Date" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="DiscussionSummary" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceId" Type="integer" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Type" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Employment">
           <Key>
@@ -303,6 +312,17 @@
           <Property Name="BirthComplications" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="ContinuedWithHH" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
+        <EntityType Name="PregnancyHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
+          <Property Name="NumToTerm" Type="integer" />
+          <Property Name="NumAdoption" Type="integer" />
+          <Property Name="NumMiscarriage" Type="integer" />
+          <Property Name="NumAbortion" Type="integer" />
+        </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="Id" />
@@ -330,6 +350,25 @@
           <Property Name="ProgramCurriculumId" Type="integer" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Type" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Type" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="ServiceRequested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
+          <Property Name="ServiceId" Type="integer" />
+          <Property Name="DateReceived" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="Volunteer">
           <Key>
@@ -397,18 +436,6 @@
             </Principal>
             <Dependent Role="ClassAttendance">
               <PropertyRef Name="ClassId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Client_0_0">
-          <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Application">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,6 +523,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Donation_0_0">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Donation" Type="Self.Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employment_0_0">
           <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="Employment" Type="Self.Employment" Multiplicity="*" />
@@ -568,6 +607,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PregnancyHistory_0_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="PregnancyHistory" Type="Self.PregnancyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PregnancyHistory">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Program_0_0">
           <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Program" Type="Self.Program" Multiplicity="*" />
@@ -604,6 +655,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceRequested_0_0">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ServiceRequested" Type="Self.ServiceRequested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceRequested">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceRequested_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="ServiceRequested" Type="Self.ServiceRequested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceRequested">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AddressChange" EntityType="Self.AddressChange" store:Type="Tables" />
           <EntitySet Name="Application" EntityType="Self.Application" store:Type="Tables" />
@@ -616,6 +691,7 @@
           <EntitySet Name="ClientProgramCurriculumAttribute" EntityType="Self.ClientProgramCurriculumAttribute" store:Type="Tables" />
           <EntitySet Name="College" EntityType="Self.College" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" store:Type="Tables" />
+          <EntitySet Name="Donation" EntityType="Self.Donation" store:Type="Tables" />
           <EntitySet Name="Employment" EntityType="Self.Employment" store:Type="Tables" />
           <EntitySet Name="Father" EntityType="Self.Father" store:Type="Tables" />
           <EntitySet Name="GEDeducation" EntityType="Self.GEDeducation" store:Type="Tables" />
@@ -624,9 +700,12 @@
           <EntitySet Name="OrganizationContact" EntityType="Self.OrganizationContact" store:Type="Tables" />
           <EntitySet Name="OtherEducation" EntityType="Self.OtherEducation" store:Type="Tables" />
           <EntitySet Name="Pregnancy" EntityType="Self.Pregnancy" store:Type="Tables" />
+          <EntitySet Name="PregnancyHistory" EntityType="Self.PregnancyHistory" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" store:Type="Tables" />
           <EntitySet Name="ProgramCurriculum" EntityType="Self.ProgramCurriculum" store:Type="Tables" />
           <EntitySet Name="ProgramCurriculumAttribute" EntityType="Self.ProgramCurriculumAttribute" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" store:Type="Tables" />
+          <EntitySet Name="ServiceRequested" EntityType="Self.ServiceRequested" store:Type="Tables" />
           <EntitySet Name="Volunteer" EntityType="Self.Volunteer" store:Type="Tables" />
           <AssociationSet Name="FK_AddressChange_0_0" Association="Self.FK_AddressChange_0_0">
             <End Role="Client" EntitySet="Client" />
@@ -647,10 +726,6 @@
           <AssociationSet Name="FK_ClassAttendance_1_0" Association="Self.FK_ClassAttendance_1_0">
             <End Role="Class" EntitySet="Class" />
             <End Role="ClassAttendance" EntitySet="ClassAttendance" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Client_0_0" Association="Self.FK_Client_0_0">
-            <End Role="Application" EntitySet="Application" />
-            <End Role="Client" EntitySet="Client" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientFather_0_0" Association="Self.FK_ClientFather_0_0">
             <End Role="Father" EntitySet="Father" />
@@ -680,6 +755,10 @@
             <End Role="Application" EntitySet="Application" />
             <End Role="Contact" EntitySet="Contact" />
           </AssociationSet>
+          <AssociationSet Name="FK_Donation_0_0" Association="Self.FK_Donation_0_0">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Donation" EntitySet="Donation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employment_0_0" Association="Self.FK_Employment_0_0">
             <End Role="Client" EntitySet="Client" />
             <End Role="Employment" EntitySet="Employment" />
@@ -704,6 +783,10 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Pregnancy" EntitySet="Pregnancy" />
           </AssociationSet>
+          <AssociationSet Name="FK_PregnancyHistory_0_0" Association="Self.FK_PregnancyHistory_0_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PregnancyHistory" EntitySet="PregnancyHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Program_0_0" Association="Self.FK_Program_0_0">
             <End Role="Class" EntitySet="Class" />
             <End Role="Program" EntitySet="Program" />
@@ -715,6 +798,14 @@
           <AssociationSet Name="FK_ProgramCurriculumAttribute_0_0" Association="Self.FK_ProgramCurriculumAttribute_0_0">
             <End Role="ProgramCurriculum" EntitySet="ProgramCurriculum" />
             <End Role="ProgramCurriculumAttribute" EntitySet="ProgramCurriculumAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceRequested_0_0" Association="Self.FK_ServiceRequested_0_0">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceRequested" EntitySet="ServiceRequested" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceRequested_1_0" Association="Self.FK_ServiceRequested_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ServiceRequested" EntitySet="ServiceRequested" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -729,64 +820,14 @@
             <End Role="Father" EntitySet="Fathers" />
             <End Role="ClientFather" EntitySet="ClientFathers" />
           </AssociationSet>
-          <EntitySet Name="Applications" EntityType="Model.Application" />
-          <EntitySet Name="Clients" EntityType="Model.Client" />
-          <AssociationSet Name="FK_Application_0_0" Association="Model.FK_Application_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Application" EntitySet="Applications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Client_0_0" Association="Model.FK_Client_0_0">
-            <End Role="Application" EntitySet="Applications" />
-            <End Role="Client" EntitySet="Clients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Child_0_0" Association="Model.FK_Child_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Child" EntitySet="Children" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientFather_1_0" Association="Model.FK_ClientFather_1_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="ClientFather" EntitySet="ClientFathers" />
-          </AssociationSet>
           <EntitySet Name="AddressChanges" EntityType="Model.AddressChange" />
-          <AssociationSet Name="FK_AddressChange_0_0" Association="Model.FK_AddressChange_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="AddressChange" EntitySet="AddressChanges" />
-          </AssociationSet>
           <EntitySet Name="Colleges" EntityType="Model.College" />
           <EntitySet Name="Contacts" EntityType="Model.Contact" />
           <EntitySet Name="GEDeducations" EntityType="Model.GEDeducation" />
           <EntitySet Name="HighSchools" EntityType="Model.HighSchool" />
           <EntitySet Name="OtherEducations" EntityType="Model.OtherEducation" />
-          <AssociationSet Name="FK_Contact_0_0" Association="Model.FK_Contact_0_0">
-            <End Role="Application" EntitySet="Applications" />
-            <End Role="Contact" EntitySet="Contacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_College_0_0" Association="Model.FK_College_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="College" EntitySet="Colleges" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GEDeducation_0_0" Association="Model.FK_GEDeducation_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="GEDeducation" EntitySet="GEDeducations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HighSchool_0_0" Association="Model.FK_HighSchool_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="HighSchool" EntitySet="HighSchools" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OtherEducation_0_0" Association="Model.FK_OtherEducation_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="OtherEducation" EntitySet="OtherEducations" />
-          </AssociationSet>
           <EntitySet Name="Employments" EntityType="Model.Employment" />
           <EntitySet Name="Pregnancies" EntityType="Model.Pregnancy" />
-          <AssociationSet Name="FK_Employment_0_0" Association="Model.FK_Employment_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Employment" EntitySet="Employments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pregnancy_0_0" Association="Model.FK_Pregnancy_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Pregnancy" EntitySet="Pregnancies" />
-          </AssociationSet>
           <EntitySet Name="Volunteers" EntityType="Model.Volunteer" />
           <EntitySet Name="Organizations" EntityType="Model.Organization" />
           <EntitySet Name="OrganizationContacts" EntityType="Model.OrganizationContact" />
@@ -798,10 +839,6 @@
           <EntitySet Name="ClassAttendances" EntityType="Model.ClassAttendance" />
           <AssociationSet Name="FK_ClassAttendance_1_0" Association="Model.FK_ClassAttendance_1_0">
             <End Role="Class" EntitySet="Classes" />
-            <End Role="ClassAttendance" EntitySet="ClassAttendances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClassAttendance_0_0" Association="Model.FK_ClassAttendance_0_0">
-            <End Role="Client" EntitySet="Clients" />
             <End Role="ClassAttendance" EntitySet="ClassAttendances" />
           </AssociationSet>
           <EntitySet Name="Programs" EntityType="Model.Program" />
@@ -816,10 +853,6 @@
           </AssociationSet>
           <EntitySet Name="ClientProgramCurriculums" EntityType="Model.ClientProgramCurriculum" />
           <EntitySet Name="ProgramCurriculumAttributes" EntityType="Model.ProgramCurriculumAttribute" />
-          <AssociationSet Name="FK_ClientProgramCurriculum_1_0" Association="Model.FK_ClientProgramCurriculum_1_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="ClientProgramCurriculum" EntitySet="ClientProgramCurriculums" />
-          </AssociationSet>
           <AssociationSet Name="FK_ClientProgramCurriculum_0_0" Association="Model.FK_ClientProgramCurriculum_0_0">
             <End Role="ProgramCurriculum" EntitySet="ProgramCurriculums" />
             <End Role="ClientProgramCurriculum" EntitySet="ClientProgramCurriculums" />
@@ -832,6 +865,80 @@
           <AssociationSet Name="FK_ClientProgramCurriculumAttribute_0_0" Association="Model.FK_ClientProgramCurriculumAttribute_0_0">
             <End Role="ClientProgramCurriculum" EntitySet="ClientProgramCurriculums" />
             <End Role="ClientProgramCurriculumAttribute" EntitySet="ClientProgramCurriculumAttributes" />
+          </AssociationSet>
+          <EntitySet Name="PregnancyHistories" EntityType="Model.PregnancyHistory" />
+          <EntitySet Name="Donations" EntityType="Model.Donation" />
+          <EntitySet Name="Services" EntityType="Model.Service" />
+          <EntitySet Name="ServiceRequesteds" EntityType="Model.ServiceRequested" />
+          <AssociationSet Name="FK_Donation_0_0" Association="Model.FK_Donation_0_0">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Donation" EntitySet="Donations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceRequested_0_0" Association="Model.FK_ServiceRequested_0_0">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceRequested" EntitySet="ServiceRequesteds" />
+          </AssociationSet>
+          <EntitySet Name="Applications" EntityType="Model.Application" />
+          <EntitySet Name="Clients" EntityType="Model.Client" />
+          <AssociationSet Name="FK_AddressChange_0_0" Association="Model.FK_AddressChange_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="AddressChange" EntitySet="AddressChanges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_0_0" Association="Model.FK_Application_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_0_0" Association="Model.FK_Contact_0_0">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_0_0" Association="Model.FK_Child_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Child" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassAttendance_0_0" Association="Model.FK_ClassAttendance_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ClassAttendance" EntitySet="ClassAttendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientFather_1_0" Association="Model.FK_ClientFather_1_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ClientFather" EntitySet="ClientFathers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientProgramCurriculum_1_0" Association="Model.FK_ClientProgramCurriculum_1_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ClientProgramCurriculum" EntitySet="ClientProgramCurriculums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_College_0_0" Association="Model.FK_College_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="College" EntitySet="Colleges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employment_0_0" Association="Model.FK_Employment_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Employment" EntitySet="Employments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GEDeducation_0_0" Association="Model.FK_GEDeducation_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="GEDeducation" EntitySet="GEDeducations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HighSchool_0_0" Association="Model.FK_HighSchool_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="HighSchool" EntitySet="HighSchools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtherEducation_0_0" Association="Model.FK_OtherEducation_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="OtherEducation" EntitySet="OtherEducations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregnancy_0_0" Association="Model.FK_Pregnancy_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Pregnancy" EntitySet="Pregnancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PregnancyHistory_0_0" Association="Model.FK_PregnancyHistory_0_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="PregnancyHistory" EntitySet="PregnancyHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceRequested_1_0" Association="Model.FK_ServiceRequested_1_0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ServiceRequested" EntitySet="ServiceRequesteds" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Child">
@@ -888,124 +995,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Application">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" />
-          <Property Name="HearAboutUs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="ReceivedServicesInPast" Type="Int64" />
-          <Property Name="PregnancyStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="BabyBornAlready" Type="Int64" />
-          <Property Name="NotPregHaveMoreOneKid" Type="Int64" />
-          <Property Name="PregnancyTestResults" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="ContactAfterToday" Type="Int64" />
-          <Property Name="StaffConducting" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="DistributionOfItems" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="FollowUpCallDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="FollowUpCall" Type="Int64" />
-          <Property Name="ClientParticipationStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="ApplicationDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="Model.FK_Application_0_0" FromRole="Application" ToRole="Client" />
-          <NavigationProperty Name="Clients" Relationship="Model.FK_Client_0_0" FromRole="Application" ToRole="Client" />
-          <NavigationProperty Name="Contacts" Relationship="Model.FK_Contact_0_0" FromRole="Application" ToRole="Contact" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ApplicationId" Type="Int64" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="NameComment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="StreetAddr1" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="StreetAddr2" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Zip" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="PrimaryPhone" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="SecondaryPhone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="IsNew" Type="Int64" />
-          <Property Name="Status" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Ethnicity" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="HousingLocation" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="OnDisability" Type="Int64" />
-          <Property Name="ApplyingForDisability" Type="Int64" />
-          <Property Name="WillingToWork" Type="Int64" />
-          <Property Name="ProgressPoints" Type="Int64" Nullable="false" />
-          <Property Name="CurrentStudentEnrollment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="EducationalBackground" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="IsSmoker" Type="Int64" />
-          <Property Name="AttendClass" Type="Int64" />
-          <Property Name="BetterWay" Type="Int64" />
-          <Property Name="HRCclass" Type="Int64" />
-          <NavigationProperty Name="Applications" Relationship="Model.FK_Application_0_0" FromRole="Client" ToRole="Application" />
-          <NavigationProperty Name="Application" Relationship="Model.FK_Client_0_0" FromRole="Client" ToRole="Application" />
-          <NavigationProperty Name="Children" Relationship="Model.FK_Child_0_0" FromRole="Client" ToRole="Child" />
-          <NavigationProperty Name="ClientFathers" Relationship="Model.FK_ClientFather_1_0" FromRole="Client" ToRole="ClientFather" />
-          <NavigationProperty Name="AddressChanges" Relationship="Model.FK_AddressChange_0_0" FromRole="Client" ToRole="AddressChange" />
-          <NavigationProperty Name="Colleges" Relationship="Model.FK_College_0_0" FromRole="Client" ToRole="College" />
-          <NavigationProperty Name="GEDeducations" Relationship="Model.FK_GEDeducation_0_0" FromRole="Client" ToRole="GEDeducation" />
-          <NavigationProperty Name="HighSchools" Relationship="Model.FK_HighSchool_0_0" FromRole="Client" ToRole="HighSchool" />
-          <NavigationProperty Name="OtherEducations" Relationship="Model.FK_OtherEducation_0_0" FromRole="Client" ToRole="OtherEducation" />
-          <NavigationProperty Name="Employments" Relationship="Model.FK_Employment_0_0" FromRole="Client" ToRole="Employment" />
-          <NavigationProperty Name="Pregnancies" Relationship="Model.FK_Pregnancy_0_0" FromRole="Client" ToRole="Pregnancy" />
-          <NavigationProperty Name="ClassAttendances" Relationship="Model.FK_ClassAttendance_0_0" FromRole="Client" ToRole="ClassAttendance" />
-          <NavigationProperty Name="ClientProgramCurriculums" Relationship="Model.FK_ClientProgramCurriculum_1_0" FromRole="Client" ToRole="ClientProgramCurriculum" />
-        </EntityType>
-        <Association Name="FK_Application_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.Application" Role="Application" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Application">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Client_0_0">
-          <End Type="Model.Application" Role="Application" Multiplicity="0..1" />
-          <End Type="Model.Client" Role="Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Application">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Child_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.Child" Role="Child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Child">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientFather_1_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.ClientFather" Role="ClientFather" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClientFather">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AddressChange">
           <Key>
             <PropertyRef Name="Id" />
@@ -1020,18 +1009,6 @@
           <Property Name="Zip" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Model.FK_AddressChange_0_0" FromRole="AddressChange" ToRole="Client" />
         </EntityType>
-        <Association Name="FK_AddressChange_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.AddressChange" Role="AddressChange" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AddressChange">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="College">
           <Key>
             <PropertyRef Name="Id" />
@@ -1090,66 +1067,6 @@
           <Property Name="DateEarned" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Model.FK_OtherEducation_0_0" FromRole="OtherEducation" ToRole="Client" />
         </EntityType>
-        <Association Name="FK_Contact_0_0">
-          <End Type="Model.Application" Role="Application" Multiplicity="0..1" />
-          <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Application">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Contact">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_College_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.College" Role="College" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="College">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GEDeducation_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.GEDeducation" Role="GEDeducation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GEDeducation">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HighSchool_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.HighSchool" Role="HighSchool" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="HighSchool">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OtherEducation_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.OtherEducation" Role="OtherEducation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OtherEducation">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Employment">
           <Key>
             <PropertyRef Name="Id" />
@@ -1214,30 +1131,6 @@
           <Property Name="ContinuedWithHH" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Model.FK_Pregnancy_0_0" FromRole="Pregnancy" ToRole="Client" />
         </EntityType>
-        <Association Name="FK_Employment_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.Employment" Role="Employment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employment">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pregnancy_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.Pregnancy" Role="Pregnancy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pregnancy">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Volunteer">
           <Key>
             <PropertyRef Name="Id" />
@@ -1323,18 +1216,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClassAttendance_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.ClassAttendance" Role="ClassAttendance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClassAttendance">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="Id" />
@@ -1405,9 +1286,9 @@
           <Property Name="Expecting" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="ContinuedWithMP" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Reward" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="Model.FK_ClientProgramCurriculum_1_0" FromRole="ClientProgramCurriculum" ToRole="Client" />
           <NavigationProperty Name="ProgramCurriculum" Relationship="Model.FK_ClientProgramCurriculum_0_0" FromRole="ClientProgramCurriculum" ToRole="ProgramCurriculum" />
           <NavigationProperty Name="ClientProgramCurriculumAttributes" Relationship="Model.FK_ClientProgramCurriculumAttribute_0_0" FromRole="ClientProgramCurriculum" ToRole="ClientProgramCurriculumAttribute" />
+          <NavigationProperty Name="Client" Relationship="Model.FK_ClientProgramCurriculum_1_0" FromRole="ClientProgramCurriculum" ToRole="Client" />
         </EntityType>
         <EntityType Name="ProgramCurriculumAttribute">
           <Key>
@@ -1419,18 +1300,6 @@
           <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProgramCurriculum" Relationship="Model.FK_ProgramCurriculumAttribute_0_0" FromRole="ProgramCurriculumAttribute" ToRole="ProgramCurriculum" />
         </EntityType>
-        <Association Name="FK_ClientProgramCurriculum_1_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
-          <End Type="Model.ClientProgramCurriculum" Role="ClientProgramCurriculum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClientProgramCurriculum">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ClientProgramCurriculum_0_0">
           <End Type="Model.ProgramCurriculum" Role="ProgramCurriculum" Multiplicity="0..1" />
           <End Type="Model.ClientProgramCurriculum" Role="ClientProgramCurriculum" Multiplicity="*" />
@@ -1477,6 +1346,325 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PregnancyHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int64" />
+          <Property Name="NumToTerm" Type="Int64" />
+          <Property Name="NumAdoption" Type="Int64" />
+          <Property Name="NumMiscarriage" Type="Int64" />
+          <Property Name="NumAbortion" Type="Int64" />
+          <NavigationProperty Name="Client" Relationship="Model.FK_PregnancyHistory_0_0" FromRole="PregnancyHistory" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Donation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceId" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Service" Relationship="Model.FK_Donation_0_0" FromRole="Donation" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Donations" Relationship="Model.FK_Donation_0_0" FromRole="Service" ToRole="Donation" />
+          <NavigationProperty Name="ServiceRequesteds" Relationship="Model.FK_ServiceRequested_0_0" FromRole="Service" ToRole="ServiceRequested" />
+        </EntityType>
+        <EntityType Name="ServiceRequested">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int64" />
+          <Property Name="ServiceId" Type="Int64" />
+          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Service" Relationship="Model.FK_ServiceRequested_0_0" FromRole="ServiceRequested" ToRole="Service" />
+          <NavigationProperty Name="Client" Relationship="Model.FK_ServiceRequested_1_0" FromRole="ServiceRequested" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Donation_0_0">
+          <End Type="Model.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="Model.Donation" Role="Donation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Donation">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceRequested_0_0">
+          <End Type="Model.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="Model.ServiceRequested" Role="ServiceRequested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceRequested">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int64" />
+          <Property Name="HearAboutUs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedServicesInPast" Type="Int64" />
+          <Property Name="PregnancyStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BabyBornAlready" Type="Int64" />
+          <Property Name="NotPregHaveMoreOneKid" Type="Int64" />
+          <Property Name="PregnancyTestResults" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ContactAfterToday" Type="Int64" />
+          <Property Name="StaffConducting" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="DistributionOfItems" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="FollowUpCallDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="FollowUpCall" Type="Int64" />
+          <Property Name="ClientParticipationStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Model.FK_Application_0_0" FromRole="Application" ToRole="Client" />
+          <NavigationProperty Name="Contacts" Relationship="Model.FK_Contact_0_0" FromRole="Application" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="NameComment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddr1" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddr2" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryPhone" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="SecondaryPhone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="IsNew" Type="Int64" />
+          <Property Name="Status" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Ethnicity" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="HousingLocation" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="OnDisability" Type="Int64" />
+          <Property Name="ApplyingForDisability" Type="Int64" />
+          <Property Name="WillingToWork" Type="Int64" />
+          <Property Name="ProgressPoints" Type="Int64" Nullable="false" />
+          <Property Name="CurrentStudentEnrollment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="EducationalBackground" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="IsSmoker" Type="Int64" />
+          <Property Name="AttendClass" Type="Int64" />
+          <Property Name="BetterWay" Type="Int64" />
+          <Property Name="HRCclass" Type="Int64" />
+          <NavigationProperty Name="AddressChanges" Relationship="Model.FK_AddressChange_0_0" FromRole="Client" ToRole="AddressChange" />
+          <NavigationProperty Name="Applications" Relationship="Model.FK_Application_0_0" FromRole="Client" ToRole="Application" />
+          <NavigationProperty Name="Children" Relationship="Model.FK_Child_0_0" FromRole="Client" ToRole="Child" />
+          <NavigationProperty Name="ClassAttendances" Relationship="Model.FK_ClassAttendance_0_0" FromRole="Client" ToRole="ClassAttendance" />
+          <NavigationProperty Name="ClientFathers" Relationship="Model.FK_ClientFather_1_0" FromRole="Client" ToRole="ClientFather" />
+          <NavigationProperty Name="ClientProgramCurriculums" Relationship="Model.FK_ClientProgramCurriculum_1_0" FromRole="Client" ToRole="ClientProgramCurriculum" />
+          <NavigationProperty Name="Colleges" Relationship="Model.FK_College_0_0" FromRole="Client" ToRole="College" />
+          <NavigationProperty Name="Employments" Relationship="Model.FK_Employment_0_0" FromRole="Client" ToRole="Employment" />
+          <NavigationProperty Name="GEDeducations" Relationship="Model.FK_GEDeducation_0_0" FromRole="Client" ToRole="GEDeducation" />
+          <NavigationProperty Name="HighSchools" Relationship="Model.FK_HighSchool_0_0" FromRole="Client" ToRole="HighSchool" />
+          <NavigationProperty Name="OtherEducations" Relationship="Model.FK_OtherEducation_0_0" FromRole="Client" ToRole="OtherEducation" />
+          <NavigationProperty Name="Pregnancies" Relationship="Model.FK_Pregnancy_0_0" FromRole="Client" ToRole="Pregnancy" />
+          <NavigationProperty Name="PregnancyHistories" Relationship="Model.FK_PregnancyHistory_0_0" FromRole="Client" ToRole="PregnancyHistory" />
+          <NavigationProperty Name="ServiceRequesteds" Relationship="Model.FK_ServiceRequested_1_0" FromRole="Client" ToRole="ServiceRequested" />
+        </EntityType>
+        <Association Name="FK_AddressChange_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.AddressChange" Role="AddressChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AddressChange">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_0_0">
+          <End Type="Model.Application" Role="Application" Multiplicity="0..1" />
+          <End Type="Model.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassAttendance_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.ClassAttendance" Role="ClassAttendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassAttendance">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientFather_1_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.ClientFather" Role="ClientFather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientFather">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientProgramCurriculum_1_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.ClientProgramCurriculum" Role="ClientProgramCurriculum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientProgramCurriculum">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_College_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.College" Role="College" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="College">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employment_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.Employment" Role="Employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employment">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GEDeducation_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.GEDeducation" Role="GEDeducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GEDeducation">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HighSchool_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.HighSchool" Role="HighSchool" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HighSchool">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OtherEducation_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.OtherEducation" Role="OtherEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherEducation">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregnancy_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.Pregnancy" Role="Pregnancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pregnancy">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PregnancyHistory_0_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.PregnancyHistory" Role="PregnancyHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PregnancyHistory">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceRequested_1_0">
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Model.ServiceRequested" Role="ServiceRequested" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceRequested">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1520,62 +1708,6 @@
                 <ScalarProperty Name="LivingTogether" ColumnName="LivingTogether" />
                 <ScalarProperty Name="FatherId" ColumnName="FatherId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="Model.Application">
-              <MappingFragment StoreEntitySet="Application">
-                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
-                <ScalarProperty Name="ClientParticipationStatus" ColumnName="ClientParticipationStatus" />
-                <ScalarProperty Name="FollowUpCall" ColumnName="FollowUpCall" />
-                <ScalarProperty Name="FollowUpCallDate" ColumnName="FollowUpCallDate" />
-                <ScalarProperty Name="DistributionOfItems" ColumnName="DistributionOfItems" />
-                <ScalarProperty Name="StaffConducting" ColumnName="StaffConducting" />
-                <ScalarProperty Name="ContactAfterToday" ColumnName="ContactAfterToday" />
-                <ScalarProperty Name="PregnancyTestResults" ColumnName="PregnancyTestResults" />
-                <ScalarProperty Name="NotPregHaveMoreOneKid" ColumnName="NotPregHaveMoreOneKid" />
-                <ScalarProperty Name="BabyBornAlready" ColumnName="BabyBornAlready" />
-                <ScalarProperty Name="PregnancyStatus" ColumnName="PregnancyStatus" />
-                <ScalarProperty Name="ReceivedServicesInPast" ColumnName="ReceivedServicesInPast" />
-                <ScalarProperty Name="HearAboutUs" ColumnName="HearAboutUs" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="Model.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="HRCclass" ColumnName="HRCclass" />
-                <ScalarProperty Name="BetterWay" ColumnName="BetterWay" />
-                <ScalarProperty Name="AttendClass" ColumnName="AttendClass" />
-                <ScalarProperty Name="IsSmoker" ColumnName="IsSmoker" />
-                <ScalarProperty Name="EducationalBackground" ColumnName="EducationalBackground" />
-                <ScalarProperty Name="CurrentStudentEnrollment" ColumnName="CurrentStudentEnrollment" />
-                <ScalarProperty Name="ProgressPoints" ColumnName="ProgressPoints" />
-                <ScalarProperty Name="WillingToWork" ColumnName="WillingToWork" />
-                <ScalarProperty Name="ApplyingForDisability" ColumnName="ApplyingForDisability" />
-                <ScalarProperty Name="OnDisability" ColumnName="OnDisability" />
-                <ScalarProperty Name="HousingLocation" ColumnName="HousingLocation" />
-                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
-                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
-                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="StreetAddr2" ColumnName="StreetAddr2" />
-                <ScalarProperty Name="StreetAddr1" ColumnName="StreetAddr1" />
-                <ScalarProperty Name="NameComment" ColumnName="NameComment" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1837,6 +1969,105 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ClientProgramCurriculumId" ColumnName="ClientProgramCurriculumId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PregnancyHistories">
+            <EntityTypeMapping TypeName="Model.PregnancyHistory">
+              <MappingFragment StoreEntitySet="PregnancyHistory">
+                <ScalarProperty Name="NumAbortion" ColumnName="NumAbortion" />
+                <ScalarProperty Name="NumMiscarriage" ColumnName="NumMiscarriage" />
+                <ScalarProperty Name="NumAdoption" ColumnName="NumAdoption" />
+                <ScalarProperty Name="NumToTerm" ColumnName="NumToTerm" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donations">
+            <EntityTypeMapping TypeName="Model.Donation">
+              <MappingFragment StoreEntitySet="Donation">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceRequesteds">
+            <EntityTypeMapping TypeName="Model.ServiceRequested">
+              <MappingFragment StoreEntitySet="ServiceRequested">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="Model.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="ClientParticipationStatus" ColumnName="ClientParticipationStatus" />
+                <ScalarProperty Name="FollowUpCall" ColumnName="FollowUpCall" />
+                <ScalarProperty Name="FollowUpCallDate" ColumnName="FollowUpCallDate" />
+                <ScalarProperty Name="DistributionOfItems" ColumnName="DistributionOfItems" />
+                <ScalarProperty Name="StaffConducting" ColumnName="StaffConducting" />
+                <ScalarProperty Name="ContactAfterToday" ColumnName="ContactAfterToday" />
+                <ScalarProperty Name="PregnancyTestResults" ColumnName="PregnancyTestResults" />
+                <ScalarProperty Name="NotPregHaveMoreOneKid" ColumnName="NotPregHaveMoreOneKid" />
+                <ScalarProperty Name="BabyBornAlready" ColumnName="BabyBornAlready" />
+                <ScalarProperty Name="PregnancyStatus" ColumnName="PregnancyStatus" />
+                <ScalarProperty Name="ReceivedServicesInPast" ColumnName="ReceivedServicesInPast" />
+                <ScalarProperty Name="HearAboutUs" ColumnName="HearAboutUs" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="HRCclass" ColumnName="HRCclass" />
+                <ScalarProperty Name="BetterWay" ColumnName="BetterWay" />
+                <ScalarProperty Name="AttendClass" ColumnName="AttendClass" />
+                <ScalarProperty Name="IsSmoker" ColumnName="IsSmoker" />
+                <ScalarProperty Name="EducationalBackground" ColumnName="EducationalBackground" />
+                <ScalarProperty Name="CurrentStudentEnrollment" ColumnName="CurrentStudentEnrollment" />
+                <ScalarProperty Name="ProgressPoints" ColumnName="ProgressPoints" />
+                <ScalarProperty Name="WillingToWork" ColumnName="WillingToWork" />
+                <ScalarProperty Name="ApplyingForDisability" ColumnName="ApplyingForDisability" />
+                <ScalarProperty Name="OnDisability" ColumnName="OnDisability" />
+                <ScalarProperty Name="HousingLocation" ColumnName="HousingLocation" />
+                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddr2" ColumnName="StreetAddr2" />
+                <ScalarProperty Name="StreetAddr1" ColumnName="StreetAddr1" />
+                <ScalarProperty Name="NameComment" ColumnName="NameComment" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

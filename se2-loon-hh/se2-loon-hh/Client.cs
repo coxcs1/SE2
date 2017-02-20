@@ -17,22 +17,23 @@ namespace se2_loon_hh
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.AddressChanges = new HashSet<AddressChange>();
             this.Applications = new HashSet<Application>();
             this.Children = new HashSet<Child>();
+            this.ClassAttendances = new HashSet<ClassAttendance>();
             this.ClientFathers = new HashSet<ClientFather>();
-            this.AddressChanges = new HashSet<AddressChange>();
+            this.ClientProgramCurriculums = new HashSet<ClientProgramCurriculum>();
             this.Colleges = new HashSet<College>();
+            this.Employments = new HashSet<Employment>();
             this.GEDeducations = new HashSet<GEDeducation>();
             this.HighSchools = new HashSet<HighSchool>();
             this.OtherEducations = new HashSet<OtherEducation>();
-            this.Employments = new HashSet<Employment>();
             this.Pregnancies = new HashSet<Pregnancy>();
-            this.ClassAttendances = new HashSet<ClassAttendance>();
-            this.ClientProgramCurriculums = new HashSet<ClientProgramCurriculum>();
+            this.PregnancyHistories = new HashSet<PregnancyHistory>();
+            this.ServiceRequesteds = new HashSet<ServiceRequested>();
         }
     
         public long Id { get; set; }
-        public Nullable<long> ApplicationId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -62,16 +63,21 @@ namespace se2_loon_hh
         public Nullable<long> HRCclass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AddressChange> AddressChanges { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Application> Applications { get; set; }
-        public virtual Application Application { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Child> Children { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClassAttendance> ClassAttendances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientFather> ClientFathers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AddressChange> AddressChanges { get; set; }
+        public virtual ICollection<ClientProgramCurriculum> ClientProgramCurriculums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<College> Colleges { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employment> Employments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GEDeducation> GEDeducations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -79,12 +85,10 @@ namespace se2_loon_hh
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OtherEducation> OtherEducations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employment> Employments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pregnancy> Pregnancies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassAttendance> ClassAttendances { get; set; }
+        public virtual ICollection<PregnancyHistory> PregnancyHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientProgramCurriculum> ClientProgramCurriculums { get; set; }
+        public virtual ICollection<ServiceRequested> ServiceRequesteds { get; set; }
     }
 }
