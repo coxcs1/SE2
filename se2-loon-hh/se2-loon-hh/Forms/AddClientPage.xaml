@@ -6,9 +6,9 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:se2_loon_hh.Forms"
       mc:Ignorable="d"
+      d:DesignHeight="7000" d:DesignWidth="500"
       Title="AddClientPage" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth + 5}">
-    <!--The Height and Width Bindings are for making sure the document controls are displayed-->
-    <!--TODO: Pretty much every input element will require a name for parsing later -->
+    <!--The extra addition/subtraction to the Height and Width Bindings are for making sure the document controls are displayed-->
     <Page.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
@@ -33,10 +33,17 @@
             <Setter Property="Width" Value="400"/>
         </Style>
         <Style TargetType="Border">
+            <!--Do NOT set a default width here, or it will screw up the entire window-->
             <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="3"/>
         </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Page.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
@@ -167,28 +174,15 @@
                     <GroupBox Header="Birthday">
                         <StackPanel>
                             <Grid>
-                                <Label>Year:</Label>
-                                <TextBox/>
+                                <DatePicker/>
                             </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Race">
+                        <StackPanel>
                             <Grid>
-                                <Label>Month:</Label>
-                                <ComboBox>
-                                    <ComboBoxItem>January</ComboBoxItem>
-                                    <ComboBoxItem>February</ComboBoxItem>
-                                    <ComboBoxItem>March</ComboBoxItem>
-                                    <ComboBoxItem>April</ComboBoxItem>
-                                    <ComboBoxItem>May</ComboBoxItem>
-                                    <ComboBoxItem>June</ComboBoxItem>
-                                    <ComboBoxItem>July</ComboBoxItem>
-                                    <ComboBoxItem>August</ComboBoxItem>
-                                    <ComboBoxItem>September</ComboBoxItem>
-                                    <ComboBoxItem>October</ComboBoxItem>
-                                    <ComboBoxItem>November</ComboBoxItem>
-                                    <ComboBoxItem>December</ComboBoxItem>
-                                </ComboBox>
-                            </Grid>
-                            <Grid>
-                                <Label>Day:</Label>
                                 <TextBox/>
                             </Grid>
                         </StackPanel>
@@ -207,11 +201,54 @@
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
+                <!--TODO: Expand this in the future to allow for multiple Partners, or no partner.-->
                 <Paragraph>
-                    <GroupBox Header="Race">
+                    <GroupBox Header="Husband/Boyfriend">
                         <StackPanel>
                             <Grid>
+                                <Label>First Name:</Label>
                                 <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Middle Name:</Label>
+                                <TextBox Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Grid>
+                                <Label>Last Name:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Birthday:</Label>
+                                <DatePicker/>
+                            </Grid>
+                            <Grid>
+                                <Label>Living together?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Is he supportive?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Working?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="IsWorking">Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Work Location:</Label>
+                                <TextBox IsEnabled="{Binding ElementName=IsWorking, Path=IsChecked}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
@@ -232,6 +269,101 @@
                             </Grid>
                         </StackPanel>
                     </Border>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Pregnancy Information" Width="475">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Are you pregnant today?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="IsPregnant">Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                    <RadioButton x:Name="NotSureIfPregnant">Not Sure</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Visibility="{Binding ElementName=NotSureIfPregnant, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid>
+                                    <Label>Would you like to take a pregnancy test?</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton x:Name="WantsPregnancyTest">Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Visibility="{Binding ElementName=WantsPregnancyTest, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Label>Results:</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Pregnant</RadioButton>
+                                        <RadioButton>Not Pregnant</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <!--If pregnant, these inputs will need to create a new Pregnancy item -->
+                            <StackPanel Visibility="{Binding ElementName=IsPregnant, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid>
+                                    <Label>First Pregnancy?</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Label>How far along?</Label>
+                                    <TextBox/>
+                                </Grid>
+                                <Grid>
+                                    <Label>Due Date:</Label>
+                                    <DatePicker/>
+                                </Grid>
+                                <Grid>
+                                    <Label>Gender:</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Male</RadioButton>
+                                        <RadioButton>Female</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Label>Intentions:</Label>
+                                    <ComboBox>
+                                        <ComboBoxItem>Plan To Parent</ComboBoxItem>
+                                        <ComboBoxItem>Adoption</ComboBoxItem>
+                                        <ComboBoxItem>Abortion</ComboBoxItem>
+                                        <ComboBoxItem>Undecided</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Pregnancy History">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Carried to Term:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Miscarriage:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Abortion:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Adoption:</Label>
+                                <TextBox/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Children" Width="475">
+                        <ScrollViewer>
+                            <StackPanel x:Name="ChildContainer">
+                                <Button x:Name="AddChildButton" Width="100" Click="AddChildButton_Click">Add Child</Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </GroupBox>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentPageViewer>
