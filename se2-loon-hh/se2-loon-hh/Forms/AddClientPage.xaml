@@ -47,17 +47,22 @@
             <Separator/>
         </StackPanel>
         <FlowDocumentPageViewer HorizontalContentAlignment="Center">
-            <FlowDocument PagePadding="5" PageWidth="500"> <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
+            <FlowDocument PagePadding="5" PageWidth="500">
+                <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
                 <Paragraph>
                     <GroupBox Header="Name">
                         <StackPanel>
                             <Grid>
                                 <Label>First Name:</Label>
-                                <TextBox/>
+                                <TextBox x:Name="fNameTxtBox"/>
                             </Grid>
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
                                 <Label>Middle Name:</Label>
-                                <TextBox/>
+                                <TextBox Grid.ColumnSpan="2" Margin="0,5,5,5"/>
                             </Grid>
                             <Grid>
                                 <Label>Last Name:</Label>

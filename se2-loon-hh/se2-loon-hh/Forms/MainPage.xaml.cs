@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace se2_loon_hh.Forms
 {
-    /// <summary>
-    /// Interaction logic for MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
         public MainPage()
@@ -37,7 +34,7 @@ namespace se2_loon_hh.Forms
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

@@ -25,6 +25,32 @@ namespace se2_loon_hh
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Child> Children { get; set; }
+        public virtual DbSet<Father> Fathers { get; set; }
+        public virtual DbSet<ClientFather> ClientFathers { get; set; }
+        public virtual DbSet<AddressChange> AddressChanges { get; set; }
+        public virtual DbSet<College> Colleges { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<GEDeducation> GEDeducations { get; set; }
+        public virtual DbSet<HighSchool> HighSchools { get; set; }
+        public virtual DbSet<OtherEducation> OtherEducations { get; set; }
+        public virtual DbSet<Employment> Employments { get; set; }
+        public virtual DbSet<Pregnancy> Pregnancies { get; set; }
+        public virtual DbSet<Volunteer> Volunteers { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<OrganizationContact> OrganizationContacts { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<ClassAttendance> ClassAttendances { get; set; }
+        public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<ProgramCurriculum> ProgramCurriculums { get; set; }
+        public virtual DbSet<ClientProgramCurriculum> ClientProgramCurriculums { get; set; }
+        public virtual DbSet<ProgramCurriculumAttribute> ProgramCurriculumAttributes { get; set; }
+        public virtual DbSet<ClientProgramCurriculumAttribute> ClientProgramCurriculumAttributes { get; set; }
+        public virtual DbSet<PregnancyHistory> PregnancyHistories { get; set; }
+        public virtual DbSet<Donation> Donations { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServiceRequested> ServiceRequesteds { get; set; }
+        public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
     }
 }
