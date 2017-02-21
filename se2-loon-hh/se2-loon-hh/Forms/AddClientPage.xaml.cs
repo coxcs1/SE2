@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using se2_loon_hh.Controllers;
 
 namespace se2_loon_hh.Forms
 {
@@ -20,8 +21,10 @@ namespace se2_loon_hh.Forms
     /// </summary>
     public partial class AddClientPage : Page
     {
+        ClientController clientController;
         public AddClientPage()
         {
+            clientController = new ClientController();
             InitializeComponent();
             this.DataContext = this; // This is for allowing the height and width of the page to be bound to the window height and width
         }

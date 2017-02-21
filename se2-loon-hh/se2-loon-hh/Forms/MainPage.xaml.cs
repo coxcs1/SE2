@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace se2_loon_hh.Forms
 {
-    /// <summary>
-    /// Interaction logic for MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
         public MainPage()
