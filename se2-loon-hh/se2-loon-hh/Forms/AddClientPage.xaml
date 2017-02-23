@@ -365,6 +365,53 @@
                         </ScrollViewer>
                     </GroupBox>
                 </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Employment History">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Working?:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="ClientWorking">Yes</RadioButton>
+                                    <RadioButton x:Name="ClientNotWorking">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Visibility="{Binding ElementName=ClientWorking, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <!--TODO: Maybe make this its own page asking for employer address.-->
+                                <Grid>
+                                    <Label>Location:</Label>
+                                    <TextBox/>
+                                </Grid>
+
+                                <Grid>
+                                    <Label>Hours per week:</Label>
+                                    <!--See if there is a number up down input box??-->
+                                    <TextBox/>
+                                </Grid>
+                                <Grid>
+                                    <Label>Making livable wage?:</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Label>Start Date:</Label>
+                                    <DatePicker/>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=ClientNotWorking, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid>
+                                    <Label>Last Time Employed:</Label><!-- End date -->
+                                    <DatePicker/>
+                                </Grid>
+                            </StackPanel>
+                            <Grid>
+                                <Label>Comments</Label>
+                                <TextBox Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
             </FlowDocument>
         </FlowDocumentPageViewer>
     </DockPanel>
