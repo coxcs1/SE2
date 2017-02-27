@@ -118,6 +118,9 @@
     <Compile Include="Donation.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Organization.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
     <Page Include="Forms\AddClientPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -257,9 +264,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="HopeHouseDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -271,6 +276,8 @@
       <DependentUpon>HopeHouseDB.edmx</DependentUpon>
       <LastGenOutput>HopeHouseDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\house.png" />
+    <Resource Include="Resources\hopehouse.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
