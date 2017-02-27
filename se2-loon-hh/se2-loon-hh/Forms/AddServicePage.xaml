@@ -68,7 +68,7 @@
                                 <Label>Date Arrived:</Label>
                                 <DatePicker x:Name="DateArrivedDatePicker" Grid.ColumnSpan="2" Margin="135,5,5,5" />
                             </Grid>
-                            <GroupBox Header="Select All That Apply">
+                            <GroupBox Header="Contact Type">
                                 <StackPanel>
                                     <CheckBox x:Name="NewContact" Content="New Contact" Margin="0"/>
                                     <CheckBox x:Name="NewWalkIn" Content="New Walk In" Margin="0"/>
@@ -78,6 +78,7 @@
                                     <CheckBox x:Name="OffSite" Content="Off Site" Margin="0"/>
                                     <CheckBox x:Name="RepresentedBySomeoneElse" Content="Represented By Someone Else" Margin="0"/>
                                     <CheckBox x:Name="OutgoingCallMailEmail" Content="Outgoing Call Mail Email" Margin="0"/>
+                                    <CheckBox x:Name="Email" Content="Email" Margin="0"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
@@ -113,6 +114,8 @@
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="110" Name="AddDonationButton" Click="AddDonationButton_Click">Add Donation</Button>
                         </StackPanel>
                     </GroupBox>
+                </Paragraph>
+                <Paragraph>
                     <DataGrid x:Name="DonationsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
