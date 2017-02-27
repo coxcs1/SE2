@@ -28,6 +28,9 @@
             <Button x:Name="AddClientButton" Content="Add Client" Margin="10" Grid.Column="1" Grid.Row="0" Click="AddClientButton_Click"/>
             <Button x:Name="ViewClientsButton" Content="View Clients" Margin="10" Grid.Column="1" Grid.Row="1" Click="ViewClientsButton_Click"/>
             <Button x:Name="ExitButton" Content="Exit" Margin="10" Grid.Column="1" Grid.Row="2" Click="ExitButton_Click"/>
+            <Menu x:Name="menu" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100">
+                <MenuItem Header="Add Service" Width="100" Click="MenuItem_Click"/>
+            </Menu>
         </Grid>
     </DockPanel>
 </Page>
