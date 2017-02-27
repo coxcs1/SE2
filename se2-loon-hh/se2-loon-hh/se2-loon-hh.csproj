@@ -115,6 +115,7 @@
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Donation.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
@@ -124,6 +125,7 @@
     <Compile Include="Forms\AddServicePage.xaml.cs">
       <DependentUpon>AddServicePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormsAPI\ComboBoxPairs.cs" />
     <Compile Include="Organization.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>

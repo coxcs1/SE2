@@ -6,11 +6,130 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:se2_loon_hh.Forms"
       mc:Ignorable="d"
-      Title="Add Service" Height="285.812" Width="364.444">
-
-    <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" TextChanged="textBox_TextChanged"/>
-        <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="23" Width="84"/>
-
-    </Grid>
+      Title="Add Service" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth + 5}">
+    <!--The Height and Width Bindings are for making sure the document controls are displayed-->
+    <!--TODO: Pretty much every input element will require a name for parsing later -->
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Grid>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="SubmitButton" Click="SubmitButton_Click">Submit</Button>
+            </Grid>
+            <Separator/>
+        </StackPanel>
+        <FlowDocumentPageViewer HorizontalContentAlignment="Center">
+            <FlowDocument PagePadding="5" PageWidth="500">
+                <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
+                <Paragraph>
+                    <GroupBox Header="General Information">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Client:</Label>
+                                <ComboBox x:Name="ClientComboBox" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Date Arrived:</Label>
+                                <DatePicker x:Name="DateArrivedDatePicker" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <GroupBox Header="Select All That Apply">
+                                <StackPanel>
+                                    <CheckBox x:Name="NewContact" Content="New Contact" Margin="0"/>
+                                    <CheckBox x:Name="NewWalkIn" Content="New Walk In" Margin="0"/>
+                                    <CheckBox x:Name="WalkIn" Content="Walk In" Margin="0"/>
+                                    <CheckBox x:Name="TelephoneAfterHours" Content="Telephone After Hours" Margin="0"/>
+                                    <CheckBox x:Name="PrankCall" Content="Prank Call" Margin="0"/>
+                                    <CheckBox x:Name="OffSite" Content="Off Site" Margin="0"/>
+                                    <CheckBox x:Name="RepresentedBySomeoneElse" Content="Represented By Someone Else" Margin="0"/>
+                                    <CheckBox x:Name="OutgoingCallMailEmail" Content="Outgoing Call Mail Email" Margin="0"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Add Donations">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Name:</Label>
+                                <TextBox x:Name="DonationName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Type:</Label>
+                                <TextBox x:Name="DonationType" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Comment:</Label>
+                                <TextBox x:Name="DonationComment" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="110" Name="AddDonationButton" Click="AddDonationButton_Click">Add Donation</Button>
+                        </StackPanel>
+                    </GroupBox>
+                    <DataGrid x:Name="DonationsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
+                            <DataGridTemplateColumn Header="Actions">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove"
+                                					Click="RemoveDonation_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </DockPanel>
 </Page>
