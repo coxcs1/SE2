@@ -50,7 +50,6 @@ namespace se2_loon_hh.Forms
 
             GroupBox groupbox = new GroupBox(); // Surrounds all elements for child
             groupbox.Header = "Child " + childCounter;
-
             StackPanel childPanel = new StackPanel(); // Layout for elements
 
             Grid fnameGrid = new Grid(); // Layout for fname elements
@@ -79,6 +78,9 @@ namespace se2_loon_hh.Forms
             RadioButton noButton = new RadioButton();
             noButton.Content = "No";
 
+            //Grid cancelChildGrid = new Grid(); // Layout for lname elements
+           // Button cancelChild = new Button();
+
             // Put all elements in corresponding layouts
             custodyChoicesLayout.Children.Add(yesButton);
             custodyChoicesLayout.Children.Add(noButton);
@@ -94,6 +96,7 @@ namespace se2_loon_hh.Forms
             childPanel.Children.Add(lnameGrid);
             childPanel.Children.Add(bdayGrid);
             childPanel.Children.Add(custodyGrid);
+            //childPanel.Children.Add(cancelChildGrid);
             groupbox.Content = childPanel;
             ChildContainer.Children.Insert(childCounter - 1, groupbox); // Inserts after last child, but before AddChildButton
         }
