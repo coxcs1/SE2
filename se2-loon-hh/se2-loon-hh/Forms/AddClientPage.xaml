@@ -396,7 +396,6 @@
                                         <RadioButton x:Name="OtherCollege">Other</RadioButton>
                                     </StackPanel>-->
                                 </Grid>
-                                <!--TODO: Have location on college page, but not other section-->
                                 <Grid>
                                     <Label>Location:</Label>
                                     <TextBox/>
@@ -452,10 +451,9 @@
                                     <Grid>
                                         <Label>Degree:</Label>
                                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                            <RadioButton>Associate</RadioButton>
-                                            <RadioButton>Bachelor</RadioButton>
-                                            <RadioButton>Master</RadioButton>
-                                            <!--<RadioButton>Doctorate </RadioButton>-->
+                                            <RadioButton>Associate's</RadioButton>
+                                            <RadioButton>Bachelor's</RadioButton>
+                                            <RadioButton>Master's</RadioButton>
                                         </StackPanel>
                                         <!--TODO: maybe add a field to input the major I.E.(Computer Science)-->
                                     </Grid>
@@ -478,18 +476,21 @@
                                     </ComboBox>
                                 </Grid>
                                 <StackPanel Visibility="{Binding ElementName=AttendingHS, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <Grid>
-                                        <Label>Location:</Label>
-                                        <TextBox/>
-                                    </Grid>
-                                    <Grid>
-                                        <Label>Year:</Label>
+                                     <Grid>
+                                        <Label>Grade Level:</Label>
+                                        <ComboBox>
+                                            <ComboBoxItem>Freshman</ComboBoxItem>
+                                            <ComboBoxItem>Sophomore</ComboBoxItem>
+                                            <ComboBoxItem>Junior</ComboBoxItem>
+                                            <ComboBoxItem>Senior</ComboBoxItem>
+                                        </ComboBox>
+                                        <!-- Radio Button Alternative for Dropout Grade:
                                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                             <RadioButton>Freshman</RadioButton>
                                             <RadioButton>Sophomore</RadioButton>
                                             <RadioButton>Junior</RadioButton>
                                             <RadioButton>Senior</RadioButton>
-                                        </StackPanel>
+                                        </StackPanel>-->
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Visibility="{Binding ElementName=DropOut, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -501,7 +502,7 @@
                                             <ComboBoxItem>Junior</ComboBoxItem>
                                             <ComboBoxItem>Senior</ComboBoxItem>
                                         </ComboBox>
-                                        <!-- Radio Button Alternative
+                                        <!-- Radio Button Alternative for Dropout Grade:
                                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                             <RadioButton>Freshman</RadioButton>
                                             <RadioButton>Sophomore</RadioButton>
@@ -511,10 +512,6 @@
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Visibility="{Binding ElementName=GraduatedHS, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                    <Grid>
-                                        <Label>Location:</Label>
-                                        <TextBox/>
-                                    </Grid>
                                     <Grid>
                                         <Label>Graduation Date:</Label>
                                         <DatePicker/>
@@ -527,6 +524,7 @@
                                     </Grid>
                                 </StackPanel>
                             </StackPanel>
+
                             <StackPanel Visibility="{Binding ElementName=GED, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid>
                                     <Label>Status:</Label>
@@ -536,14 +534,20 @@
                                         <ComboBoxItem x:Name="OtherGED">Other</ComboBoxItem>
                                     </ComboBox>
                                 </Grid>
-                                <Grid>
-                                    <Label>Location:</Label>
-                                    <TextBox/>
-                                </Grid>
                                 <StackPanel Visibility="{Binding ElementName=HaveGED, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Label>Location:</Label>
+                                        <TextBox/>
+                                    </Grid>
                                     <Grid>
                                         <Label>Date Earned:</Label>
                                         <DatePicker/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding ElementName=PursuingGED, Path=IsSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Label>Location:</Label>
+                                        <TextBox/>
                                     </Grid>
                                 </StackPanel>
                                 <Grid>
@@ -552,6 +556,7 @@
                                 </Grid>
                             </StackPanel>
                             <StackPanel Visibility="{Binding ElementName=OtherEdu, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid>
                                 <Label>Description:</Label>
                                 <ComboBox>
                                     <ComboBoxItem x:Name="TechSchool">Technical School</ComboBoxItem>
@@ -559,16 +564,12 @@
                                     <ComboBoxItem x:Name="Online">Online</ComboBoxItem>
                                     <ComboBoxItem>Other</ComboBoxItem>
                                 </ComboBox>
+                                </Grid>
                                 <Grid>
                                     <Label>Comments:</Label>
                                     <TextBox Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
                                 </Grid>
-                                <!-- Not sure if we should put this under every OtherEdu option
-                                <Grid>
-                                    <Label>Date Earned:</Label>
-                                    <DatePicker/>
-                                </Grid>-->
-                            </StackPanel>
+                            </StackPanel>                  
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
@@ -591,7 +592,7 @@
 
                                 <Grid>
                                     <Label>Hours per week:</Label>
-                                    <!--See if there is a number up down input box??-->
+                                    <!--See if there is a number scroll input box??-->
                                     <TextBox/>
                                 </Grid>
                                 <Grid>
@@ -608,7 +609,8 @@
                             </StackPanel>
                             <StackPanel Visibility="{Binding ElementName=ClientNotWorking, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid>
-                                    <Label>Last Time Employed:</Label><!-- End date -->
+                                    <Label>Last Time Employed:</Label>
+                                    <!-- End date -->
                                     <DatePicker/>
                                 </Grid>
                             </StackPanel>
@@ -618,7 +620,6 @@
                             </Grid>
                         </StackPanel>
                     </GroupBox>
-                    
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentPageViewer>
