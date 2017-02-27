@@ -118,6 +118,9 @@
     <Compile Include="Donation.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddServicePage.xaml.cs">
+      <DependentUpon>AddServicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Organization.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
     <Page Include="Forms\AddClientPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\AddServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
