@@ -19,5 +19,10 @@ namespace se2_loon_hh.Forms.FormsAPI
             _Key = _key;
             _Value = _value;
         }
+        
+        public override String ToString()
+        {
+            return this._Value;
+        }
     }
 }

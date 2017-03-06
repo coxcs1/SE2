@@ -101,7 +101,7 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Type:</Label>
-                                <TextBox x:Name="DonationType" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                                <ComboBox x:Name="DonationType" Grid.ColumnSpan="2" Margin="0,5,5,5" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>

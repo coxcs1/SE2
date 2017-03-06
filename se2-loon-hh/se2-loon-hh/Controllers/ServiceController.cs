@@ -32,6 +32,14 @@ namespace se2_loon_hh.Controllers
             }
             return clientList;
         }
+        public List<ComboBoxPairs> GetDonationTypes()
+        {
+            List<ComboBoxPairs> donationTypes = new List<ComboBoxPairs>();
+            donationTypes.Add(new ComboBoxPairs("Boolean", "Yes/No"));
+            donationTypes.Add(new ComboBoxPairs("Integer", "Number"));
+
+            return donationTypes;
+        }
         /// <summary>
         /// This function creates a service from data collected in the form.
         /// </summary>

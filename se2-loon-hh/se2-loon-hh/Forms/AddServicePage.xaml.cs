@@ -49,17 +49,25 @@ namespace se2_loon_hh.Forms
             ClientComboBox.DisplayMemberPath = "_Value";//what to display
             ClientComboBox.SelectedValuePath = "_Key";//what to use when passing data to back end
             ClientComboBox.ItemsSource = serviceController.GetClientsForComboBox();//store ComboBoxPairs data structure
+            DonationType.DisplayMemberPath = "_Value";//what to display
+            DonationType.SelectedValuePath = "_Key";//what to use when passing data to back end
+            DonationType.ItemsSource = serviceController.GetDonationTypes();//load up donation types for the donation type combo box
         }
 
         private void AddDonationButton_Click(object sender, RoutedEventArgs e)
         {
-            var row = new { Name = DonationName.Text, Type = DonationType.Text, Comment = DonationComment.Text };
+            var row = new { Name = DonationName.Text, Type = DonationType.SelectedItem.ToString(), Comment = DonationComment.Text };
             DonationsDataGrid.Items.Add(row);
         }
 
         private void RemoveDonation_Click(object sender, RoutedEventArgs e)
         {
             DonationsDataGrid.Items.RemoveAt(DonationsDataGrid.SelectedIndex);
+        }
+
+        private void Integer_MouseMove(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
