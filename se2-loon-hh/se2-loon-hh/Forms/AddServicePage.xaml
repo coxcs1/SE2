@@ -48,6 +48,11 @@
         </StackPanel>
         <FlowDocumentPageViewer HorizontalContentAlignment="Center">
             <FlowDocument PagePadding="5" PageWidth="500">
+                <Paragraph>
+                    <TextBlock>
+                        Add Service
+                    </TextBlock>
+                </Paragraph>
                 <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
                 <Paragraph>
                     <GroupBox Header="General Information">
