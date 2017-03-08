@@ -43,9 +43,11 @@ namespace se2_loon_hh.Controllers
         /// <summary>
         /// This function creates a service from data collected in the form.
         /// </summary>
-        public void CreateService()
+        public void CreateService(Service service, ServiceRequested serviceRequested)
         {
-            //TODO: Collect the information sent from the client page and store it into the database...
+            _db.Services.Add(service);
+            _db.ServiceRequesteds.Add(serviceRequested);
+            _db.SaveChanges();
         }
         /// <summary>
         /// This function disposes of the DB Context.

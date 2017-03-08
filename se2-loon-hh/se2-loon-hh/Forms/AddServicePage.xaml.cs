@@ -37,7 +37,39 @@ namespace se2_loon_hh.Forms
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Process Form via controller...");
+            //create and populate the service using manually ugly property calls
+            var service = new Service();
+            service.DateArrived = DateArrivedDatePicker.Text;
+            service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
+            service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
+            service.TelephoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
+            service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
+            service.OffSite = Convert.ToInt64(OffSite.IsChecked);
+            service.RepresentedBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
+            service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
+            service.Email = Convert.ToInt64(Email.IsChecked);
+            service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            //create as many donations as needed and link them to a service
+            foreach (var item in DonationsDataGrid.Items)
+            {
+                //create the donation
+                var donation = new Donation();
+                donation.Name = item.GetType().GetProperty("Name").GetValue(item).ToString();
+                donation.Type = item.GetType().GetProperty("Type").GetValue(item).ToString();
+                donation.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
+                //add the donation to the service
+                service.Donations.Add(donation);
+            }
+            //create the requested service and pass it to the controller
+            var serviceRequested = new ServiceRequested();
+            serviceRequested.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);//attach the client to the requested service
+            serviceRequested.Service = service;
+            serviceRequested.DateReceived = DateArrivedDatePicker.Text;
+
+            serviceController.CreateService(service, serviceRequested);
+            Console.WriteLine("Processing complete...");
+            this.NavigationService.Navigate(new MainPage());//go to home page
         }
 
         /// <summary>
