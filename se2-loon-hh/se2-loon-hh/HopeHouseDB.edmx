@@ -359,6 +359,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Type" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="NewWalkIn" Type="integer" />
+          <Property Name="DateArrived" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="TelephoneAfterHrs" Type="integer" />
+          <Property Name="PrankCall" Type="integer" />
+          <Property Name="Email" Type="integer" />
+          <Property Name="OutgoingCallMailEmail" Type="integer" />
+          <Property Name="OffSite" Type="integer" />
+          <Property Name="RepresentedBySomeoneElse" Type="integer" />
         </EntityType>
         <EntityType Name="ServiceRequested">
           <Key>
@@ -1379,6 +1387,14 @@
           <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Donations" Relationship="Model.FK_Donation_0_0" FromRole="Service" ToRole="Donation" />
           <NavigationProperty Name="ServiceRequesteds" Relationship="Model.FK_ServiceRequested_0_0" FromRole="Service" ToRole="ServiceRequested" />
+          <Property Name="NewWalkIn" Type="Int64" />
+          <Property Name="DateArrived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneAfterHrs" Type="Int64" />
+          <Property Name="PrankCall" Type="Int64" />
+          <Property Name="Email" Type="Int64" />
+          <Property Name="OutgoingCallMailEmail" Type="Int64" />
+          <Property Name="OffSite" Type="Int64" />
+          <Property Name="RepresentedBySomeoneElse" Type="Int64" />
         </EntityType>
         <EntityType Name="ServiceRequested">
           <Key>
@@ -1999,6 +2015,14 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="Model.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="RepresentedBySomeoneElse" ColumnName="RepresentedBySomeoneElse" />
+                <ScalarProperty Name="OffSite" ColumnName="OffSite" />
+                <ScalarProperty Name="OutgoingCallMailEmail" ColumnName="OutgoingCallMailEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PrankCall" ColumnName="PrankCall" />
+                <ScalarProperty Name="TelephoneAfterHrs" ColumnName="TelephoneAfterHrs" />
+                <ScalarProperty Name="DateArrived" ColumnName="DateArrived" />
+                <ScalarProperty Name="NewWalkIn" ColumnName="NewWalkIn" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
