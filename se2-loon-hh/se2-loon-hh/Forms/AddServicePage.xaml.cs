@@ -96,10 +96,5 @@ namespace se2_loon_hh.Forms
         {
             DonationsDataGrid.Items.RemoveAt(DonationsDataGrid.SelectedIndex);
         }
-
-        private void Integer_MouseMove(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }
