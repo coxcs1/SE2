@@ -47,15 +47,38 @@
             <FlowDocument PagePadding="5" PageWidth="500">
                 <Paragraph>
                     <TextBlock>
-                        View Services
+                        Service Details
                     </TextBlock>
                 </Paragraph>
                 <Paragraph>
-                    <DataGrid x:Name="ServiceDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                    <Grid Margin="10">
+                        <ListBox Name="ServiceDetailsList" HorizontalContentAlignment="Stretch">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="225" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Label}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Text}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock>
+                        Donations
+                    </TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <DataGrid x:Name="DonationsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
-                            <DataGridTextColumn Header="Date Arrived" IsReadOnly="True" Binding="{Binding DateArrived}"/>
-                            <DataGridTextColumn Header="Donations" IsReadOnly="True" Binding="{Binding Donations}"/>
+                            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Paragraph>

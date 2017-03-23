@@ -39,6 +39,9 @@ namespace se2_loon_hh.Forms
         {
             //create and populate the service using manually ugly property calls
             var service = new Service();
+            service.Name = ServiceName.Text;
+            service.Type = ServiceType.Text;
+            service.Description = ServiceDescription.Text;
             service.DateArrived = DateArrivedDatePicker.Text;
             service.NewContact = Convert.ToInt64(NewContact.IsChecked);
             service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
@@ -66,9 +69,7 @@ namespace se2_loon_hh.Forms
             serviceRequested.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);//attach the client to the requested service
             serviceRequested.Service = service;
             serviceRequested.DateReceived = DateArrivedDatePicker.Text;
-
-            serviceController.CreateService(service, serviceRequested);
-            Console.WriteLine("Processing complete...");
+            serviceController.CreateService(service, serviceRequested);//persist the service into the database
             this.NavigationService.Navigate(new MainPage());//go to home page
         }
 
