@@ -50,6 +50,28 @@ namespace se2_loon_hh.Controllers
             _db.SaveChanges();
         }
         /// <summary>
+        /// Build a list of breif service information and package it
+        /// up for the view services page.
+        /// </summary>
+        /// <returns>List of generic objects for the data grid</returns>
+        public List<object> GetAllServices()
+        {
+            var serviceList = new List<object>();//create a list of generic objects
+            var services = _db.ServiceRequesteds.ToList();//fetch all of the services requested
+            //loop through each and add the information we need for the data grid
+            foreach (var serviceRequested in services)
+            {
+                serviceList.Add(new {
+                    ServiceID = serviceRequested.Service.Id,//used for navigating to a more detailed service view page
+                    Client = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName,
+                    DateArrived = serviceRequested.Service.DateArrived,
+                    Donations = serviceRequested.Service.Donations.Count.ToString()
+                });
+            }
+            //send the list to the partial form class
+            return serviceList;
+        }
+        /// <summary>
         /// This function disposes of the DB Context.
         /// </summary>
         public void Dispose()
