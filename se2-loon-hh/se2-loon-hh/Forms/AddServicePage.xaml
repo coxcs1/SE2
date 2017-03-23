@@ -49,9 +49,7 @@
         <FlowDocumentPageViewer HorizontalContentAlignment="Center">
             <FlowDocument PagePadding="5" PageWidth="500">
                 <Paragraph>
-                    <TextBlock>
-                        Add Service
-                    </TextBlock>
+                    <TextBlock x:Name="PageTitle" />
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Service Information">

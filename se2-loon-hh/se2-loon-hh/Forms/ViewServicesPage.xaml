@@ -59,8 +59,15 @@
                             <DataGridTemplateColumn Header="Actions">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Details"
-                                					Click="ServiceDetails_Click"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel.Resources>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                                </Style>
+                                            </StackPanel.Resources>
+                                            <Button Content="Edit" Click="EditService_Click"/>
+                                            <Button Content="Details" Click="ServiceDetails_Click"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
