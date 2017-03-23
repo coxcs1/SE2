@@ -62,7 +62,7 @@ namespace se2_loon_hh.Controllers
             foreach (var serviceRequested in services)
             {
                 serviceList.Add(new {
-                    ServiceID = serviceRequested.Service.Id,//used for navigating to a more detailed service view page
+                    ServiceID = serviceRequested.Id,//used for navigating to a more detailed service view page
                     Client = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName,
                     DateArrived = serviceRequested.Service.DateArrived,
                     Donations = serviceRequested.Service.Donations.Count.ToString()
@@ -70,6 +70,10 @@ namespace se2_loon_hh.Controllers
             }
             //send the list to the partial form class
             return serviceList;
+        }
+        public ServiceRequested GetServiceRequested(int serviceRequestedID)
+        {
+            return _db.ServiceRequesteds.Find(serviceRequestedID);
         }
         /// <summary>
         /// This function disposes of the DB Context.
