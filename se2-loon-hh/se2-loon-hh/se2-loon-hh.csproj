@@ -121,6 +121,9 @@
       <DependentUpon>AddServicePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormsAPI\ComboBoxPairs.cs" />
+    <Compile Include="Forms\ServiceDetails.xaml.cs">
+      <DependentUpon>ServiceDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Forms\ServiceDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ViewServicesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
