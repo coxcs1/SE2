@@ -36,15 +36,5 @@ namespace se2_loon_hh.Forms
         {
             System.Windows.Application.Current.Shutdown();
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new AddServicePage());
-        }
-
-        private void ViewServices_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new ViewServicesPage());
-        }
     }
 }

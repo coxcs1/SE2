@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace se2_loon_hh.Controllers
 {
@@ -48,6 +49,13 @@ namespace se2_loon_hh.Controllers
             _db.Services.Add(service);
             _db.ServiceRequesteds.Add(serviceRequested);
             _db.SaveChanges();
+        }
+
+        public void EditService(ServiceRequested serviceRequested)
+        {
+            _db.Entry(serviceRequested.Service).State = EntityState.Modified;
+            _db.Entry(serviceRequested).State = EntityState.Modified;//let ORM know object has been modified
+            _db.SaveChanges();//save the new changes to the DB
         }
         /// <summary>
         /// Build a list of breif service information and package it
