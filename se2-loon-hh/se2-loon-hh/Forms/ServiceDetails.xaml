@@ -56,14 +56,6 @@
                             <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
                             <DataGridTextColumn Header="Date Arrived" IsReadOnly="True" Binding="{Binding DateArrived}"/>
                             <DataGridTextColumn Header="Donations" IsReadOnly="True" Binding="{Binding Donations}"/>
-                            <DataGridTemplateColumn Header="Actions">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Details"
-                                					Click="ServiceDetails_Click"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Paragraph>

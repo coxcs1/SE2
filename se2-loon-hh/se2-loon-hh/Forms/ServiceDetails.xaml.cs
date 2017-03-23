@@ -1,4 +1,5 @@
-﻿using System;
+﻿using se2_loon_hh.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace se2_loon_hh.Forms
     /// </summary>
     public partial class ServiceDetails : Page
     {
-        public ServiceDetails()
+        ServiceController serviceController;
+        ServiceRequested serviceRequested;
+
+        public ServiceDetails(int serviceID)
         {
-            InitializeComponent();
+            serviceController = new ServiceController();//initialize controller
+            InitializeComponent();//setup components
+            serviceRequested = serviceController.GetServiceRequested(serviceID);//fetch the service requested from the database
+            Console.WriteLine(serviceRequested.Client.FirstName);
+        }
+        /// <summary>
+        /// When the back button is clicked, navigate back to the view services page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ViewServicesPage());
         }
     }
 }

@@ -38,9 +38,9 @@ namespace se2_loon_hh.Forms
         private void ServiceDetails_Click(object sender, RoutedEventArgs e)
         {
             var service = ServicesDataGrid.Items.GetItemAt(ServicesDataGrid.SelectedIndex);//fetch the service row that was clicked
-            var serviceID = service.GetType().GetProperty("ServiceID").GetValue(service).ToString();//fetch the serviceID from the generic object
+            var serviceRequestedID = Convert.ToInt32(service.GetType().GetProperty("ServiceID").GetValue(service).ToString());//fetch the serviceID from the generic object
             //navigate to service detail page
-            Console.WriteLine(service);
+            this.NavigationService.Navigate(new ServiceDetails(serviceRequestedID));
         }
 
         /// <summary>
