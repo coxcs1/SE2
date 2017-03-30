@@ -44,8 +44,6 @@ namespace se2_loon_hh.Forms
 
         private void AddChildButton_Click(object sender, RoutedEventArgs e)
         {
-            // Will need to put controller code in here for creating children later
-            // TODO: Make children deletable
             childCounter++;
 
             GroupBox groupbox = new GroupBox(); // Surrounds all elements for child
@@ -78,10 +76,15 @@ namespace se2_loon_hh.Forms
             RadioButton noButton = new RadioButton();
             noButton.Content = "No";
 
-            //Grid cancelChildGrid = new Grid(); // Layout for lname elements
-           // Button cancelChild = new Button();
+            Grid removeChildGrid = new Grid(); // Layout for child removal
+            Button removeChildButton = new Button();
+            removeChildButton.Tag = childCounter;
+            removeChildButton.Content = "Remove";
+            removeChildButton.HorizontalAlignment = HorizontalAlignment.Right;
+            removeChildButton.Click += RemoveChildButton_Click;
 
             // Put all elements in corresponding layouts
+            removeChildGrid.Children.Add(removeChildButton);
             custodyChoicesLayout.Children.Add(yesButton);
             custodyChoicesLayout.Children.Add(noButton);
             custodyGrid.Children.Add(custodyLabel);
@@ -96,9 +99,21 @@ namespace se2_loon_hh.Forms
             childPanel.Children.Add(lnameGrid);
             childPanel.Children.Add(bdayGrid);
             childPanel.Children.Add(custodyGrid);
-            //childPanel.Children.Add(cancelChildGrid);
+            childPanel.Children.Add(removeChildGrid);
             groupbox.Content = childPanel;
             ChildContainer.Children.Insert(childCounter - 1, groupbox); // Inserts after last child, but before AddChildButton
+        }
+
+        private void RemoveChildButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChildContainer.Children.RemoveAt((int)(e.Source as Button).Tag - 1); // Remove child at index based on Tag on button
+            childCounter--; // Decrement child counter
+
+            for(int i = 0; i < childCounter; i++) // Update headers and tags to new indexes
+            {
+                (ChildContainer.Children[i] as GroupBox).Header = "Child " + (i + 1);
+                ((((ChildContainer.Children[i] as GroupBox).Content as StackPanel).Children[4] as Grid).Children[0] as Button).Tag = (i + 1);
+            }
         }
     }
 }

@@ -254,21 +254,52 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <Border Width="475">
+                    <GroupBox Header="Transportation">
                         <StackPanel>
                             <Grid>
-                                <Label>How did you hear about us?</Label>
-                                <TextBox Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                                <Label>Driver's License:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
                             </Grid>
                             <Grid>
-                                <Label>Have you recieved services from us in the past?</Label>
+                                <Label>Access to Transportation:</Label>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                     <RadioButton>Yes</RadioButton>
                                     <RadioButton>No</RadioButton>
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
-                    </Border>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Smoking">
+                        <Grid>
+                            <Label>Do you smoke?</Label>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <RadioButton>Yes</RadioButton>
+                                <RadioButton>No</RadioButton>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Church">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Attend Church:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="AttendChurch">Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Visibility="{Binding ElementName=AttendChurch, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label>Church Name:</Label>
+                                <TextBox/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Pregnancy Information" Width="475">
@@ -330,6 +361,35 @@
                                         <ComboBoxItem>Undecided</ComboBoxItem>
                                     </ComboBox>
                                 </Grid>
+                                <Grid>
+                                    <Label>Planned:</Label>
+                                    <ComboBox>
+                                        <ComboBoxItem>Yes</ComboBoxItem>
+                                        <ComboBoxItem>Unplanned and Upsetting at First</ComboBoxItem>
+                                        <ComboBoxItem>Unplanned but Happy About It</ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                                <Grid>
+                                    <Label>Were you on birth control?</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Label>Has pregnancy been verified?</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Label>Taking Prenatal Vitamin:</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
@@ -357,12 +417,125 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
+                    <GroupBox Header="Healthcare and Services" Width="475">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Medical Insurance:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>OB Doctor:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Pediatrician:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Children Recieving Healthcare:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                    <RadioButton>N/A</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>WIC:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>HUGS:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="HugsNurse">Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Visibility="{Binding ElementName=HugsNurse, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label>HUGS Nurse:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Food Stamps:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Families First:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Life Bridge Program/FSS:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Child Care Situation:</Label>
+                                <TextBox/>
+                            </Grid>
+                            <Grid>
+                                <Label>Do any of your children have disabilities?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
                     <GroupBox Header="Children" Width="475">
                         <ScrollViewer>
                             <StackPanel x:Name="ChildContainer">
                                 <Button x:Name="AddChildButton" Width="100" Click="AddChildButton_Click">Add Child</Button>
                             </StackPanel>
                         </ScrollViewer>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Housing">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Location:</Label>
+                                <ComboBox x:Name="HousingLocation">
+                                    <ComboBoxItem>Own Home</ComboBoxItem>
+                                    <ComboBoxItem>Rent Apt/Home (Not Government Housing)</ComboBoxItem>
+                                    <ComboBoxItem>Government Housing</ComboBoxItem>
+                                    <ComboBoxItem>Section 8 Housing</ComboBoxItem>
+                                    <ComboBoxItem>With Parents</ComboBoxItem>
+                                    <ComboBoxItem>With Relative</ComboBoxItem>
+                                    <ComboBoxItem>With Boyfriend</ComboBoxItem>
+                                    <ComboBoxItem>With Boyfriend's Family</ComboBoxItem>
+                                    <ComboBoxItem>With Friend</ComboBoxItem>
+                                    <ComboBoxItem>With Different People at Different Times</ComboBoxItem>
+                                    <ComboBoxItem>Homeless</ComboBoxItem>
+                                    <ComboBoxItem Tag="OtherHousing">Other</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Grid.Style>
+                                    <Style>
+                                        <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=HousingLocation, Path=SelectedItem.Tag}" Value="OtherHousing">
+                                                <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Label>Specify Housing:</Label>
+                                <TextBox/>
+                            </Grid>
+                        </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
@@ -613,6 +786,13 @@
                                     <!-- End date -->
                                     <DatePicker/>
                                 </Grid>
+                                <Grid>
+                                    <Label>Willing to Pursue Work:</Label>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <RadioButton>Yes</RadioButton>
+                                        <RadioButton>No</RadioButton>
+                                    </StackPanel>
+                                </Grid>
                             </StackPanel>
                             <Grid>
                                 <Label>Comments</Label>
@@ -620,6 +800,54 @@
                             </Grid>
                         </StackPanel>
                     </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Disability">
+                        <StackPanel>
+                            <Grid>
+                                <Label>On Disability:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton x:Name="IsNotOnDisability">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Visibility="{Binding ElementName=IsNotOnDisability, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label>Applying For Disability:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <Border Width="475">
+                        <StackPanel>
+                            <Grid>
+                                <Label>How did you hear about us?</Label>
+                                <TextBox Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                            </Grid>
+                            <Grid>
+                                <Label>Have you recieved services from us in the past?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Can we contact you after today?</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton>Yes</RadioButton>
+                                    <RadioButton>No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Staff Conducting Intake:</Label>
+                                <TextBox/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentPageViewer>
