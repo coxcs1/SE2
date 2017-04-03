@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using se2_loon_hh.Controllers;
 using se2_loon_hh.Forms.FormsAPI;
+using se2_loon_hh.Forms.FormsAPI.Validation.Validators;
 
 namespace se2_loon_hh.Forms
 {
@@ -51,6 +52,9 @@ namespace se2_loon_hh.Forms
         /// <param name="e"></param>
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            RequiredValidator cleintComboValidator = new RequiredValidator(Convert.ToString(ClientComboBox.SelectedValue), ClientComboBox);
+            
+            
             if (this.serviceRequested != null)
             {
                 //modify the existing service with more hidious property calls...

@@ -61,6 +61,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Label>Name:</Label>
                                 <TextBox x:Name="ServiceName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                                <TextBlock Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=ServiceName}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
