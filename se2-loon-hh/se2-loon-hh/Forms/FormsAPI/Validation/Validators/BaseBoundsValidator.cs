@@ -25,14 +25,6 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// Whether or not evaulate as inclusive or exclusive.
         /// </summary>
         public bool Inclusive { get; set; }
-        /// <summary>
-        /// The element binded to the validator.
-        /// </summary>
-        public Control FormElement { get; set; }
-        /// <summary>
-        /// The error message for the form element.
-        /// </summary>
-        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// Default Constructor

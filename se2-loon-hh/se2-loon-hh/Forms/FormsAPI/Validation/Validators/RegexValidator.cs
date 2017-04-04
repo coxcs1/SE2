@@ -19,14 +19,6 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// </summary>
         public string Regex { get; set; }
         /// <summary>
-        /// The element binded to the validator.
-        /// </summary>
-        public Control FormElement { get; set; }
-        /// <summary>
-        /// The error message for the form element.
-        /// </summary>
-        public string ErrorMessage { get; set; }
-        /// <summary>
         /// Default Constructor
         /// </summary>
         public RegexValidator()
