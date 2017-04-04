@@ -18,14 +18,6 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// </summary>
         public int Length { get; set; }
         /// <summary>
-        /// The element binded to the validator.
-        /// </summary>
-        public Control FormElement { get; set; }
-        /// <summary>
-        /// The error message for the form element.
-        /// </summary>
-        public string ErrorMessage { get; set; }
-        /// <summary>
         /// Default Constructor
         /// </summary>
         public LengthValidator()
@@ -42,6 +34,21 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         {
             Length = length;
             Value = value;
+        }
+        /// <summary>
+        /// This constructor accepts all arguments needed to populate
+        /// the validator.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <param name="formElement"></param>
+        /// <param name="errorMessage"></param>
+        public LengthValidator(int length, string value, Control formElement, string errorMessage)
+        {
+            Length = length;
+            Value = value;
+            FormElement = formElement;
+            ErrorMessage = errorMessage;
         }
         /// <summary>
         /// Checks whether or not the length of the given value is

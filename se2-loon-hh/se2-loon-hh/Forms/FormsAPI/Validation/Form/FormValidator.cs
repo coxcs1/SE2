@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace se2_loon_hh.Forms.FormsAPI.Validation.Form
 {
@@ -16,15 +16,20 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Form
         /// </summary>
         public FormValidator()
         {
-
+            Validators = new Dictionary<string, Validation>();
+            ErrorMessages = new Dictionary<string, string>();
+            ErrorMessages.Add("ServiceName", "Test Error Message");
         }
+
         /// <summary>
         /// Pass in a list of validation interfaces
         /// and add them to the list of validators.
         /// </summary>
         /// <param name="rules"></param>
-        public void setupRules(List<Validation> rules)
+        public FormValidator(List<Validation> rules)
         {
+            Validators = new Dictionary<string, Validation>();
+            ErrorMessages = new Dictionary<string, string>();
             foreach (var rule in rules)
             {
                 Validators.Add(rule.FormElement.Name, rule);

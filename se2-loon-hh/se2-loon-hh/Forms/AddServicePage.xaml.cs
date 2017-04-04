@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using se2_loon_hh.Controllers;
 using se2_loon_hh.Forms.FormsAPI;
 using se2_loon_hh.Forms.FormsAPI.Validation.Validators;
+using se2_loon_hh.Forms.FormsAPI.Validation.Form;
+using se2_loon_hh.Forms.FormsAPI.Validation;
 
 namespace se2_loon_hh.Forms
 {
@@ -23,8 +25,11 @@ namespace se2_loon_hh.Forms
     /// </summary>
     public partial class AddServicePage : Page
     {
-        ServiceController serviceController;
+        ServiceController serviceController;//Handles all persistence layer logic for services and donations
         ServiceRequested serviceRequested;//if the form is receiving an ID then populate this attribute
+        FormValidator ServiceValidator { get; set; }//this serves as a validator for the entire form
+        bool edit = false;//whether or not the request is to edit a service (Default false)
+
         
         public AddServicePage(int serviceRequestedID = 0)
         {
@@ -52,77 +57,103 @@ namespace se2_loon_hh.Forms
         /// <param name="e"></param>
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            RequiredValidator cleintComboValidator = new RequiredValidator(Convert.ToString(ClientComboBox.SelectedValue), ClientComboBox);
-            
-            
-            if (this.serviceRequested != null)
+            populateService();//fill up the service requested attribute
+            if (isValid())
             {
-                //modify the existing service with more hidious property calls...
-                this.serviceRequested.Service.Name = ServiceName.Text;
-                this.serviceRequested.Service.Type = ServiceType.Text;
-                this.serviceRequested.Service.Description = ServiceDescription.Text;
-                this.serviceRequested.Service.DateArrived = DateArrivedDatePicker.Text;
-                this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-                this.serviceRequested.Service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
-                this.serviceRequested.Service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
-                this.serviceRequested.Service.TelephoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
-                this.serviceRequested.Service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
-                this.serviceRequested.Service.OffSite = Convert.ToInt64(OffSite.IsChecked);
-                this.serviceRequested.Service.RepresentedBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
-                this.serviceRequested.Service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
-                this.serviceRequested.Service.Email = Convert.ToInt64(Email.IsChecked);
-                this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-                this.serviceRequested.Service.Donations.Clear();//clear the list of donations
-                //create as many donations as needed and link them to a service
-                foreach (var item in DonationsDataGrid.Items)
+                DataContext = ServiceValidator.ErrorMessages;
+                foreach (var message in ServiceValidator.ErrorMessages)
                 {
-                    //create the donation
-                    var donation = new Donation();
-                    donation.Name = item.GetType().GetProperty("Name").GetValue(item).ToString();
-                    donation.Type = item.GetType().GetProperty("Type").GetValue(item).ToString();
-                    donation.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
-                    //add the donation to the service
-                    this.serviceRequested.Service.Donations.Add(donation);
+                    Console.WriteLine(message.Key);
+                    Console.WriteLine(message.Value);
                 }
-                serviceController.EditService(this.serviceRequested);//save the new changes to the database
+                Console.WriteLine("Form is valid!");
+                storeService();//save the service
+                this.NavigationService.Navigate(new ViewServicesPage());//go to home page
             }
             else
             {
-                //create and populate the service using manually ugly property calls
-                var service = new Service();
-                service.Name = ServiceName.Text;
-                service.Type = ServiceType.Text;
-                service.Description = ServiceDescription.Text;
-                service.DateArrived = DateArrivedDatePicker.Text;
-                service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-                service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
-                service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
-                service.TelephoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
-                service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
-                service.OffSite = Convert.ToInt64(OffSite.IsChecked);
-                service.RepresentedBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
-                service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
-                service.Email = Convert.ToInt64(Email.IsChecked);
-                service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-                //create as many donations as needed and link them to a service
-                foreach (var item in DonationsDataGrid.Items)
+                DataContext = ServiceValidator.ErrorMessages;
+                foreach (var message in ServiceValidator.ErrorMessages)
                 {
-                    //create the donation
-                    var donation = new Donation();
-                    donation.Name = item.GetType().GetProperty("Name").GetValue(item).ToString();
-                    donation.Type = item.GetType().GetProperty("Type").GetValue(item).ToString();
-                    donation.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
-                    //add the donation to the service
-                    service.Donations.Add(donation);
+                    Console.WriteLine(message.Key);
+                    Console.WriteLine(message.Value);
                 }
-                //create the requested service and pass it to the controller
-                var sr = new ServiceRequested();
-                sr.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);//attach the client to the requested service
-                sr.Service = service;
-                sr.DateReceived = DateArrivedDatePicker.Text;
-                serviceController.CreateService(service, sr);//persist the service into the database
+                Console.WriteLine("Form is not valid!");
             }
-            this.NavigationService.Navigate(new ViewServicesPage());//go to home page
+        }
+
+        private bool isValid()
+        {
+            List<FormsAPI.Validation.Validation> validators = new List<FormsAPI.Validation.Validation>();
+            LengthValidator serviceNameValidator = new LengthValidator(8, this.serviceRequested.Service.Name, ServiceName, "Service name must be 8 characters.");
+            validators.Add(serviceNameValidator);
+            //create validation layer
+            ServiceValidator = new FormValidator(validators);
+
+            return (ServiceValidator.isValid()) ? true : false;
+        }
+
+        /// <summary>
+        /// This function populates the service requested attribute.
+        /// </summary>
+        private void populateService()
+        {
+            //if the service requested is null then create a new one
+            //else the service is being edited
+            if (this.serviceRequested == null)
+            {
+                this.serviceRequested = new ServiceRequested();
+                this.serviceRequested.Service = new Service();
+            }
+            else
+            {
+                edit = true;
+            }
+
+            //modify the existing service with more hidious property calls...
+            this.serviceRequested.Service.Name = ServiceName.Text;
+            this.serviceRequested.Service.Type = ServiceType.Text;
+            this.serviceRequested.Service.Description = ServiceDescription.Text;
+            this.serviceRequested.Service.DateArrived = DateArrivedDatePicker.Text;
+            this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            this.serviceRequested.Service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
+            this.serviceRequested.Service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
+            this.serviceRequested.Service.TelephoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
+            this.serviceRequested.Service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
+            this.serviceRequested.Service.OffSite = Convert.ToInt64(OffSite.IsChecked);
+            this.serviceRequested.Service.RepresentedBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
+            this.serviceRequested.Service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
+            this.serviceRequested.Service.Email = Convert.ToInt64(Email.IsChecked);
+            this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            this.serviceRequested.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);//attach the client to the requested service
+            this.serviceRequested.DateReceived = DateArrivedDatePicker.Text;
+            this.serviceRequested.Service.Donations.Clear();//clear the list of donations
+            //create as many donations as needed and link them to a service
+            foreach (var item in DonationsDataGrid.Items)
+            {
+                //create the donation
+                var donation = new Donation();
+                donation.Name = item.GetType().GetProperty("Name").GetValue(item).ToString();
+                donation.Type = item.GetType().GetProperty("Type").GetValue(item).ToString();
+                donation.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
+                //add the donation to the service
+                this.serviceRequested.Service.Donations.Add(donation);
+            }
+        }
+        /// <summary>
+        /// This function persists the service requested object into the database.
+        /// </summary>
+        private void storeService()
+        {
+            //call approriate controller action
+            if (edit)
+            {
+                serviceController.EditService(serviceRequested);
+            }
+            else
+            {
+                serviceController.CreateService(serviceRequested.Service, serviceRequested);
+            }
         }
 
         /// <summary>
