@@ -63,9 +63,7 @@
                                 <TextBox x:Name="ServiceName" Grid.ColumnSpan="2" Margin="0,5,5,5"  />
                             </Grid>
                             <Grid>
-                                <TextBlock x:Name="ServiceNameMessage">
-                                    <Run Foreground="Red" Text="{Binding [ServiceName]}"></Run>
-                                </TextBlock>
+                                <TextBlock x:Name="ServiceNameMessage" Foreground="Red" Text="{Binding [ServiceName]}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
