@@ -12,16 +12,13 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class OrganizationContact
+    public partial class ItemRequested
     {
         public long Id { get; set; }
-        public Nullable<long> OrganizationId { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public long ServiceInfoId { get; set; }
+        public string ItemName { get; set; }
+        public string Comment { get; set; }
     
-        public virtual Organization Organization { get; set; }
+        public virtual ServiceInfo ServiceInfo { get; set; }
     }
 }

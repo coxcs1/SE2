@@ -12,26 +12,23 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class Organization
+    public partial class ClientFreshStart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Organization()
+        public ClientFreshStart()
         {
-            this.OrganizationContacts = new HashSet<OrganizationContact>();
+            this.SupportGroups = new HashSet<SupportGroup>();
         }
     
         public long Id { get; set; }
-        public string Name { get; set; }
-        public string StreetAddr1 { get; set; }
-        public string StreetAddr2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Information { get; set; }
-        public string Event { get; set; }
-        public string Notes { get; set; }
+        public long FreshStartId { get; set; }
+        public long ClientId { get; set; }
+        public string Date { get; set; }
+        public string Status { get; set; }
     
+        public virtual Client Client { get; set; }
+        public virtual FreshStart FreshStart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrganizationContact> OrganizationContacts { get; set; }
+        public virtual ICollection<SupportGroup> SupportGroups { get; set; }
     }
 }

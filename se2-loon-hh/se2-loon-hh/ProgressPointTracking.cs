@@ -12,17 +12,16 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class Employment
+    public partial class ProgressPointTracking
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public Nullable<long> Status { get; set; }
-        public string Location { get; set; }
-        public string HoursPerWeek { get; set; }
-        public string MakingLivableWage { get; set; }
+        public long ClientId { get; set; }
+        public string Date { get; set; }
+        public string Description { get; set; }
+        public Nullable<long> PointsSpent { get; set; }
+        public string Letter { get; set; }
+        public string NoShow { get; set; }
         public string Comment { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
     
         public virtual Client Client { get; set; }
     }

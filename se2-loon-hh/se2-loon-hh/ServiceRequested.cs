@@ -15,12 +15,10 @@ namespace se2_loon_hh
     public partial class ServiceRequested
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public Nullable<long> ServiceId { get; set; }
-        public string DateReceived { get; set; }
+        public long ServiceInfoId { get; set; }
+        public string ServiceName { get; set; }
         public string Comment { get; set; }
     
-        public virtual Service Service { get; set; }
-        public virtual Client Client { get; set; }
+        public virtual ServiceInfo ServiceInfo { get; set; }
     }
 }

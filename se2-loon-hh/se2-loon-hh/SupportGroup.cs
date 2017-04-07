@@ -12,15 +12,13 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class PregnancyHistory
+    public partial class SupportGroup
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public Nullable<long> NumToTerm { get; set; }
-        public Nullable<long> NumAdoption { get; set; }
-        public Nullable<long> NumMiscarriage { get; set; }
-        public Nullable<long> NumAbortion { get; set; }
+        public long ClientFreshStartId { get; set; }
+        public string MonthAttended { get; set; }
+        public Nullable<long> Year { get; set; }
     
-        public virtual Client Client { get; set; }
+        public virtual ClientFreshStart ClientFreshStart { get; set; }
     }
 }
