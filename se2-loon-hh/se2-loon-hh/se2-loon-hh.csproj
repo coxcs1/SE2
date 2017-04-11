@@ -108,6 +108,13 @@
     <Compile Include="Emergency.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Validators\BaseBoundsValidatior.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Validators\LengthValidator.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Validators\RegexValidator.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Validators\RequiredValidator.cs" />
+    <Compile Include="Forms\FormsAPI\Validation\Validators\Validation.cs" />
     <Compile Include="Forms\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
