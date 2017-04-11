@@ -15,12 +15,12 @@ namespace se2_loon_hh
     public partial class ClassAttendance
     {
         public long Id { get; set; }
-        public Nullable<long> ClassId { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public string MonthAttended { get; set; }
-        public Nullable<long> TimesAttended { get; set; }
+        public long ClientId { get; set; }
+        public string Month { get; set; }
+        public Nullable<long> Year { get; set; }
+        public Nullable<long> Count { get; set; }
+        public string Comment { get; set; }
     
-        public virtual Class Class { get; set; }
         public virtual Client Client { get; set; }
     }
 }
