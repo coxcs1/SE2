@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Mackenzie\Documents\Visual Studio 2015\Projects\se2-loon-hh\se2-loon-hh\se2-loon-hh\HopeHouseDB.sqlite&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\etc-dev\Source\Repos\se2-loon-hh\se2-loon-hh\se2-loon-hh\HopeHouseDB.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AddressChange">
           <Key>
             <PropertyRef Name="Id" />
@@ -359,6 +359,16 @@
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Type" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="NewContact" Type="integer" />
+          <Property Name="NewWalkIn" Type="integer" />
+          <Property Name="WalkIn" Type="integer" />
+          <Property Name="DateArrived" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="TelephoneAfterHrs" Type="integer" />
+          <Property Name="PrankCall" Type="integer" />
+          <Property Name="Email" Type="integer" />
+          <Property Name="OutgoingCallMailEmail" Type="integer" />
+          <Property Name="OffSite" Type="integer" />
+          <Property Name="RepresentedBySomeoneElse" Type="integer" />
         </EntityType>
         <EntityType Name="ServiceRequested">
           <Key>
@@ -1379,6 +1389,16 @@
           <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Donations" Relationship="Model.FK_Donation_0_0" FromRole="Service" ToRole="Donation" />
           <NavigationProperty Name="ServiceRequesteds" Relationship="Model.FK_ServiceRequested_0_0" FromRole="Service" ToRole="ServiceRequested" />
+          <Property Name="NewWalkIn" Type="Int64" />
+          <Property Name="DateArrived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneAfterHrs" Type="Int64" />
+          <Property Name="PrankCall" Type="Int64" />
+          <Property Name="Email" Type="Int64" />
+          <Property Name="OutgoingCallMailEmail" Type="Int64" />
+          <Property Name="OffSite" Type="Int64" />
+          <Property Name="RepresentedBySomeoneElse" Type="Int64" />
+          <Property Name="NewContact" Type="Int64" />
+          <Property Name="WalkIn" Type="Int64" />
         </EntityType>
         <EntityType Name="ServiceRequested">
           <Key>
@@ -1999,6 +2019,16 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="Model.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="WalkIn" ColumnName="WalkIn" />
+                <ScalarProperty Name="NewContact" ColumnName="NewContact" />
+                <ScalarProperty Name="RepresentedBySomeoneElse" ColumnName="RepresentedBySomeoneElse" />
+                <ScalarProperty Name="OffSite" ColumnName="OffSite" />
+                <ScalarProperty Name="OutgoingCallMailEmail" ColumnName="OutgoingCallMailEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PrankCall" ColumnName="PrankCall" />
+                <ScalarProperty Name="TelephoneAfterHrs" ColumnName="TelephoneAfterHrs" />
+                <ScalarProperty Name="DateArrived" ColumnName="DateArrived" />
+                <ScalarProperty Name="NewWalkIn" ColumnName="NewWalkIn" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

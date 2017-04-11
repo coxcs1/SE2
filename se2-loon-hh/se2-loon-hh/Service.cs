@@ -25,7 +25,17 @@ namespace se2_loon_hh
         public string Name { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
-    
+        public Nullable<long> NewWalkIn { get; set; }
+        public string DateArrived { get; set; }
+        public Nullable<long> TelephoneAfterHrs { get; set; }
+        public Nullable<long> PrankCall { get; set; }
+        public Nullable<long> Email { get; set; }
+        public Nullable<long> OutgoingCallMailEmail { get; set; }
+        public Nullable<long> OffSite { get; set; }
+        public Nullable<long> RepresentedBySomeoneElse { get; set; }
+        public Nullable<long> NewContact { get; set; }
+        public Nullable<long> WalkIn { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

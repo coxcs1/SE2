@@ -6,9 +6,40 @@
       xmlns:local="clr-namespace:se2_loon_hh.Forms"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600"
-      Title="MainPage" Height="{Binding WindowHeight}" Width="{Binding WindowWidth}">
+      Title="MainPage" Height="{Binding WindowHeight}" Width="{Binding WindowWidth}"
+      >
     <DockPanel>
         <!-- Right now these items size with the window, it kind of looks ugly when maximized, maybe change -->
+        <Grid DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="_General">
+                    <MenuItem Name="HelpMenu" Header="_Help" Click="HelpMenu_Click" />
+                    <MenuItem Name="ExitMenu" Header="_Exit" Click="ExitMenu_Click" />
+                </MenuItem>
+                <MenuItem Header="_Client">
+                    <MenuItem Name="AddClientMenu" Header="_Add Client" Click="AddClientMenu_Click"/>
+                    <MenuItem Name="ViewClientpMenu" Header="_View Client" />
+                </MenuItem>
+                <MenuItem Header="_Class">
+                    <MenuItem Name="ViewClassMenu" Header="_View Classes" />
+                </MenuItem>
+                <MenuItem Header="_Report">
+                    <MenuItem Name="ViewReportMenu" Header="_View Reports" />
+                </MenuItem>
+                <MenuItem Header="_Service">
+                    <MenuItem Name="AddServiceMenu" Header="_Add Service" />
+                    <MenuItem Name="ViewServiceMenu" Header="_View Services" />
+                </MenuItem>
+                <MenuItem Header="_Organiztion">
+                    <MenuItem Name="AddOrganizationMenu" Header="_Add Organization" />
+                    <MenuItem Name="ViewOrganizationMenu" Header="_View Organizations" />
+                </MenuItem>
+                <MenuItem Header="_Volunteer">
+                    <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" />
+                    <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" />
+                </MenuItem>
+            </Menu>
+        </Grid>
         <Grid DockPanel.Dock="Top">
             <Viewbox>
                 <TextBlock FontFamily="Kristen ITC" TextWrapping="Wrap" Text="Hope House Management System" />
@@ -16,18 +47,21 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" /> <!-- 2/5 size of window -->
-                <ColumnDefinition Width="1*" /> <!-- 1/5 size of window -->
-                <ColumnDefinition Width="2*" /> <!-- 2/5 size of window -->
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button x:Name="AddClientButton" Content="Add Client" Margin="10" Grid.Column="1" Grid.Row="0" Click="AddClientButton_Click"/>
-            <Button x:Name="ViewClientsButton" Content="View Clients" Margin="10" Grid.Column="1" Grid.Row="1" Click="ViewClientsButton_Click"/>
-            <Button x:Name="ExitButton" Content="Exit" Margin="10" Grid.Column="1" Grid.Row="2" Click="ExitButton_Click"/>
+            <Button x:Name="AddClientButton" Content="Add Client" Margin="5" Grid.Column="0" Grid.Row="0" Click="AddClientButton_Click"/>
+            <Button x:Name="ViewClientsButton" Content="View Clients" Margin="5" Grid.Column="0" Grid.Row="1" Click="ViewClientsButton_Click"/>
+            <Button x:Name="ExitButton" Content="Exit" Margin="5" Grid.Column="0" Grid.Row="2" Click="ExitButton_Click"/>
+            <TextBlock Grid.Column="1" Grid.RowSpan="6" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,5,5,5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         </Grid>
     </DockPanel>
 </Page>
