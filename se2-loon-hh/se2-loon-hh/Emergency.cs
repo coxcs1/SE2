@@ -12,17 +12,13 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class College
+    public partial class Emergency
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public string Location { get; set; }
-        public string Year { get; set; }
-        public string YearStarted { get; set; }
-        public string Status { get; set; }
-        public string YearCompleted { get; set; }
-        public string DegreePursuing { get; set; }
-    
-        public virtual Client Client { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string DateReceived { get; set; }
+        public string ItemsReceived { get; set; }
+        public string Comment { get; set; }
     }
 }

@@ -15,48 +15,21 @@ namespace se2_loon_hh
     public partial class Pregnancy
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public Nullable<long> FirstPregnancy { get; set; }
-        public Nullable<long> WeeksAlong { get; set; }
+        public long ClientId { get; set; }
         public string DueDate { get; set; }
-        public string Gender { get; set; }
-        public string Intentions { get; set; }
-        public string PlannedStatus { get; set; }
-        public Nullable<long> OnBirthControl { get; set; }
-        public Nullable<long> PregnancyVerified { get; set; }
-        public string MedicalInsurance { get; set; }
-        public string OBGYN { get; set; }
-        public Nullable<long> TakingPrenatalVitamins { get; set; }
-        public string Peditrician { get; set; }
-        public string ChildrenHaveHealthcare { get; set; }
-        public string FoodStampsStatus { get; set; }
-        public string FoodStampsComment { get; set; }
-        public string WicStatus { get; set; }
-        public string WicComment { get; set; }
-        public string HugsStatus { get; set; }
-        public string HugsComment { get; set; }
-        public string HugsNurse { get; set; }
-        public string DriversLicenseStatus { get; set; }
-        public string DriverLicComment { get; set; }
-        public string TransportationAccess { get; set; }
-        public string TransportationAccessComment { get; set; }
-        public string ChildcareSituationStatus { get; set; }
-        public string ChildcareSituationComment { get; set; }
-        public string DisabilitiesStatus { get; set; }
-        public string DisabilitiesComment { get; set; }
-        public string ChildDisabilitiesStatus { get; set; }
-        public string SmokeStatus { get; set; }
-        public string SmokeComment { get; set; }
-        public string AttendingChurch { get; set; }
-        public string AttendingChurchComment { get; set; }
-        public string FamiliesFirstStatus { get; set; }
-        public string FamiliesFirstComment { get; set; }
-        public string LifeBridgeStatus { get; set; }
-        public string LifeBridgeComment { get; set; }
-        public string EverInFosterCare { get; set; }
+        public Nullable<long> OBCareBeforeReg { get; set; }
+        public Nullable<long> OBCareAfterReg { get; set; }
         public string HealthyDelivery { get; set; }
         public string BirthComplications { get; set; }
-        public string ContinuedWithHH { get; set; }
+        public Nullable<long> ContinuedWithMotherhoodProgram { get; set; }
+        public Nullable<long> LifeBridge { get; set; }
+        public Nullable<long> FSS { get; set; }
+        public Nullable<long> BetterWay { get; set; }
+        public Nullable<long> CompleteBetterWay { get; set; }
+        public Nullable<long> FamPlanningSession { get; set; }
+        public Nullable<long> OasisClass { get; set; }
+        public Nullable<long> HRCclass { get; set; }
+        public string Comment { get; set; }
     
         public virtual Client Client { get; set; }
     }
