@@ -12,15 +12,16 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class ClassAttendance
+    public partial class Child
     {
         public long Id { get; set; }
-        public Nullable<long> ClassId { get; set; }
         public Nullable<long> ClientId { get; set; }
-        public string MonthAttended { get; set; }
-        public Nullable<long> TimesAttended { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string BirthDate { get; set; }
+        public string Custody { get; set; }
     
-        public virtual Class Class { get; set; }
         public virtual Client Client { get; set; }
     }
 }

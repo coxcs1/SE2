@@ -4,34 +4,60 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7844c4a21c45475b8caf8f8838354163" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="Model.ClassAttendance" Width="1.5" PointX="3" PointY="18.125" />
-        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="Model.ClientFreshStart" Width="1.5" PointX="6" PointY="18.25" />
-        <EntityTypeShape EntityType="Model.Emergency" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.FreshStart" Width="1.5" PointX="0.75" PointY="8.375" />
-        <EntityTypeShape EntityType="Model.ItemRequested" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="Model.Pregnancy" Width="1.5" PointX="3" PointY="24.5" />
-        <EntityTypeShape EntityType="Model.PregnancyStatu" Width="1.5" PointX="3" PointY="5.625" />
-        <EntityTypeShape EntityType="Model.ProgressPointTracking" Width="1.5" PointX="3" PointY="29.625" />
-        <EntityTypeShape EntityType="Model.RelativeFreshStart" Width="1.5" PointX="3" PointY="9" />
-        <EntityTypeShape EntityType="Model.ServiceInfo" Width="1.5" PointX="3" PointY="13" />
-        <EntityTypeShape EntityType="Model.ServiceRequested" Width="1.5" PointX="5.25" PointY="12.625" />
-        <EntityTypeShape EntityType="Model.SupportGroup" Width="1.5" PointX="8.25" PointY="18.5" />
-        <EntityTypeShape EntityType="Model.Volunteer" Width="1.5" PointX="2.75" PointY="0.75" />
-        <AssociationConnector Association="Model.FK_ClassAttendance_0_0" />
-        <AssociationConnector Association="Model.FK_ClientFreshStart_0_0" />
-        <AssociationConnector Association="Model.FK_Pregnancy_0_0" />
-        <AssociationConnector Association="Model.FK_PregnancyStatus_0_0" />
-        <AssociationConnector Association="Model.FK_ProgressPointTracking_0_0" />
-        <AssociationConnector Association="Model.FK_RelativeFreshStart_0_0" />
-        <AssociationConnector Association="Model.FK_ServiceInfo_0_0" />
-        <AssociationConnector Association="Model.FK_ClientFreshStart_1_0" />
-        <AssociationConnector Association="Model.FK_SupportGroup_0_0" />
-        <AssociationConnector Association="Model.FK_RelativeFreshStart_1_0" />
-        <AssociationConnector Association="Model.FK_ItemRequested_0_0" />
+      <Diagram DiagramId="7844c4a21c45475b8caf8f8838354163" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Child" Width="1.5" PointX="6.875" PointY="7" />
+        <EntityTypeShape EntityType="Model.Father" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.ClientFather" Width="1.5" PointX="9.5" PointY="3.25" />
+        <AssociationConnector Association="Model.FK_ClientFather_0_0" />
+        <EntityTypeShape EntityType="Model.AddressChange" Width="1.5" PointX="6.5" PointY="2.75" />
+        <EntityTypeShape EntityType="Model.College" Width="1.5" PointX="6.5" PointY="11" />
+        <EntityTypeShape EntityType="Model.Contact" Width="1.5" PointX="4.25" PointY="12.25" />
+        <EntityTypeShape EntityType="Model.GEDeducation" Width="1.5" PointX="6.5" PointY="14.5" />
+        <EntityTypeShape EntityType="Model.HighSchool" Width="1.5" PointX="6.5" PointY="20.25" />
+        <EntityTypeShape EntityType="Model.OtherEducation" Width="1.5" PointX="6.5" PointY="17.25" />
+        <EntityTypeShape EntityType="Model.Employment" Width="1.5" PointX="6.5" PointY="34.5" />
+        <EntityTypeShape EntityType="Model.Pregnancy" Width="1.5" PointX="6.5" PointY="24.25" />
+        <EntityTypeShape EntityType="Model.Volunteer" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.OrganizationContact" Width="1.5" PointX="11.625" PointY="10" />
+        <AssociationConnector Association="Model.FK_OrganizationContact_0_0" />
+        <EntityTypeShape EntityType="Model.Class" Width="1.5" PointX="12.375" PointY="1.125" />
+        <EntityTypeShape EntityType="Model.ClassAttendance" Width="1.5" PointX="15.625" PointY="5" />
+        <AssociationConnector Association="Model.FK_ClassAttendance_1_0" />
+        <EntityTypeShape EntityType="Model.Program" Width="1.5" PointX="14.625" PointY="1.125" />
+        <EntityTypeShape EntityType="Model.ProgramCurriculum" Width="1.5" PointX="16.875" PointY="1.125" />
+        <AssociationConnector Association="Model.FK_Program_0_0" />
+        <AssociationConnector Association="Model.FK_ProgramCurriculum_0_0" />
+        <EntityTypeShape EntityType="Model.ClientProgramCurriculum" Width="1.5" PointX="19.125" PointY="4.875" />
+        <EntityTypeShape EntityType="Model.ProgramCurriculumAttribute" Width="1.5" PointX="19.125" PointY="1.375" />
+        <AssociationConnector Association="Model.FK_ClientProgramCurriculum_0_0" />
+        <AssociationConnector Association="Model.FK_ProgramCurriculumAttribute_0_0" />
+        <EntityTypeShape EntityType="Model.ClientProgramCurriculumAttribute" Width="1.5" PointX="21.375" PointY="6.375" />
+        <AssociationConnector Association="Model.FK_ClientProgramCurriculumAttribute_0_0" />
+        <EntityTypeShape EntityType="Model.PregnancyHistory" Width="1.5" PointX="6.5" PointY="38.75" />
+        <EntityTypeShape EntityType="Model.Donation" Width="1.5" PointX="13.625" PointY="18.625" />
+        <EntityTypeShape EntityType="Model.Service" Width="1.5" PointX="11.375" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.ServiceRequested" Width="1.5" PointX="13.625" PointY="4.5" />
+        <AssociationConnector Association="Model.FK_Donation_0_0" />
         <AssociationConnector Association="Model.FK_ServiceRequested_0_0" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.Application" Width="1.5" PointX="6.5" PointY="42.75" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="4.25" PointY="17.375" />
+        <AssociationConnector Association="Model.FK_AddressChange_0_0" />
+        <AssociationConnector Association="Model.FK_Application_0_0" />
+        <AssociationConnector Association="Model.FK_Contact_0_0" />
+        <AssociationConnector Association="Model.FK_Child_0_0" />
+        <AssociationConnector Association="Model.FK_ClassAttendance_0_0" />
+        <AssociationConnector Association="Model.FK_ClientFather_1_0" />
+        <AssociationConnector Association="Model.FK_ClientProgramCurriculum_1_0" />
+        <AssociationConnector Association="Model.FK_College_0_0" />
+        <AssociationConnector Association="Model.FK_Employment_0_0" />
+        <AssociationConnector Association="Model.FK_GEDeducation_0_0" />
+        <AssociationConnector Association="Model.FK_HighSchool_0_0" />
+        <AssociationConnector Association="Model.FK_OtherEducation_0_0" />
+        <AssociationConnector Association="Model.FK_Pregnancy_0_0" />
+        <AssociationConnector Association="Model.FK_PregnancyHistory_0_0" />
+        <AssociationConnector Association="Model.FK_ServiceRequested_1_0" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

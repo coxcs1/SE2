@@ -12,15 +12,13 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class PregnancyStatu
+    public partial class OtherEducation
     {
         public long Id { get; set; }
-        public long ClientId { get; set; }
-        public Nullable<long> FirstPregnancy { get; set; }
-        public Nullable<long> BabyAlreadyBorn { get; set; }
-        public Nullable<long> PregWithChildren { get; set; }
-        public Nullable<long> NPMoreThanOneKid { get; set; }
+        public Nullable<long> ClientId { get; set; }
+        public string OtherDescription { get; set; }
         public string Comment { get; set; }
+        public string DateEarned { get; set; }
     
         public virtual Client Client { get; set; }
     }

@@ -17,12 +17,12 @@ namespace se2_loon_hh.Controllers
 
         public void addClient()
         {
-            //var volunteers = _db.Volunteers.ToList();
-            //foreach(var volunteer in volunteers)
-            //{
-            //    Console.WriteLine(volunteer.DateHelped);
-            //    Console.WriteLine(volunteer.Hours);
-            //}
+            var volunteers = _db.Volunteers.ToList();
+            foreach(var volunteer in volunteers)
+            {
+                Console.WriteLine(volunteer.DateHelped);
+                Console.WriteLine(volunteer.Hours);
+            }
         }
 
         public void Dispose()

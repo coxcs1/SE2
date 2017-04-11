@@ -12,23 +12,21 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class FreshStart
+    public partial class Program
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FreshStart()
+        public Program()
         {
-            this.ClientFreshStarts = new HashSet<ClientFreshStart>();
-            this.RelativeFreshStarts = new HashSet<RelativeFreshStart>();
+            this.ProgramCurriculums = new HashSet<ProgramCurriculum>();
         }
     
         public long Id { get; set; }
-        public string CurriculumType { get; set; }
+        public Nullable<long> ClassId { get; set; }
         public string Name { get; set; }
-        public string Comment { get; set; }
+        public string Description { get; set; }
     
+        public virtual Class Class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientFreshStart> ClientFreshStarts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelativeFreshStart> RelativeFreshStarts { get; set; }
+        public virtual ICollection<ProgramCurriculum> ProgramCurriculums { get; set; }
     }
 }

@@ -94,18 +94,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClassAttendance.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClientFreshStart.cs">
+    <Compile Include="ClientProgramCurriculum.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientProgramCurriculumAttribute.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
-    <Compile Include="Emergency.cs">
+    <Compile Include="Donation.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\HelpWindow.xaml.cs">
@@ -121,28 +130,28 @@
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FreshStart.cs">
+    <Compile Include="Organization.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ItemRequested.cs">
+    <Compile Include="OrganizationContact.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="PregnancyStatu.cs">
+    <Compile Include="PregnancyHistory.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProgressPointTracking.cs">
+    <Compile Include="Program.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="RelativeFreshStart.cs">
+    <Compile Include="ProgramCurriculum.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="ServiceInfo.cs">
+    <Compile Include="ProgramCurriculumAttribute.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ServiceRequested.cs">
-      <DependentUpon>HopeHouseDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SupportGroup.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Volunteer.cs">
@@ -168,6 +177,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddressChange.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Child.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientFather.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="College.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employment.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Father.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddClientPage.xaml.cs">
       <DependentUpon>AddClientPage.xaml</DependentUpon>
     </Compile>
@@ -192,6 +222,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GEDeducation.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HighSchool.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="HopeHouseDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,6 +242,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HopeHouseDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OtherEducation.cs">
+      <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Pregnancy.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>

@@ -41,23 +41,22 @@ namespace se2_loon_hh.Controllers
 
             return donationTypes;
         }
-        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&Commented out create and edit methods&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         /// <summary>
         /// This function creates a service from data collected in the form.
         /// </summary>
-        //public void CreateService(Service service, ServiceRequested serviceRequested)
-        //{
-        //    _db.Services.Add(service);
-        //    _db.ServiceRequesteds.Add(serviceRequested);
-        //    _db.SaveChanges();
-        //}
+        public void CreateService(Service service, ServiceRequested serviceRequested)
+        {
+            _db.Services.Add(service);
+            _db.ServiceRequesteds.Add(serviceRequested);
+            _db.SaveChanges();
+        }
 
-        //public void EditService(ServiceRequested serviceRequested)
-        //{
-        //    _db.Entry(serviceRequested.Service).State = EntityState.Modified;
-        //    _db.Entry(serviceRequested).State = EntityState.Modified;//let ORM know object has been modified
-        //    _db.SaveChanges();//save the new changes to the DB
-        //}
+        public void EditService(ServiceRequested serviceRequested)
+        {
+            _db.Entry(serviceRequested.Service).State = EntityState.Modified;
+            _db.Entry(serviceRequested).State = EntityState.Modified;//let ORM know object has been modified
+            _db.SaveChanges();//save the new changes to the DB
+        }
         /// <summary>
         /// Build a list of breif service information and package it
         /// up for the view services page.
@@ -70,13 +69,12 @@ namespace se2_loon_hh.Controllers
             //loop through each and add the information we need for the data grid
             foreach (var serviceRequested in services)
             {
-                //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                //serviceList.Add(new {
-                //    ServiceID = serviceRequested.Id,//used for navigating to a more detailed service view page
-                //    Client = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName,
-                //    DateArrived = serviceRequested.Service.DateArrived,
-                //    Donations = serviceRequested.Service.Donations.Count.ToString()
-                //});
+                serviceList.Add(new {
+                    ServiceID = serviceRequested.Id,//used for navigating to a more detailed service view page
+                    Client = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName,
+                    DateArrived = serviceRequested.Service.DateArrived,
+                    Donations = serviceRequested.Service.Donations.Count.ToString()
+                });
             }
             //send the list to the partial form class
             return serviceList;

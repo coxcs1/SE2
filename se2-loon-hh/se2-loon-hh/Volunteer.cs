@@ -15,11 +15,8 @@ namespace se2_loon_hh
     public partial class Volunteer
     {
         public long Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string DateReceived { get; set; }
+        public string DateHelped { get; set; }
         public Nullable<long> Hours { get; set; }
         public string Service { get; set; }
-        public string Comment { get; set; }
     }
 }
