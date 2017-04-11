@@ -24,10 +24,11 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// Constructor that accepts the value to be evaluated.
         /// </summary>
         /// <param name="value"></param>
-        public RequiredValidator(string value, Control formElement)
+        public RequiredValidator(string value, Control formElement, string errorMessage)
         {
             Value = value;
             FormElement = formElement;
+            ErrorMessage = errorMessage;
         }
         /// <summary>
         /// Evaluates whether or not the value is empty or null.

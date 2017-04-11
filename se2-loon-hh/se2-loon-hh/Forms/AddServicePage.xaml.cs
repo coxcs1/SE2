@@ -84,11 +84,10 @@ namespace se2_loon_hh.Forms
 
         private bool isValid()
         {
-            List<FormsAPI.Validation.Validation> validators = new List<FormsAPI.Validation.Validation>();
-            LengthValidator serviceNameValidator = new LengthValidator(8, this.serviceRequested.Service.Name, ServiceName, "Service name must be 8 characters.");
-            validators.Add(serviceNameValidator);
             //create validation layer
-            ServiceValidator = new FormValidator(validators);
+            ServiceValidator = new FormValidator(new List<FormsAPI.Validation.Validation>() {
+                new LengthValidator(8, this.serviceRequested.Service.Name, ServiceName, "Service name must be 8 characters.")
+            });
 
             return (ServiceValidator.isValid()) ? true : false;
         }

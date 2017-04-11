@@ -32,10 +32,12 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// </summary>
         /// <param name="value"></param>
         /// <param name="regex"></param>
-        public RegexValidator(string value, string regex)
+        public RegexValidator(string value, string regex, Control formElement, string errorMessage)
         {
             Value = value;
             Regex = regex;
+            FormElement = formElement;
+            ErrorMessage = errorMessage;
         }
         /// <summary>
         /// Evaluates value against regular expression.

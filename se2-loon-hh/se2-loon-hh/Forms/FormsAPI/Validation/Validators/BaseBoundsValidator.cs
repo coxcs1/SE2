@@ -43,13 +43,17 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// <param name="value"></param>
         /// <param name="bottom"></param>
         /// <param name="top"></param>
+        /// <param name="formElement"></param>
+        /// <param name="errorMessage"></param>
         /// <param name="inclusive"></param>
-        public BaseBoundsValidator(int value, int bottom, int top, bool inclusive = false)
+        public BaseBoundsValidator(int value, int bottom, int top, Control formElement, string errorMessage, bool inclusive = false)
         {
             Value = value;
             Base = bottom;
             Bounds = top;
             Inclusive = inclusive;
+            FormElement = formElement;
+            ErrorMessage = errorMessage;
         }
         /// <summary>
         /// Evaluates the value and checks whether
