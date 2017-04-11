@@ -12,16 +12,18 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class HighSchool
+    public partial class RelativeFreshStart
     {
         public long Id { get; set; }
-        public Nullable<long> ClientId { get; set; }
-        public string Location { get; set; }
-        public string Year { get; set; }
+        public long FreshStartId { get; set; }
+        public long ClientId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Date { get; set; }
         public string Status { get; set; }
-        public string DropOutGrade { get; set; }
-        public string GraduationDate { get; set; }
+        public string RelationshipTo { get; set; }
     
         public virtual Client Client { get; set; }
+        public virtual FreshStart FreshStart { get; set; }
     }
 }

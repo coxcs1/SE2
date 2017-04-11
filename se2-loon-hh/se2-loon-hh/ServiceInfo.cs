@@ -12,32 +12,32 @@ namespace se2_loon_hh
     using System;
     using System.Collections.Generic;
     
-    public partial class Service
+    public partial class ServiceInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Service()
+        public ServiceInfo()
         {
-            this.Donations = new HashSet<Donation>();
+            this.ItemRequesteds = new HashSet<ItemRequested>();
             this.ServiceRequesteds = new HashSet<ServiceRequested>();
         }
     
         public long Id { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
+        public long ClientId { get; set; }
+        public Nullable<long> NewContact { get; set; }
         public Nullable<long> NewWalkIn { get; set; }
-        public string DateArrived { get; set; }
-        public Nullable<long> TelephoneAfterHrs { get; set; }
+        public Nullable<long> WalkIn { get; set; }
+        public Nullable<long> PhoneCenterHrs { get; set; }
+        public Nullable<long> PhoneAfterHrs { get; set; }
         public Nullable<long> PrankCall { get; set; }
         public Nullable<long> Email { get; set; }
-        public Nullable<long> OutgoingCallMailEmail { get; set; }
         public Nullable<long> OffSite { get; set; }
-        public Nullable<long> RepresentedBySomeoneElse { get; set; }
-        public Nullable<long> NewContact { get; set; }
-        public Nullable<long> WalkIn { get; set; }
-
+        public Nullable<long> OutgoingCallMailEmail { get; set; }
+        public Nullable<long> RepBySomeoneElse { get; set; }
+        public string Date { get; set; }
+    
+        public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Donation> Donations { get; set; }
+        public virtual ICollection<ItemRequested> ItemRequesteds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceRequested> ServiceRequesteds { get; set; }
     }
