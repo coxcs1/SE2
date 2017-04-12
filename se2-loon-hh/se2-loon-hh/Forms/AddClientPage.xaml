@@ -199,13 +199,22 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Pregnancy History">
-                        <ComboBox x:Name="PregnancyStatusComboBox">
-                            <ComboBoxItem IsSelected="True">First Pregnancy</ComboBoxItem>
-                            <ComboBoxItem>Baby Already Born</ComboBoxItem>
-                            <ComboBoxItem>Pregnant and Has Children</ComboBoxItem>
-                            <ComboBoxItem>Not Pregnant and Has Children</ComboBoxItem>
-                        </ComboBox>
+                    <GroupBox Header="Pregnancy History" Width="475">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Pregnancy Status:</Label>
+                                <ComboBox x:Name="PregnancyStatusComboBox">
+                                    <ComboBoxItem IsSelected="True">First Pregnancy</ComboBoxItem>
+                                    <ComboBoxItem>Baby Already Born</ComboBoxItem>
+                                    <ComboBoxItem>Pregnant and Has Children</ComboBoxItem>
+                                    <ComboBoxItem>Not Pregnant and Has Children</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Label>Comment:</Label>
+                                <TextBox x:Name="PregnancyStatusCommentTextBox"/>
+                            </Grid>
+                        </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
