@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      xmlns:formapi="clr-namespace:se2_loon_hh.Forms.FormsAPI"
       mc:Ignorable="d"
       d:DesignHeight="7000" d:DesignWidth="500"
       Title="AddClientPage">
@@ -29,13 +30,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style TargetType="GroupBox">
-            <Setter Property="Width" Value="400"/>
-        </Style>
-        <Style TargetType="Border">
-            <!--Do NOT set a default width here, or it will screw up the entire window-->
-            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Width" Value="475"/>
         </Style>
         <Style TargetType="DatePicker">
             <Setter Property="Margin" Value="5"/>
@@ -43,8 +38,19 @@
             <Setter Property="Width" Value="250"/>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <!-- This is a custom converter (located in FormsAPI) that will convert between yes/no radio buttons and a long -->
+        <formapi:RadioBoolToLongConverter x:Key="RadioBoolToLongConverter"/>
     </Page.Resources>
     <DockPanel>
+        <!-- Popups stay hidden until they are manually shown with isOpen. See submit button code for example  -->
+        <Popup x:Name="ValidatorPopup" StaysOpen="False" PopupAnimation="Fade" AllowsTransparency="True">
+            <StackPanel>
+                <Border CornerRadius="3" BorderThickness="3" BorderBrush="#FFFFFF8A">
+                    <Label x:Name="ValidatorPopupLabel" Background="#FFFFFF8A"/>
+                </Border>
+                <Path Grid.Row="1" Data="M3,0 L8,5 L13,0Z" Stroke="#FFFFFF8A" Fill="#FFFFFF8A" StrokeThickness="1"/>
+            </StackPanel>
+        </Popup>
         <StackPanel DockPanel.Dock="Top">
             <Grid>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
@@ -60,30 +66,30 @@
                         <StackPanel>
                             <Grid>
                                 <Label>First Name:</Label>
-                                <TextBox x:Name="FirstNameTextBox"/>
+                                <TextBox x:Name="FirstNameTextBox" Text="{Binding client.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Middle Name:</Label>
-                                <TextBox x:Name="MiddleNameTextBox"/>
+                                <TextBox x:Name="MiddleNameTextBox" Text="{Binding client.MiddleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Last Name:</Label>
-                                <TextBox x:Name="LastNameTextBox"/>
+                                <TextBox x:Name="LastNameTextBox" Text="{Binding client.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Birthday">
-                        <DatePicker x:Name="BirthdayDatePicker"/>
+                    <GroupBox Header="Date of Birth">
+                        <DatePicker x:Name="BirthdayDatePicker" Text="{Binding client.BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Ethnicity">
                         <StackPanel>
                             <Grid>
-                                <ComboBox x:Name="EthnicityComboBox">
-                                    <ComboBoxItem IsSelected="True">Caucasian</ComboBoxItem>
+                                <ComboBox x:Name="EthnicityComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.Ethnicity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBoxItem>Caucasian</ComboBoxItem>
                                     <ComboBoxItem>African American</ComboBoxItem>
                                     <ComboBoxItem>Hispanic</ComboBoxItem>
                                     <ComboBoxItem>Asian</ComboBoxItem>
@@ -92,7 +98,8 @@
                                     <ComboBoxItem>Unknown</ComboBoxItem>
                                 </ComboBox>
                             </Grid>
-                            <Grid>
+                            <!-- This code was for entering a custom value for Other, but probably isn't needed -->
+                            <!--<Grid>
                                 <Grid.Style>
                                     <Style>
                                         <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
@@ -104,31 +111,33 @@
                                     </Style>
                                 </Grid.Style>
                                 <Label>Specify Race:</Label>
-                                <TextBox x:Name="OtherEthnicityTextBox"/>
-                            </Grid>
+                                <TextBox x:Name="OtherEthnicityTextBox" Text="{Binding ElementName=EthnicityComboBox, Path=SelectedItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>-->
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Zip Code">
-                        <TextBox x:Name="ZipCodeTextBox"/>
+                        <TextBox x:Name="ZipCodeTextBox" Text="{Binding client.ZipCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Smoking">
                         <Grid>
-                            <Label>Do you smoke?</Label>
-                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                <RadioButton x:Name="SmokingYesRadioButton">Yes</RadioButton>
-                                <RadioButton x:Name="SmokingNoRadioButton" IsChecked="True">No</RadioButton>
-                            </StackPanel>
+                            <Label>Does anyone smoke?</Label>
+                            <TextBox x:Name="SmokingTextBox"  Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Text="{Binding client.Smoker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <!-- Old code for boolean based smoking selection -->
+                            <!--<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <RadioButton x:Name="SmokingYesRadioButton" IsChecked="{Binding Path=client.Smoking, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                <RadioButton x:Name="SmokingNoRadioButton" IsChecked="{Binding Path=client.Smoking, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                            </StackPanel>-->
                         </Grid>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
                     <GroupBox Header="Marital Status">
-                        <ComboBox x:Name="MaritalStatusComboBox">
-                            <ComboBoxItem IsSelected="True">Single</ComboBoxItem>
+                        <ComboBox x:Name="MaritalStatusComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.MaritalStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem>Single</ComboBoxItem>
                             <ComboBoxItem>Married</ComboBoxItem>
                             <ComboBoxItem>Seperated</ComboBoxItem>
                             <ComboBoxItem>Unknown</ComboBoxItem>
@@ -136,11 +145,11 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Education" Width="475">
+                    <GroupBox Header="Education">
                         <StackPanel>
                             <Grid>
                                 <Label>Current Enrollment:</Label>
-                                <ComboBox x:Name="CurrentStudentEnrollmentComboBox">
+                                <ComboBox x:Name="CurrentStudentEnrollmentComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.CurrentStudentEnrollment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <ComboBoxItem IsSelected="True">Junior High School</ComboBoxItem>
                                     <ComboBoxItem>High School</ComboBoxItem>
                                     <ComboBoxItem>Home School</ComboBoxItem>
@@ -153,8 +162,8 @@
                             </Grid>
                             <Grid>
                                 <Label>Educational Background:</Label>
-                                <ComboBox x:Name="EducationalBackgroundComboBox">
-                                    <ComboBoxItem IsSelected="True">N/A</ComboBoxItem>
+                                <ComboBox x:Name="EducationalBackgroundComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.EducationalBackground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBoxItem>N/A</ComboBoxItem>
                                     <ComboBoxItem>Drop Out</ComboBoxItem>
                                     <ComboBoxItem>High School Grad</ComboBoxItem>
                                     <ComboBoxItem>GED</ComboBoxItem>
@@ -168,7 +177,7 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Pregnancy Information" Width="475">
+                    <GroupBox Header="Pregnancy Information">
                         <StackPanel>
                             <Grid>
                                 <Label>Are you pregnant today?</Label>
@@ -177,78 +186,70 @@
                                     <RadioButton IsChecked="True">No</RadioButton>
                                 </StackPanel>
                             </Grid>
-                            <!--If pregnant, these inputs will need to create a new Pregnancy item -->
                             <StackPanel Visibility="{Binding ElementName=IsPregnant, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <Grid>
                                     <Label>Due Date:</Label>
-                                    <DatePicker x:Name="DueDateDatePicker"/>
+                                    <DatePicker x:Name="DueDateDatePicker" Text="{Binding pregnancy.DueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                                 <Grid>
                                     <Label>OB Care Before Registration:</Label>
                                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                        <RadioButton x:Name="OBCareBeforeRegYesRadioButton">Yes</RadioButton>
-                                        <RadioButton x:Name="OBCareBeforeRegNoRadioButton" IsChecked="True">No</RadioButton>
+                                        <RadioButton x:Name="OBCareBeforeRegYesRadioButton" IsChecked="{Binding Path=pregnancy.OBCareBeforeReg, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                        <RadioButton x:Name="OBCareBeforeRegNoRadioButton" IsChecked="{Binding Path=pregnancy.OBCareBeforeReg, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
                                     </StackPanel>
                                 </Grid>
                                 <Grid>
                                     <Label>Comment:</Label>
-                                    <TextBox x:Name="PregnancyCommentTextBox"/>
+                                    <TextBox x:Name="PregnancyCommentTextBox" Text="{Binding pregnancy.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Pregnancy History" Width="475">
-                        <StackPanel>
-                            <Grid>
-                                <Label>Pregnancy Status:</Label>
-                                <ComboBox x:Name="PregnancyStatusComboBox">
-                                    <ComboBoxItem IsSelected="True">First Pregnancy</ComboBoxItem>
-                                    <ComboBoxItem>Baby Already Born</ComboBoxItem>
-                                    <ComboBoxItem>Pregnant and Has Children</ComboBoxItem>
-                                    <ComboBoxItem>Not Pregnant and Has Children</ComboBoxItem>
-                                </ComboBox>
-                            </Grid>
-                            <Grid>
-                                <Label>Comment:</Label>
-                                <TextBox x:Name="PregnancyStatusCommentTextBox"/>
-                            </Grid>
-                        </StackPanel>
+                    <GroupBox Header="Pregnancy History">
+                        <Grid>
+                            <ComboBox x:Name="PregnancyHistoryComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.PregnancyHistory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBoxItem>First Pregnancy</ComboBoxItem>
+                                <ComboBoxItem>Baby Already Born</ComboBoxItem>
+                                <ComboBoxItem>Pregnant and Has Children</ComboBoxItem>
+                                <ComboBoxItem>Not Pregnant and Has Children</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Hope House Information" Width="475">
+                    <GroupBox Header="Hope House Information">
                         <StackPanel>
                             <Grid>
                                 <Label>Application Date:</Label>
-                                <DatePicker x:Name="ApplicationDateDatePicker" SelectedDate="{x:Static sys:DateTime.Now}"/>
+                                <DatePicker x:Name="ApplicationDateDatePicker" Text="{Binding client.ApplicationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Status:</Label>
-                                <TextBox x:Name="StatusTextBox"/>
+                                <TextBox x:Name="CurrentStatusTextBox" Text="{Binding client.CurrentStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Enrolled in Motherhood Program:</Label>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <RadioButton x:Name="MotherhoodProgramYesRadioButton">Yes</RadioButton>
-                                    <RadioButton x:Name="MotherhoodProgramNoRadioButton" IsChecked="True">No</RadioButton>
+                                    <RadioButton x:Name="MotherhoodProgramYesRadioButton" IsChecked="{Binding Path=client.MotherhoodProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="MotherhoodProgramNoRadioButton" IsChecked="{Binding Path=client.MotherhoodProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
                                 </StackPanel>
                             </Grid>
                             <Grid>
                                 <Label>Enrolled in Parenting Program:</Label>
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <RadioButton x:Name="ParentingProgramYesRadioButton">Yes</RadioButton>
-                                    <RadioButton x:Name="ParentingProgramNoRadioButton" IsChecked="True">No</RadioButton>
+                                    <RadioButton x:Name="ParentingProgramYesRadioButton" IsChecked="{Binding Path=client.ParentingProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="ParentingProgramNoRadioButton" IsChecked="{Binding Path=client.ParentingProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
                                 </StackPanel>
                             </Grid>
                             <Grid>
                                 <Label>Registering Individual:</Label>
-                                <TextBox x:Name="RegisteringIndividualTextBox"/>
+                                <TextBox x:Name="RegisteringIndividualTextBox" Text="{Binding client.RegisteringIndividual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Comments:</Label>
-                                <TextBox x:Name="ClientCommentTextBox" Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                                <TextBox x:Name="ClientCommentTextBox" Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Text="{Binding client.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>

@@ -15,14 +15,17 @@ namespace se2_loon_hh.Controllers
              _db = new Entities();
         }
 
-        public void addClient()
+        public void addClient(Client client)
         {
-            //var volunteers = _db.Volunteers.ToList();
-            //foreach(var volunteer in volunteers)
-            //{
-            //    Console.WriteLine(volunteer.DateHelped);
-            //    Console.WriteLine(volunteer.Hours);
-            //}
+            _db.Clients.Add(client);
+            _db.SaveChanges();
+        }
+
+        public void addClient(Client client, Pregnancy preg)
+        {
+            _db.Clients.Add(client);
+            _db.Pregnancies.Add(preg);
+            _db.SaveChanges();
         }
 
         public void Dispose()

@@ -45,7 +45,7 @@ namespace se2_loon_hh.Forms.FormsAPI.Validation.Validators
         /// <returns>Whether or not the value meets the regular expression.</returns>
         public override bool isValid()
         {
-            return (System.Text.RegularExpressions.Regex.IsMatch(Value, Regex)) ? true : false;
+            return (Value != null && System.Text.RegularExpressions.Regex.IsMatch(Value, Regex)) ? true : false;
         }
     }
 }
