@@ -25,19 +25,18 @@ namespace se2_loon_hh
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Emergency> Emergencies { get; set; }
+        public virtual DbSet<Volunteer> Volunteers { get; set; }
         public virtual DbSet<ClassAttendance> ClassAttendances { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<ClientFreshStart> ClientFreshStarts { get; set; }
-        public virtual DbSet<Emergency> Emergencies { get; set; }
         public virtual DbSet<FreshStart> FreshStarts { get; set; }
         public virtual DbSet<ItemRequested> ItemRequesteds { get; set; }
         public virtual DbSet<Pregnancy> Pregnancies { get; set; }
-        public virtual DbSet<PregnancyStatu> PregnancyStatus { get; set; }
         public virtual DbSet<ProgressPointTracking> ProgressPointTrackings { get; set; }
         public virtual DbSet<RelativeFreshStart> RelativeFreshStarts { get; set; }
         public virtual DbSet<ServiceInfo> ServiceInfoes { get; set; }
         public virtual DbSet<ServiceRequested> ServiceRequesteds { get; set; }
         public virtual DbSet<SupportGroup> SupportGroups { get; set; }
-        public virtual DbSet<Volunteer> Volunteers { get; set; }
     }
 }

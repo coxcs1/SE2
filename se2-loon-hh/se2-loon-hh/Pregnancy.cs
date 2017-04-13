@@ -22,13 +22,6 @@ namespace se2_loon_hh
         public string HealthyDelivery { get; set; }
         public string BirthComplications { get; set; }
         public Nullable<long> ContinuedWithMotherhoodProgram { get; set; }
-        public Nullable<long> LifeBridge { get; set; }
-        public Nullable<long> FSS { get; set; }
-        public Nullable<long> BetterWay { get; set; }
-        public Nullable<long> CompleteBetterWay { get; set; }
-        public Nullable<long> FamPlanningSession { get; set; }
-        public Nullable<long> OasisClass { get; set; }
-        public Nullable<long> HRCclass { get; set; }
         public string Comment { get; set; }
     
         public virtual Client Client { get; set; }

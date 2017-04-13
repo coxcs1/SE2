@@ -20,7 +20,6 @@ namespace se2_loon_hh
             this.ClassAttendances = new HashSet<ClassAttendance>();
             this.ClientFreshStarts = new HashSet<ClientFreshStart>();
             this.Pregnancies = new HashSet<Pregnancy>();
-            this.PregnancyStatus = new HashSet<PregnancyStatu>();
             this.ProgressPointTrackings = new HashSet<ProgressPointTracking>();
             this.RelativeFreshStarts = new HashSet<RelativeFreshStart>();
             this.ServiceInfoes = new HashSet<ServiceInfo>();
@@ -35,7 +34,7 @@ namespace se2_loon_hh
         public string ActiveInactiveStatus { get; set; }
         public string ZipCode { get; set; }
         public string MaritalStatus { get; set; }
-        public string AgeRange { get; set; }
+        public string BirthDate { get; set; }
         public string Ethnicity { get; set; }
         public string CurrentStudentEnrollment { get; set; }
         public string EducationalBackground { get; set; }
@@ -53,6 +52,7 @@ namespace se2_loon_hh
         public string Comment { get; set; }
         public Nullable<long> ReturnNewPregnancy { get; set; }
         public string RegisteringIndividual { get; set; }
+        public string PregnancyHistory { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClassAttendance> ClassAttendances { get; set; }
@@ -60,8 +60,6 @@ namespace se2_loon_hh
         public virtual ICollection<ClientFreshStart> ClientFreshStarts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pregnancy> Pregnancies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PregnancyStatu> PregnancyStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProgressPointTracking> ProgressPointTrackings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
