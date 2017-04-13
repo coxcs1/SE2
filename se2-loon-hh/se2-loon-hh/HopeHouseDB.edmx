@@ -29,7 +29,7 @@
           <Property Name="ActiveInactiveStatus" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="MaritalStatus" Type="nvarchar" MaxLength="2147483647" />
-          <Property Name="AgeRange" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BirthDate" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Ethnicity" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="CurrentStudentEnrollment" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="EducationalBackground" Type="nvarchar" MaxLength="2147483647" />
@@ -47,6 +47,7 @@
           <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="ReturnNewPregnancy" Type="integer" />
           <Property Name="RegisteringIndividual" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="PregnancyHistory" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="ClientFreshStart">
           <Key>
@@ -99,25 +100,6 @@
           <Property Name="HealthyDelivery" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="BirthComplications" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="ContinuedWithMotherhoodProgram" Type="integer" />
-          <Property Name="LifeBridge" Type="integer" />
-          <Property Name="FSS" Type="integer" />
-          <Property Name="BetterWay" Type="integer" />
-          <Property Name="CompleteBetterWay" Type="integer" />
-          <Property Name="FamPlanningSession" Type="integer" />
-          <Property Name="OasisClass" Type="integer" />
-          <Property Name="HRCclass" Type="integer" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
-        </EntityType>
-        <EntityType Name="PregnancyStatus">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
-          <Property Name="FirstPregnancy" Type="integer" />
-          <Property Name="BabyAlreadyBorn" Type="integer" />
-          <Property Name="PregWithChildren" Type="integer" />
-          <Property Name="NPMoreThanOneKid" Type="integer" />
           <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <EntityType Name="ProgressPointTracking">
@@ -254,18 +236,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PregnancyStatus_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="PregnancyStatus" Type="Self.PregnancyStatus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PregnancyStatus">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProgressPointTracking_0_0">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="ProgressPointTracking" Type="Self.ProgressPointTracking" Multiplicity="*" />
@@ -346,7 +316,6 @@
           <EntitySet Name="FreshStart" EntityType="Self.FreshStart" store:Type="Tables" />
           <EntitySet Name="ItemRequested" EntityType="Self.ItemRequested" store:Type="Tables" />
           <EntitySet Name="Pregnancy" EntityType="Self.Pregnancy" store:Type="Tables" />
-          <EntitySet Name="PregnancyStatus" EntityType="Self.PregnancyStatus" store:Type="Tables" />
           <EntitySet Name="ProgressPointTracking" EntityType="Self.ProgressPointTracking" store:Type="Tables" />
           <EntitySet Name="RelativeFreshStart" EntityType="Self.RelativeFreshStart" store:Type="Tables" />
           <EntitySet Name="ServiceInfo" EntityType="Self.ServiceInfo" store:Type="Tables" />
@@ -372,10 +341,6 @@
           <AssociationSet Name="FK_Pregnancy_0_0" Association="Self.FK_Pregnancy_0_0">
             <End Role="Client" EntitySet="Client" />
             <End Role="Pregnancy" EntitySet="Pregnancy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PregnancyStatus_0_0" Association="Self.FK_PregnancyStatus_0_0">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="PregnancyStatus" EntitySet="PregnancyStatus" />
           </AssociationSet>
           <AssociationSet Name="FK_ProgressPointTracking_0_0" Association="Self.FK_ProgressPointTracking_0_0">
             <End Role="Client" EntitySet="Client" />
@@ -407,20 +372,19 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Emergencies" EntityType="Model.Emergency" />
+          <EntitySet Name="Volunteers" EntityType="Model.Volunteer" />
           <EntitySet Name="ClassAttendances" EntityType="Model.ClassAttendance" />
           <EntitySet Name="Clients" EntityType="Model.Client" />
           <EntitySet Name="ClientFreshStarts" EntityType="Model.ClientFreshStart" />
-          <EntitySet Name="Emergencies" EntityType="Model.Emergency" />
           <EntitySet Name="FreshStarts" EntityType="Model.FreshStart" />
           <EntitySet Name="ItemRequesteds" EntityType="Model.ItemRequested" />
           <EntitySet Name="Pregnancies" EntityType="Model.Pregnancy" />
-          <EntitySet Name="PregnancyStatus" EntityType="Model.PregnancyStatu" />
           <EntitySet Name="ProgressPointTrackings" EntityType="Model.ProgressPointTracking" />
           <EntitySet Name="RelativeFreshStarts" EntityType="Model.RelativeFreshStart" />
           <EntitySet Name="ServiceInfoes" EntityType="Model.ServiceInfo" />
           <EntitySet Name="ServiceRequesteds" EntityType="Model.ServiceRequested" />
           <EntitySet Name="SupportGroups" EntityType="Model.SupportGroup" />
-          <EntitySet Name="Volunteers" EntityType="Model.Volunteer" />
           <AssociationSet Name="FK_ClassAttendance_0_0" Association="Model.FK_ClassAttendance_0_0">
             <End Role="Client" EntitySet="Clients" />
             <End Role="ClassAttendance" EntitySet="ClassAttendances" />
@@ -432,10 +396,6 @@
           <AssociationSet Name="FK_Pregnancy_0_0" Association="Model.FK_Pregnancy_0_0">
             <End Role="Client" EntitySet="Clients" />
             <End Role="Pregnancy" EntitySet="Pregnancies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PregnancyStatus_0_0" Association="Model.FK_PregnancyStatus_0_0">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="PregnancyStatu" EntitySet="PregnancyStatus" />
           </AssociationSet>
           <AssociationSet Name="FK_ProgressPointTracking_0_0" Association="Model.FK_ProgressPointTracking_0_0">
             <End Role="Client" EntitySet="Clients" />
@@ -469,7 +429,30 @@
             <End Role="ServiceInfo" EntitySet="ServiceInfoes" />
             <End Role="ServiceRequested" EntitySet="ServiceRequesteds" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="Emergency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ItemsReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Hours" Type="Int64" />
+          <Property Name="Service" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="ClassAttendance">
           <Key>
             <PropertyRef Name="Id" />
@@ -495,7 +478,7 @@
           <Property Name="ActiveInactiveStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="ZipCode" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="MaritalStatus" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="AgeRange" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Ethnicity" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="CurrentStudentEnrollment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="EducationalBackground" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
@@ -513,10 +496,10 @@
           <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="ReturnNewPregnancy" Type="Int64" />
           <Property Name="RegisteringIndividual" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="PregnancyHistory" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ClassAttendances" Relationship="Model.FK_ClassAttendance_0_0" FromRole="Client" ToRole="ClassAttendance" />
           <NavigationProperty Name="ClientFreshStarts" Relationship="Model.FK_ClientFreshStart_0_0" FromRole="Client" ToRole="ClientFreshStart" />
           <NavigationProperty Name="Pregnancies" Relationship="Model.FK_Pregnancy_0_0" FromRole="Client" ToRole="Pregnancy" />
-          <NavigationProperty Name="PregnancyStatus" Relationship="Model.FK_PregnancyStatus_0_0" FromRole="Client" ToRole="PregnancyStatu" />
           <NavigationProperty Name="ProgressPointTrackings" Relationship="Model.FK_ProgressPointTracking_0_0" FromRole="Client" ToRole="ProgressPointTracking" />
           <NavigationProperty Name="RelativeFreshStarts" Relationship="Model.FK_RelativeFreshStart_0_0" FromRole="Client" ToRole="RelativeFreshStart" />
           <NavigationProperty Name="ServiceInfoes" Relationship="Model.FK_ServiceInfo_0_0" FromRole="Client" ToRole="ServiceInfo" />
@@ -533,17 +516,6 @@
           <NavigationProperty Name="Client" Relationship="Model.FK_ClientFreshStart_0_0" FromRole="ClientFreshStart" ToRole="Client" />
           <NavigationProperty Name="FreshStart" Relationship="Model.FK_ClientFreshStart_1_0" FromRole="ClientFreshStart" ToRole="FreshStart" />
           <NavigationProperty Name="SupportGroups" Relationship="Model.FK_SupportGroup_0_0" FromRole="ClientFreshStart" ToRole="SupportGroup" />
-        </EntityType>
-        <EntityType Name="Emergency">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="ItemsReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FreshStart">
           <Key>
@@ -578,28 +550,8 @@
           <Property Name="HealthyDelivery" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="BirthComplications" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="ContinuedWithMotherhoodProgram" Type="Int64" />
-          <Property Name="LifeBridge" Type="Int64" />
-          <Property Name="FSS" Type="Int64" />
-          <Property Name="BetterWay" Type="Int64" />
-          <Property Name="CompleteBetterWay" Type="Int64" />
-          <Property Name="FamPlanningSession" Type="Int64" />
-          <Property Name="OasisClass" Type="Int64" />
-          <Property Name="HRCclass" Type="Int64" />
           <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Model.FK_Pregnancy_0_0" FromRole="Pregnancy" ToRole="Client" />
-        </EntityType>
-        <EntityType Name="PregnancyStatu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
-          <Property Name="FirstPregnancy" Type="Int64" />
-          <Property Name="BabyAlreadyBorn" Type="Int64" />
-          <Property Name="PregWithChildren" Type="Int64" />
-          <Property Name="NPMoreThanOneKid" Type="Int64" />
-          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="Model.FK_PregnancyStatus_0_0" FromRole="PregnancyStatu" ToRole="Client" />
         </EntityType>
         <EntityType Name="ProgressPointTracking">
           <Key>
@@ -671,18 +623,6 @@
           <Property Name="Year" Type="Int64" />
           <NavigationProperty Name="ClientFreshStart" Relationship="Model.FK_SupportGroup_0_0" FromRole="SupportGroup" ToRole="ClientFreshStart" />
         </EntityType>
-        <EntityType Name="Volunteer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Hours" Type="Int64" />
-          <Property Name="Service" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_ClassAttendance_0_0">
           <End Type="Model.Client" Role="Client" Multiplicity="1" />
           <End Type="Model.ClassAttendance" Role="ClassAttendance" Multiplicity="*" />
@@ -715,18 +655,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Pregnancy">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PregnancyStatus_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
-          <End Type="Model.PregnancyStatu" Role="PregnancyStatu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PregnancyStatu">
               <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
@@ -833,6 +761,31 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Emergencies">
+            <EntityTypeMapping TypeName="Model.Emergency">
+              <MappingFragment StoreEntitySet="Emergency">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ItemsReceived" ColumnName="ItemsReceived" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="Model.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ClassAttendances">
             <EntityTypeMapping TypeName="Model.ClassAttendance">
               <MappingFragment StoreEntitySet="ClassAttendance">
@@ -848,6 +801,7 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="Model.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="PregnancyHistory" ColumnName="PregnancyHistory" />
                 <ScalarProperty Name="RegisteringIndividual" ColumnName="RegisteringIndividual" />
                 <ScalarProperty Name="ReturnNewPregnancy" ColumnName="ReturnNewPregnancy" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
@@ -865,7 +819,7 @@
                 <ScalarProperty Name="EducationalBackground" ColumnName="EducationalBackground" />
                 <ScalarProperty Name="CurrentStudentEnrollment" ColumnName="CurrentStudentEnrollment" />
                 <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
-                <ScalarProperty Name="AgeRange" ColumnName="AgeRange" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="ActiveInactiveStatus" ColumnName="ActiveInactiveStatus" />
@@ -885,18 +839,6 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="FreshStartId" ColumnName="FreshStartId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Emergencies">
-            <EntityTypeMapping TypeName="Model.Emergency">
-              <MappingFragment StoreEntitySet="Emergency">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="ItemsReceived" ColumnName="ItemsReceived" />
-                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -925,32 +867,12 @@
             <EntityTypeMapping TypeName="Model.Pregnancy">
               <MappingFragment StoreEntitySet="Pregnancy">
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="HRCclass" ColumnName="HRCclass" />
-                <ScalarProperty Name="OasisClass" ColumnName="OasisClass" />
-                <ScalarProperty Name="FamPlanningSession" ColumnName="FamPlanningSession" />
-                <ScalarProperty Name="CompleteBetterWay" ColumnName="CompleteBetterWay" />
-                <ScalarProperty Name="BetterWay" ColumnName="BetterWay" />
-                <ScalarProperty Name="FSS" ColumnName="FSS" />
-                <ScalarProperty Name="LifeBridge" ColumnName="LifeBridge" />
                 <ScalarProperty Name="ContinuedWithMotherhoodProgram" ColumnName="ContinuedWithMotherhoodProgram" />
                 <ScalarProperty Name="BirthComplications" ColumnName="BirthComplications" />
                 <ScalarProperty Name="HealthyDelivery" ColumnName="HealthyDelivery" />
                 <ScalarProperty Name="OBCareAfterReg" ColumnName="OBCareAfterReg" />
                 <ScalarProperty Name="OBCareBeforeReg" ColumnName="OBCareBeforeReg" />
                 <ScalarProperty Name="DueDate" ColumnName="DueDate" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PregnancyStatus">
-            <EntityTypeMapping TypeName="Model.PregnancyStatu">
-              <MappingFragment StoreEntitySet="PregnancyStatus">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="NPMoreThanOneKid" ColumnName="NPMoreThanOneKid" />
-                <ScalarProperty Name="PregWithChildren" ColumnName="PregWithChildren" />
-                <ScalarProperty Name="BabyAlreadyBorn" ColumnName="BabyAlreadyBorn" />
-                <ScalarProperty Name="FirstPregnancy" ColumnName="FirstPregnancy" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1019,19 +941,6 @@
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="MonthAttended" ColumnName="MonthAttended" />
                 <ScalarProperty Name="ClientFreshStartId" ColumnName="ClientFreshStartId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Volunteers">
-            <EntityTypeMapping TypeName="Model.Volunteer">
-              <MappingFragment StoreEntitySet="Volunteer">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Service" ColumnName="Service" />
-                <ScalarProperty Name="Hours" ColumnName="Hours" />
-                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

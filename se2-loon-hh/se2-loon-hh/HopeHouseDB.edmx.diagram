@@ -5,24 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7844c4a21c45475b8caf8f8838354163" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="Model.ClassAttendance" Width="1.5" PointX="3" PointY="18.125" />
-        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="Model.ClientFreshStart" Width="1.5" PointX="6" PointY="18.25" />
         <EntityTypeShape EntityType="Model.Emergency" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.FreshStart" Width="1.5" PointX="0.75" PointY="8.375" />
-        <EntityTypeShape EntityType="Model.ItemRequested" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="Model.Pregnancy" Width="1.5" PointX="3" PointY="24.5" />
-        <EntityTypeShape EntityType="Model.PregnancyStatu" Width="1.5" PointX="3" PointY="5.625" />
-        <EntityTypeShape EntityType="Model.ProgressPointTracking" Width="1.5" PointX="3" PointY="29.625" />
-        <EntityTypeShape EntityType="Model.RelativeFreshStart" Width="1.5" PointX="3" PointY="9" />
-        <EntityTypeShape EntityType="Model.ServiceInfo" Width="1.5" PointX="3" PointY="13" />
-        <EntityTypeShape EntityType="Model.ServiceRequested" Width="1.5" PointX="5.25" PointY="12.625" />
-        <EntityTypeShape EntityType="Model.SupportGroup" Width="1.5" PointX="8.25" PointY="18.5" />
         <EntityTypeShape EntityType="Model.Volunteer" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.ClassAttendance" Width="1.5" PointX="3" PointY="19.875" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="13.125" />
+        <EntityTypeShape EntityType="Model.ClientFreshStart" Width="1.5" PointX="6" PointY="15.625" />
+        <EntityTypeShape EntityType="Model.FreshStart" Width="1.5" PointX="3.75" PointY="5.875" />
+        <EntityTypeShape EntityType="Model.ItemRequested" Width="1.5" PointX="5.25" PointY="23" />
+        <EntityTypeShape EntityType="Model.Pregnancy" Width="1.5" PointX="3" PointY="28.5" />
+        <EntityTypeShape EntityType="Model.ProgressPointTracking" Width="1.5" PointX="3" PointY="9.375" />
+        <EntityTypeShape EntityType="Model.RelativeFreshStart" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="Model.ServiceInfo" Width="1.5" PointX="3" PointY="23.375" />
+        <EntityTypeShape EntityType="Model.ServiceRequested" Width="1.5" PointX="5.25" PointY="25.75" />
+        <EntityTypeShape EntityType="Model.SupportGroup" Width="1.5" PointX="8.25" PointY="16" />
         <AssociationConnector Association="Model.FK_ClassAttendance_0_0" />
         <AssociationConnector Association="Model.FK_ClientFreshStart_0_0" />
         <AssociationConnector Association="Model.FK_Pregnancy_0_0" />
-        <AssociationConnector Association="Model.FK_PregnancyStatus_0_0" />
         <AssociationConnector Association="Model.FK_ProgressPointTracking_0_0" />
         <AssociationConnector Association="Model.FK_RelativeFreshStart_0_0" />
         <AssociationConnector Association="Model.FK_ServiceInfo_0_0" />
@@ -31,7 +29,7 @@
         <AssociationConnector Association="Model.FK_RelativeFreshStart_1_0" />
         <AssociationConnector Association="Model.FK_ItemRequested_0_0" />
         <AssociationConnector Association="Model.FK_ServiceRequested_0_0" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

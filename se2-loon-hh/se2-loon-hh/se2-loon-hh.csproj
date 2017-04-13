@@ -134,9 +134,6 @@
     <Compile Include="ItemRequested.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="PregnancyStatu.cs">
-      <DependentUpon>HopeHouseDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="ProgressPointTracking.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
