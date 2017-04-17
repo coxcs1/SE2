@@ -121,6 +121,7 @@ namespace se2_loon_hh.Forms
             this.service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
             this.service.Email = Convert.ToInt64(Email.IsChecked);
             this.service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            this.service.PhoneCenterHrs = Convert.ToInt64(PhoneCenterHrs.IsChecked);
             this.service.Date = DateArrivedDatePicker.Text;
             this.service.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);
             //clear both items and services requested
@@ -130,16 +131,16 @@ namespace se2_loon_hh.Forms
             foreach (var item in ItemsRequestedDataGrid.Items)
             {
                 var itemRequested = new ItemRequested();
-                itemRequested.ItemName = item.GetType().GetProperty("Name").ToString();
-                itemRequested.Comment = item.GetType().GetProperty("Comment").ToString();
+                itemRequested.ItemName = item.GetType().GetProperty("Name").GetValue(item).ToString();
+                itemRequested.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
                 this.service.ItemRequesteds.Add(itemRequested);
             }
             //populate the services requested list
             foreach (var item in ServiceRequestedDataGrid.Items)
             {
                 var serviceRequested = new ServiceRequested();
-                serviceRequested.ServiceName = item.GetType().GetProperty("Name").ToString();
-                serviceRequested.Comment = item.GetType().GetProperty("Comment").ToString();
+                serviceRequested.ServiceName = item.GetType().GetProperty("Name").GetValue(item).ToString();
+                serviceRequested.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
                 this.service.ServiceRequesteds.Add(serviceRequested);
             }
         }
@@ -204,6 +205,7 @@ namespace se2_loon_hh.Forms
             RepresentedBySomeoneElse.IsChecked = Convert.ToBoolean(this.service.RepBySomeoneElse);
             OutgoingCallMailEmail.IsChecked = Convert.ToBoolean(this.service.OutgoingCallMailEmail);
             Email.IsChecked = Convert.ToBoolean(this.service.Email);
+            PhoneCenterHrs.IsChecked = Convert.ToBoolean(this.service.PhoneCenterHrs);
             //populate the items requested data grid
             foreach (var item in this.service.ItemRequesteds)
             {
@@ -215,12 +217,21 @@ namespace se2_loon_hh.Forms
                 ServiceRequestedDataGrid.Items.Add(new { Name = serviceRequested.ServiceName, Comment = serviceRequested.Comment });
             }
         }
-
+        /// <summary>
+        /// This function adds a requested service to the requested services data grid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddServiceRequestedButton_Click(object sender, RoutedEventArgs e)
         {
             var row = new { Name = ServiceRequestedName.Text, Comment = ServiceRequestedComment.Text };
             ServiceRequestedDataGrid.Items.Add(row);
         }
+        /// <summary>
+        /// This function removes a requested service from the requested services data grid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveServiceRequested_Click(object sender, RoutedEventArgs e)
         {
             ServiceRequestedDataGrid.Items.RemoveAt(ServiceRequestedDataGrid.SelectedIndex);

@@ -87,6 +87,7 @@
                                     <CheckBox x:Name="RepresentedBySomeoneElse" Content="Represented By Someone Else" Margin="0"/>
                                     <CheckBox x:Name="OutgoingCallMailEmail" Content="Outgoing Call Mail Email" Margin="0"/>
                                     <CheckBox x:Name="Email" Content="Email" Margin="0"/>
+                                    <CheckBox x:Name="PhoneCenterHrs" Content="Phone Center Hours" Margin="0"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
