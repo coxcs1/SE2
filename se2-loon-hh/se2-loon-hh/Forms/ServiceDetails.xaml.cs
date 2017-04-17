@@ -22,13 +22,13 @@ namespace se2_loon_hh.Forms
     public partial class ServiceDetails : Page
     {
         ServiceController serviceController;
-        ServiceRequested serviceRequested;
+        ServiceInfo serviceRequested;
 
         public ServiceDetails(int serviceID)
         {
             serviceController = new ServiceController();//initialize controller
             InitializeComponent();//setup components
-            serviceRequested = serviceController.GetServiceRequested(serviceID);//fetch the service requested from the database
+            serviceRequested = serviceController.GetServiceInfo(serviceID);//fetch the service requested from the database
             setupComponents();//populate the data grid with client information
         }
 

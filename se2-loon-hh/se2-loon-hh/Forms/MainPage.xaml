@@ -27,7 +27,7 @@
                     <MenuItem Name="ViewReportMenu" Header="_View Reports" />
                 </MenuItem>
                 <MenuItem Header="_Service">
-                    <MenuItem Name="AddServiceMenu" Header="_Add Service" />
+                    <MenuItem Name="AddServiceMenu" Header="_Add Service" Click="AddServiceMenu_Click" />
                     <MenuItem Name="ViewServiceMenu" Header="_View Services" />
                 </MenuItem>
                 <MenuItem Header="_Organiztion">

@@ -26,7 +26,7 @@ namespace se2_loon_hh.Forms
     public partial class AddServicePage : Page
     {
         ServiceController serviceController;//Handles all persistence layer logic for services and donations
-        ServiceRequested serviceRequested;//if the form is receiving an ID then populate this attribute
+        ServiceInfo service;//if the form is receiving an ID then populate this attribute
         FormValidator ServiceValidator { get; set; }//this serves as a validator for the entire form
         bool edit = false;//whether or not the request is to edit a service (Default false)
 
@@ -36,11 +36,11 @@ namespace se2_loon_hh.Forms
             serviceController = new ServiceController();//initialize controller
             InitializeComponent();//setup components
             setupFormElements();//populate the form
-            PageTitle.Text = "Add Service";//set the page title
+            PageTitle.Text = "Add Service Info";//set the page title
             if (serviceRequestedID > 0)
             {
-                PageTitle.Text = "Edit Service";//change the page title if it's an edit
-                serviceRequested = serviceController.GetServiceRequested(serviceRequestedID);//fetch the service requested from the database
+                PageTitle.Text = "Edit Service Info";//change the page title if it's an edit
+                service = serviceController.GetServiceInfo(serviceRequestedID);//fetch the service requested from the database
                 populateFormElements();//populate each form element as needed
             }
         }
@@ -85,9 +85,11 @@ namespace se2_loon_hh.Forms
         private bool isValid()
         {
             //create validation layer
-            //ServiceValidator = new FormValidator(new List<FormsAPI.Validation.Validation>() {
-            //    new LengthValidator(8, this.serviceRequested.Service.Name, ServiceName, "Service name must be 8 characters.")
-            //});
+            ServiceValidator = new FormValidator(new List<FormsAPI.Validation.Validation>() {
+                new RegexValidator(this.service.ClientId.ToString(), "[^0]+", ClientComboBox, "A client must be selected"),
+                new RequiredValidator(this.service.Date, DateArrivedDatePicker, "A date must be selected")
+            });
+            
 
             return (ServiceValidator.isValid()) ? true : false;
         }
@@ -97,47 +99,49 @@ namespace se2_loon_hh.Forms
         /// </summary>
         private void populateService()
         {
-            //if the service requested is null then create a new one
+            //if the service info is null then create a new on
             //else the service is being edited
-        //    if (this.serviceRequested == null)
-        //    {
-        //        this.serviceRequested = new ServiceRequested();
-        //        this.serviceRequested.Service = new Service();
-        //    }
-        //    else
-        //    {
-        //        edit = true;
-        //    }
+            if (this.service == null)
+            {
+                this.service = new ServiceInfo();
+            }
+            else
+            {
+                this.edit = true;
+            }
 
-        //    //modify the existing service with more hidious property calls...
-        //    this.serviceRequested.Service.Name = ServiceName.Text;
-        //    this.serviceRequested.Service.Type = ServiceType.Text;
-        //    this.serviceRequested.Service.Description = ServiceDescription.Text;
-        //    this.serviceRequested.Service.DateArrived = DateArrivedDatePicker.Text;
-        //    this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-        //    this.serviceRequested.Service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
-        //    this.serviceRequested.Service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
-        //    this.serviceRequested.Service.TelephoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
-        //    this.serviceRequested.Service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
-        //    this.serviceRequested.Service.OffSite = Convert.ToInt64(OffSite.IsChecked);
-        //    this.serviceRequested.Service.RepresentedBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
-        //    this.serviceRequested.Service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
-        //    this.serviceRequested.Service.Email = Convert.ToInt64(Email.IsChecked);
-        //    this.serviceRequested.Service.NewContact = Convert.ToInt64(NewContact.IsChecked);
-        //    this.serviceRequested.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);//attach the client to the requested service
-        //    this.serviceRequested.DateReceived = DateArrivedDatePicker.Text;
-        //    this.serviceRequested.Service.Donations.Clear();//clear the list of donations
-        //    //create as many donations as needed and link them to a service
-        //    foreach (var item in DonationsDataGrid.Items)
-        //    {
-        //        //create the donation
-        //        var donation = new Donation();
-        //        donation.Name = item.GetType().GetProperty("Name").GetValue(item).ToString();
-        //        donation.Type = item.GetType().GetProperty("Type").GetValue(item).ToString();
-        //        donation.Comment = item.GetType().GetProperty("Comment").GetValue(item).ToString();
-        //        //add the donation to the service
-        //        this.serviceRequested.Service.Donations.Add(donation);
-        //    }
+            //populate the service attribute
+            this.service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            this.service.NewWalkIn = Convert.ToInt64(NewWalkIn.IsChecked);
+            this.service.WalkIn = Convert.ToInt64(WalkIn.IsChecked);
+            this.service.PhoneAfterHrs = Convert.ToInt64(TelephoneAfterHours.IsChecked);
+            this.service.PrankCall = Convert.ToInt64(PrankCall.IsChecked);
+            this.service.OffSite = Convert.ToInt64(OffSite.IsChecked);
+            this.service.RepBySomeoneElse = Convert.ToInt64(RepresentedBySomeoneElse.IsChecked);
+            this.service.OutgoingCallMailEmail = Convert.ToInt64(OutgoingCallMailEmail.IsChecked);
+            this.service.Email = Convert.ToInt64(Email.IsChecked);
+            this.service.NewContact = Convert.ToInt64(NewContact.IsChecked);
+            this.service.Date = DateArrivedDatePicker.Text;
+            this.service.ClientId = Convert.ToInt64(ClientComboBox.SelectedValue);
+            //clear both items and services requested
+            this.service.ItemRequesteds.Clear();
+            this.service.ServiceRequesteds.Clear();
+            //populate the items requested list
+            foreach (var item in ItemsRequestedDataGrid.Items)
+            {
+                var itemRequested = new ItemRequested();
+                itemRequested.ItemName = item.GetType().GetProperty("Name").ToString();
+                itemRequested.Comment = item.GetType().GetProperty("Comment").ToString();
+                this.service.ItemRequesteds.Add(itemRequested);
+            }
+            //populate the services requested list
+            foreach (var item in ServiceRequestedDataGrid.Items)
+            {
+                var serviceRequested = new ServiceRequested();
+                serviceRequested.ServiceName = item.GetType().GetProperty("Name").ToString();
+                serviceRequested.Comment = item.GetType().GetProperty("Comment").ToString();
+                this.service.ServiceRequesteds.Add(serviceRequested);
+            }
         }
         /// <summary>
         /// This function persists the service requested object into the database.
@@ -147,11 +151,11 @@ namespace se2_loon_hh.Forms
             //call approriate controller action
             if (edit)
             {
-                //serviceController.EditService(serviceRequested);
+                serviceController.EditService(this.service);
             }
             else
             {
-                //serviceController.CreateService(serviceRequested.Service, serviceRequested);
+                serviceController.CreateService(this.service);
             }
         }
 
@@ -164,53 +168,62 @@ namespace se2_loon_hh.Forms
             ClientComboBox.DisplayMemberPath = "_Value";//what to display
             ClientComboBox.SelectedValuePath = "_Key";//what to use when passing data to back end
             ClientComboBox.ItemsSource = serviceController.GetClientsForComboBox();//store ComboBoxPairs data structure
-            DonationType.DisplayMemberPath = "_Value";//what to display
-            DonationType.SelectedValuePath = "_Key";//what to use when passing data to back end
-            DonationType.ItemsSource = serviceController.GetDonationTypes();//load up donation types for the donation type combo box
-        }
+        }   
         /// <summary>
         /// This function adds a row to the dontations data grid
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddDonationButton_Click(object sender, RoutedEventArgs e)
+        private void AddItemRequestedButton_Click(object sender, RoutedEventArgs e)
         {
-            var row = new { Name = DonationName.Text, Type = DonationType.SelectedItem.ToString(), Comment = DonationComment.Text };
-            DonationsDataGrid.Items.Add(row);
+           var row = new { Name = ItemRequestedName.Text, Comment = ItemRequestedComment.Text };
+            ItemsRequestedDataGrid.Items.Add(row);
         }
         /// <summary>
         /// This function removes a row from the donations data grid.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RemoveDonation_Click(object sender, RoutedEventArgs e)
+        private void RemoveItemRequested_Click(object sender, RoutedEventArgs e)
         {
-            DonationsDataGrid.Items.RemoveAt(DonationsDataGrid.SelectedIndex);
+            ItemsRequestedDataGrid.Items.RemoveAt(ItemsRequestedDataGrid.SelectedIndex);
         }
         /// <summary>
         /// This function populates the form.
         /// </summary>
         private void populateFormElements()
         {
-            //ServiceName.Text = serviceRequested.Service.Name;
-            //ServiceType.Text = serviceRequested.Service.Type;
-            //ServiceDescription.Text = serviceRequested.Service.Description;
-            //ClientComboBox.Text = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName;
-            //DateArrivedDatePicker.Text = serviceRequested.Service.DateArrived;
-            //NewContact.IsChecked = Convert.ToBoolean(serviceRequested.Service.NewContact);
-            //WalkIn.IsChecked = Convert.ToBoolean(serviceRequested.Service.WalkIn);
-            //NewWalkIn.IsChecked = Convert.ToBoolean(serviceRequested.Service.NewWalkIn);
-            //TelephoneAfterHours.IsChecked = Convert.ToBoolean(serviceRequested.Service.TelephoneAfterHrs);
-            //PrankCall.IsChecked = Convert.ToBoolean(serviceRequested.Service.PrankCall);
-            //OffSite.IsChecked = Convert.ToBoolean(serviceRequested.Service.OffSite);
-            //RepresentedBySomeoneElse.IsChecked = Convert.ToBoolean(serviceRequested.Service.RepresentedBySomeoneElse);
-            //OutgoingCallMailEmail.IsChecked = Convert.ToBoolean(serviceRequested.Service.OutgoingCallMailEmail);
-            //Email.IsChecked = Convert.ToBoolean(serviceRequested.Service.Email);
-            ////populate the donation data grid
-            //foreach (var donation in serviceRequested.Service.Donations)
-            //{
-            //    DonationsDataGrid.Items.Add(new { Name = donation.Name, Type = donation.Type, Comment = donation.Comment });
-            //}
+            ClientComboBox.Text = this.service.Client.FirstName + " " + this.service.Client.MiddleName + " " + this.service.Client.LastName;
+            DateArrivedDatePicker.Text = this.service.Date;
+            NewContact.IsChecked = Convert.ToBoolean(this.service.NewContact);
+            WalkIn.IsChecked = Convert.ToBoolean(this.service.WalkIn);
+            NewWalkIn.IsChecked = Convert.ToBoolean(this.service.NewWalkIn);
+            TelephoneAfterHours.IsChecked = Convert.ToBoolean(this.service.PhoneAfterHrs);
+            PrankCall.IsChecked = Convert.ToBoolean(this.service.PrankCall);
+            OffSite.IsChecked = Convert.ToBoolean(this.service.OffSite);
+            RepresentedBySomeoneElse.IsChecked = Convert.ToBoolean(this.service.RepBySomeoneElse);
+            OutgoingCallMailEmail.IsChecked = Convert.ToBoolean(this.service.OutgoingCallMailEmail);
+            Email.IsChecked = Convert.ToBoolean(this.service.Email);
+            //populate the items requested data grid
+            foreach (var item in this.service.ItemRequesteds)
+            {
+                ItemsRequestedDataGrid.Items.Add(new { Name = item.ItemName, Comment = item.Comment });
+            }
+            //populate the services requested data grid
+            foreach (var serviceRequested in this.service.ServiceRequesteds)
+            {
+                ServiceRequestedDataGrid.Items.Add(new { Name = serviceRequested.ServiceName, Comment = serviceRequested.Comment });
+            }
+        }
+
+        private void AddServiceRequestedButton_Click(object sender, RoutedEventArgs e)
+        {
+            var row = new { Name = ServiceRequestedName.Text, Comment = ServiceRequestedComment.Text };
+            ServiceRequestedDataGrid.Items.Add(row);
+        }
+        private void RemoveServiceRequested_Click(object sender, RoutedEventArgs e)
+        {
+            ServiceRequestedDataGrid.Items.RemoveAt(ServiceRequestedDataGrid.SelectedIndex);
         }
     }
 }
