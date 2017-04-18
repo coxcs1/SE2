@@ -22,86 +22,83 @@ namespace se2_loon_hh.Forms
     public partial class ServiceDetails : Page
     {
         ServiceController serviceController;
-        ServiceInfo serviceRequested;
+        ServiceInfo service;
 
         public ServiceDetails(int serviceID)
         {
             serviceController = new ServiceController();//initialize controller
             InitializeComponent();//setup components
-            serviceRequested = serviceController.GetServiceInfo(serviceID);//fetch the service requested from the database
+            service = serviceController.GetServiceInfo(serviceID);//fetch the service requested from the database
             setupComponents();//populate the data grid with client information
         }
-
+        /// <summary>
+        /// This function adds all necessary items to the service details list and the items and services requested data grids.
+        /// </summary>
         private void setupComponents()
         {
-            //ServiceDetailsList.Items.Add(new {
-            //    Label = "Client: ",
-            //    Text = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Date Arrived: ",
-            //    Text = serviceRequested.Service.DateArrived
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Name: ",
-            //    Text = serviceRequested.Service.Name
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Type: ",
-            //    Text = serviceRequested.Service.Type
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Description: ",
-            //    Text = serviceRequested.Service.Description
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "New Walk In: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.NewWalkIn)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Telephone After Hours: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.TelephoneAfterHrs)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Prank Call: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.PrankCall)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Email: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.Email)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Outgoing Call Mail Email: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.OutgoingCallMailEmail)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Off Site: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.OffSite)) ? "Yes" : "No"
-            //});
-            //ServiceDetailsList.Items.Add(new
-            //{
-            //    Label = "Represented By Someone Else: ",
-            //    Text = (Convert.ToBoolean(serviceRequested.Service.RepresentedBySomeoneElse)) ? "Yes" : "No"
-            //});
-            ////add each dontation to the data grid
-            //foreach (var donation in serviceRequested.Service.Donations)
-            //{
-            //    DonationsDataGrid.Items.Add(new {
-            //        Name = donation.Name,
-            //        Type = donation.Type,
-            //        Comment = donation.Comment
-            //    });
-            //}
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Client: ",
+                Text = service.Client.FirstName + " " + service.Client.MiddleName + " " + service.Client.LastName
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Date: ",
+                Text = service.Date
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "New Walk In: ",
+                Text = (Convert.ToBoolean(service.NewWalkIn)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Telephone After Hours: ",
+                Text = (Convert.ToBoolean(service.PhoneAfterHrs)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Prank Call: ",
+                Text = (Convert.ToBoolean(service.PrankCall)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Email: ",
+                Text = (Convert.ToBoolean(service.Email)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Outgoing Call Mail Email: ",
+                Text = (Convert.ToBoolean(service.OutgoingCallMailEmail)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Off Site: ",
+                Text = (Convert.ToBoolean(service.OffSite)) ? "Yes" : "No"
+            });
+            ServiceDetailsList.Items.Add(new
+            {
+                Label = "Represented By Someone Else: ",
+                Text = (Convert.ToBoolean(service.RepBySomeoneElse)) ? "Yes" : "No"
+            });
+            //add each item requested to the data grid
+            foreach (var item in service.ItemRequesteds)
+            {
+                ItemsRequestedDataGrid.Items.Add(new
+                {
+                    Name = item.ItemName,
+                    Comment = item.Comment
+                });
+            }
+            //add each service requested to the data grid
+            foreach (var serviceRequested in service.ServiceRequesteds)
+            {
+                ServicesRequestedDataGrid.Items.Add(new
+                {
+                    Name = serviceRequested.ServiceName,
+                    Comment = serviceRequested.Comment
+                });
+            }
         }
         /// <summary>
         /// When the back button is clicked, navigate back to the view services page

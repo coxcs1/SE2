@@ -74,6 +74,11 @@ namespace se2_loon_hh.Controllers
             //send the list to the partial form class
             return serviceList;
         }
+        /// <summary>
+        /// This function finds a service info object in the database
+        /// </summary>
+        /// <param name="serviceInfoID"></param>
+        /// <returns></returns>
         public ServiceInfo GetServiceInfo(int serviceInfoID)
         {
             return _db.ServiceInfoes.Find(serviceInfoID);
