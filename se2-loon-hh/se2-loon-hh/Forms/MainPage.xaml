@@ -30,9 +30,9 @@
                     <MenuItem Name="AddServiceMenu" Header="_Add Service" />
                     <MenuItem Name="ViewServiceMenu" Header="_View Services" />
                 </MenuItem>
-                <MenuItem Header="_Organiztion">
-                    <MenuItem Name="AddOrganizationMenu" Header="_Add Organization" />
-                    <MenuItem Name="ViewOrganizationMenu" Header="_View Organizations" />
+                <MenuItem Header="_Emergency Aid">
+                    <MenuItem Name="AddEmergencyMenu" Header="_Give Emergency Aid" Click="AddEmergencyMenu_Click"/>
+                    <MenuItem Name="ViewEmergencyMenu" Header="_View Emergency Aid" />
                 </MenuItem>
                 <MenuItem Header="_Volunteer">
                     <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" />
