@@ -109,6 +109,9 @@
     <Compile Include="Emergency.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddEmergency.xaml.cs">
+      <DependentUpon>AddEmergency.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormsAPI\RadioBoolToLongConverter.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
