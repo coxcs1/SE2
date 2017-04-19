@@ -59,47 +59,22 @@
                                     <ColumnDefinition Width="38*"/>
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label>Name:</Label>
-                                <TextBox x:Name="ServiceName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="38*"/>
-                                    <ColumnDefinition Width="59*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label>Type:</Label>
-                                <TextBox x:Name="ServiceType" Grid.ColumnSpan="2" Margin="0,5,5,5" />
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="38*"/>
-                                    <ColumnDefinition Width="59*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label>Description:</Label>
-                                <TextBox x:Name="ServiceDescription" Grid.ColumnSpan="2" Margin="0,5,5,5" />
-                            </Grid>
-                        </StackPanel>
-                    </GroupBox>
-                </Paragraph>
-                    <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
-                <Paragraph>
-                    <GroupBox Header="General Information">
-                        <StackPanel>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="38*"/>
-                                    <ColumnDefinition Width="59*"/>
-                                </Grid.ColumnDefinitions>
                                 <Label>Client:</Label>
                                 <ComboBox x:Name="ClientComboBox" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
                             </Grid>
                             <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [ClientComboBox]}" />
+                            </Grid>
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="38*"/>
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label>Date Arrived:</Label>
+                                <Label>Date:</Label>
                                 <DatePicker x:Name="DateArrivedDatePicker" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [DateArrivedDatePicker]}" />
                             </Grid>
                             <GroupBox Header="Contact Type">
                                 <StackPanel>
@@ -112,13 +87,14 @@
                                     <CheckBox x:Name="RepresentedBySomeoneElse" Content="Represented By Someone Else" Margin="0"/>
                                     <CheckBox x:Name="OutgoingCallMailEmail" Content="Outgoing Call Mail Email" Margin="0"/>
                                     <CheckBox x:Name="Email" Content="Email" Margin="0"/>
+                                    <CheckBox x:Name="PhoneCenterHrs" Content="Phone Center Hours" Margin="0"/>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Add Donations">
+                    <GroupBox Header="Add Item Requested">
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -126,15 +102,13 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Name:</Label>
-                                <TextBox x:Name="DonationName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                                <TextBox x:Name="ItemRequestedName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="38*"/>
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label>Type:</Label>
-                                <ComboBox x:Name="DonationType" Grid.ColumnSpan="2" Margin="0,5,5,5" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -142,23 +116,71 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Comment:</Label>
-                                <TextBox x:Name="DonationComment" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                                <TextBox x:Name="ItemRequestedComment" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
                             </Grid>
-                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="110" Name="AddDonationButton" Click="AddDonationButton_Click">Add Donation</Button>
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="170" Name="AddItemRequestedButton" Click="AddItemRequestedButton_Click" Margin="0,5,5,5">
+                                Add Item Requested
+                            </Button>
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <DataGrid x:Name="DonationsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                    <DataGrid x:Name="ItemsRequestedDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}"/>
                             <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
                             <DataGridTemplateColumn Header="Actions">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Remove"
-                                					Click="RemoveDonation_Click"/>
+                                					Click="RemoveItemRequested_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Add Service Requested">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Name:</Label>
+                                <TextBox x:Name="ServiceRequestedName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Comment:</Label>
+                                <TextBox x:Name="ServiceRequestedComment" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="170" Name="AddServiceRequestedButton" Click="AddServiceRequestedButton_Click" Margin="0,5,5,5">
+                                Add Service Requested
+                            </Button>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <DataGrid x:Name="ServiceRequestedDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
+                            <DataGridTemplateColumn Header="Actions">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Remove"
+                                					Click="RemoveServiceRequested_Click"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

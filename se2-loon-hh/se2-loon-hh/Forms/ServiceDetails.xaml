@@ -70,14 +70,26 @@
                 </Paragraph>
                 <Paragraph>
                     <TextBlock>
-                        Donations
+                        Items Requested
                     </TextBlock>
                 </Paragraph>
                 <Paragraph>
-                    <DataGrid x:Name="DonationsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                    <DataGrid x:Name="ItemsRequestedDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock>
+                        Services Requested
+                    </TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <DataGrid x:Name="ServicesRequestedDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
                         </DataGrid.Columns>
                     </DataGrid>

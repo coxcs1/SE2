@@ -33,31 +33,24 @@ namespace se2_loon_hh.Controllers
             }
             return clientList;
         }
-        public List<ComboBoxPairs> GetDonationTypes()
-        {
-            List<ComboBoxPairs> donationTypes = new List<ComboBoxPairs>();
-            donationTypes.Add(new ComboBoxPairs("Boolean", "Yes/No"));
-            donationTypes.Add(new ComboBoxPairs("Integer", "Number"));
-
-            return donationTypes;
-        }
-        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&Commented out create and edit methods&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        
         /// <summary>
         /// This function creates a service from data collected in the form.
         /// </summary>
-        //public void CreateService(Service service, ServiceRequested serviceRequested)
-        //{
-        //    _db.Services.Add(service);
-        //    _db.ServiceRequesteds.Add(serviceRequested);
-        //    _db.SaveChanges();
-        //}
-
-        //public void EditService(ServiceRequested serviceRequested)
-        //{
-        //    _db.Entry(serviceRequested.Service).State = EntityState.Modified;
-        //    _db.Entry(serviceRequested).State = EntityState.Modified;//let ORM know object has been modified
-        //    _db.SaveChanges();//save the new changes to the DB
-        //}
+        public void CreateService(ServiceInfo service)
+        {
+            _db.ServiceInfoes.Add(service);//add service info to table
+            _db.SaveChanges();//persist changes to the DB
+        }
+        /// <summary>
+        /// This function persists an existing service.
+        /// </summary>
+        /// <param name="service"></param>
+        public void EditService(ServiceInfo service)
+        {
+            _db.Entry(service).State = EntityState.Modified;//let ORM know object has been modified
+            _db.SaveChanges();//save the new changes to the DB
+        }
         /// <summary>
         /// Build a list of breif service information and package it
         /// up for the view services page.
@@ -66,24 +59,29 @@ namespace se2_loon_hh.Controllers
         public List<object> GetAllServices()
         {
             var serviceList = new List<object>();//create a list of generic objects
-            var services = _db.ServiceRequesteds.ToList();//fetch all of the services requested
+            var services = _db.ServiceInfoes.ToList();//fetch all of the services requested
             //loop through each and add the information we need for the data grid
-            foreach (var serviceRequested in services)
+            foreach (var service in services)
             {
-                //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                //serviceList.Add(new {
-                //    ServiceID = serviceRequested.Id,//used for navigating to a more detailed service view page
-                //    Client = serviceRequested.Client.FirstName + " " + serviceRequested.Client.MiddleName + " " + serviceRequested.Client.LastName,
-                //    DateArrived = serviceRequested.Service.DateArrived,
-                //    Donations = serviceRequested.Service.Donations.Count.ToString()
-                //});
+                serviceList.Add(new {
+                    ServiceID = service.Id,
+                    Client = service.Client.FirstName + " " + service.Client.MiddleName + " " + service.Client.LastName,
+                    Date = service.Date,
+                    Items = service.ItemRequesteds.Count.ToString(),
+                    ServicesRequested = service.ServiceRequesteds.Count.ToString()
+                });
             }
             //send the list to the partial form class
             return serviceList;
         }
-        public ServiceRequested GetServiceRequested(int serviceRequestedID)
+        /// <summary>
+        /// This function finds a service info object in the database
+        /// </summary>
+        /// <param name="serviceInfoID"></param>
+        /// <returns></returns>
+        public ServiceInfo GetServiceInfo(int serviceInfoID)
         {
-            return _db.ServiceRequesteds.Find(serviceRequestedID);
+            return _db.ServiceInfoes.Find(serviceInfoID);
         }
         /// <summary>
         /// This function disposes of the DB Context.
