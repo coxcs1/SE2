@@ -67,11 +67,11 @@
                         <StackPanel>
                             <Grid>
                                 <Label>First Name:</Label>
-                                <TextBox x:Name="firstName"/>
+                                <TextBox x:Name="firstName" Text="{Binding emergency.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Last Name:</Label>
-                                <TextBox x:Name="lastName"/>
+                                <TextBox x:Name="lastName" Text="{Binding emergency.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
@@ -79,11 +79,11 @@
                         <StackPanel>
                             <Grid>
                                 <Label>Items Given:</Label>
-                                <TextBox x:Name="goods" Height="100"/>
+                                <TextBox x:Name="goods" Height="100" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Text="{Binding emergency.ItemsReceived, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
                                 <Label>Date Given:</Label>
-                                <DatePicker x:Name="dateGiven"/>
+                                <DatePicker x:Name="dateGiven" Text="{Binding emergency.DateReceived, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
@@ -91,7 +91,7 @@
                         <StackPanel>
                             <Grid>
                                 <Label>Comments:</Label>
-                                <TextBox x:Name="comments" Height="200"/>
+                                <TextBox x:Name="comments" Height="200" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Text="{Binding emergency.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </StackPanel>
                     </GroupBox>
