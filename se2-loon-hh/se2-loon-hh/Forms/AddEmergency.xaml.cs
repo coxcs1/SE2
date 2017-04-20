@@ -27,6 +27,12 @@ namespace se2_loon_hh.Forms
             emergencyController = new EmergencyController();
             emergency = new Emergency();
             PageTitle.Text = "Give Emergency Aid";
+            //This allows for binding with emergency
+            //Changes to the form will immediately change the associated emergency attributes
+            DataContext = new
+            {
+                emergency
+            };
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -36,9 +42,11 @@ namespace se2_loon_hh.Forms
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            if(isValid())
+
+            if (isValid())
             {
                 emergencyController.addEmergency(emergency);
+                NavigationService.Navigate(new MainPage());
             }
             else
             {
@@ -51,9 +59,8 @@ namespace se2_loon_hh.Forms
 
                 showPopup(ValidatorPopup, 2);
             }
-            NavigationService.Navigate(new MainPage());
         }
-        
+
         private bool isValid()
         {
             emergencyValidator = new FormValidator(new List<FormsAPI.Validation.Validation>()
@@ -63,7 +70,7 @@ namespace se2_loon_hh.Forms
                 new RequiredValidator(emergency.ItemsReceived, goods, "Goods given is a required field."),
                 new RequiredValidator(emergency.DateReceived, dateGiven, "Date is a required field."),
             });
-            
+
             return emergencyValidator.isValid();
         }
 
