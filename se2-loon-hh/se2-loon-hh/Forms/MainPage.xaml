@@ -21,6 +21,7 @@
                     <MenuItem Name="ViewClientpMenu" Header="_View Client" />
                 </MenuItem>
                 <MenuItem Header="_Class">
+                    <MenuItem Name="AddClassMenu" Header="_Add Class" Click="AddClassMenu_Click" />
                     <MenuItem Name="ViewClassMenu" Header="_View Classes" />
                 </MenuItem>
                 <MenuItem Header="_Report">

@@ -105,12 +105,16 @@
     </Compile>
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
+    <Compile Include="Controllers\FreshStartController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Emergency.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddEmergency.xaml.cs">
       <DependentUpon>AddEmergency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddFreshStart.xaml.cs">
+      <DependentUpon>AddFreshStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormsAPI\RadioBoolToLongConverter.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
@@ -163,6 +167,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\AddEmergency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AddFreshStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
