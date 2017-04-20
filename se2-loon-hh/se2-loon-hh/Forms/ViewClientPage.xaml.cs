@@ -256,7 +256,29 @@ namespace se2_loon_hh.Forms
 
         private void SetupServiceTab(Client c)
         {
+            /*
+            <DataGridTextColumn Header="Date" Width=".66*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="New Contact" Width=".48*" Binding="{Binding NewContact}" />
+                                        <DataGridTextColumn Header="New Walk-In" Width=".48*"  Binding="{Binding NewWalk}" />
+                                        <DataGridTextColumn Header="Rep. By Someone Else" Width=".75*"  Binding="{Binding Rep}" />
+                                        <DataGridTextColumn Header="Contact Types" Width="2*"  Binding="{Binding ContactTypes}" />
+            */
+            foreach(ServiceInfo s in c.ServiceInfoes)
+            {
+                string newContact = "";
+                if (s.NewContact == 1)
+                    newContact = "Yes";
+                string newWalk = "";
+                if (s.NewWalkIn == 1)
+                    newWalk = "Yes";
 
+                string contactTypes = "";
+                if (s.WalkIn == 1)
+                    contactTypes += "Walk In";
+                if (s.PhoneCenterHrs == 1)
+                    contactTypes += "Phone";
+
+            }
         }
     }
 }

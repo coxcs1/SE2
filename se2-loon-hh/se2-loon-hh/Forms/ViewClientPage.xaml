@@ -191,9 +191,11 @@
                                 <DataGrid Name="ServiceInfoList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
                                 GridLinesVisibility="Horizontal">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
-                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
-                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                        <DataGridTextColumn Header="Date" Width=".66*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="New Contact" Width=".48*" Binding="{Binding NewContact}" />
+                                        <DataGridTextColumn Header="New Walk-In" Width=".48*"  Binding="{Binding NewWalk}" />
+                                        <DataGridTextColumn Header="Rep. By Someone Else" Width=".75*"  Binding="{Binding Rep}" />
+                                        <DataGridTextColumn Header="Contact Types" Width="2*"  Binding="{Binding ContactTypes}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
