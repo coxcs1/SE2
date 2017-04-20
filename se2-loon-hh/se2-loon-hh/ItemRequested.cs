@@ -15,7 +15,7 @@ namespace se2_loon_hh
     public partial class ItemRequested
     {
         public long Id { get; set; }
-        public long ServiceInfoId { get; set; }
+        public Nullable<long> ServiceInfoId { get; set; }
         public string ItemName { get; set; }
         public string Comment { get; set; }
     
