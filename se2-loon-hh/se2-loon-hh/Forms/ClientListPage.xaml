@@ -24,7 +24,7 @@
         </Grid>
         <Grid Width="{Binding WindowWidth - 8}">
             <DataGrid Name="clientList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                      GridLinesVisibility="Horizontal">
+                      GridLinesVisibility="Horizontal" FontSize="14">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
                     <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />

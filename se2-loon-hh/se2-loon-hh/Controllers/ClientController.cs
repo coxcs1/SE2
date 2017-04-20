@@ -24,7 +24,7 @@ namespace se2_loon_hh.Controllers
             //    Console.WriteLine(volunteer.Hours);
             //}
         }
-
+        
         public List<Client> GetClientList()
         {
             return _db.Clients.ToList();
@@ -141,6 +141,7 @@ namespace se2_loon_hh.Controllers
             List<ClientFreshStart> motherhoodClasses = new List<ClientFreshStart>();
             List<ClientFreshStart> electiveClasses = new List<ClientFreshStart>();
 
+            //separates the classes based on the curriculum type
             foreach(ClientFreshStart clientFS in c.ClientFreshStarts)
             {
                 if (clientFS.FreshStart.CurriculumType == "Prenatal")
@@ -162,6 +163,34 @@ namespace se2_loon_hh.Controllers
         public List<RelativeFreshStart> GetRelativeCoursesTaken(Client c)
         {                       
             return c.RelativeFreshStarts.ToList();
+        }
+        #endregion
+
+        #region Services Tab
+        public List<ItemRequested> allItems(Client c)
+        {
+            List<ItemRequested> allItems = new List<ItemRequested>();
+
+            foreach (ServiceInfo s in c.ServiceInfoes)
+            {
+                //concatenates onto the list
+                allItems.AddRange(s.ItemRequesteds);
+            }
+
+            return allItems;
+        }
+
+        public List<ServiceRequested> allServices(Client c)
+        {
+            List<ServiceRequested> allServices = new List<ServiceRequested>();
+
+            //concatenates onto the list
+            foreach (ServiceInfo s in c.ServiceInfoes)
+            {
+                allServices.AddRange(s.ServiceRequesteds);
+            }
+
+            return allServices;
         }
         #endregion
 

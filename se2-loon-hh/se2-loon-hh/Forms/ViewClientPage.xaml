@@ -54,7 +54,7 @@
                 <TabItem Header="Pregnancy">
                     <Grid Width="{Binding WindowWidth - 8}">
                         <DataGrid Name="PregnancyList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Due Date" Width=".75*" Binding="{Binding DueDate}" />
                                 <DataGridTextColumn Header="OB Care" Width=".55*" Binding="{Binding ObCare}" />
@@ -71,7 +71,7 @@
                         <TabItem Header="Prenatal">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="PrenatalList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
@@ -83,7 +83,7 @@
                         <TabItem Header="Motherhood">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="MotherhoodList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}"/>
@@ -95,7 +95,7 @@
                         <TabItem Header="Electives">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="ElectivesList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
@@ -107,11 +107,11 @@
                         <TabItem Header="Relatives">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="RelativesList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date"  Width=".66*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="First Name" Width=".75*" Binding="{Binding FirstName}" />
-                                        <DataGridTextColumn Header="Last Name" Width=".75*" Binding="{Binding FirstName}" />
+                                        <DataGridTextColumn Header="Last Name" Width=".75*" Binding="{Binding LastName}" />
                                         <DataGridTextColumn Header="Related" Width=".66*" Binding="{Binding RelationshipTo}" />
                                         <DataGridTextColumn Header="Class"  Width="2*" Binding="{Binding FreshStart.Name}" />
                                         <DataGridTextColumn Header="Status" Width=".75*" Binding="{Binding Status}" />
@@ -119,10 +119,10 @@
                                 </DataGrid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Class Attendance Totals">
+                        <TabItem Header="Class Attendance">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="ClassAttendanceList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date"  Width="*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="Count"  Width="*" Binding="{Binding Count}" />
@@ -164,12 +164,12 @@
                         </Grid>
                         <Grid Width="{Binding WindowWidth - 8}">
                             <DataGrid Name="PointsList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                            GridLinesVisibility="Horizontal">
+                            GridLinesVisibility="Horizontal" FontSize="14">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                    <DataGridTextColumn Header="Date" Width=".75*" Binding="{Binding Date}" />
                                     <DataGridTextColumn Header="Description" Width="2*" Binding="{Binding Description}" />
-                                    <DataGridTextColumn Header="Points Spent" Width="*"  Binding="{Binding PointsSpent}" />
-                                    <DataGridTemplateColumn Header="Other" Width="*">
+                                    <DataGridTextColumn Header="Points Spent" Width=".75*"  Binding="{Binding PointsSpent}" />
+                                    <DataGridTemplateColumn Header="Other" Width=".5*">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
@@ -179,6 +179,7 @@
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Comment" Width="*"  Binding="{Binding Comment}" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -189,7 +190,7 @@
                         <TabItem Header="Information">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="ServiceInfoList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date" Width=".66*" Binding="{Binding Date}" />
                                         <DataGridTextColumn Header="New Contact" Width=".48*" Binding="{Binding NewContact}" />
@@ -200,14 +201,14 @@
                                 </DataGrid>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Services REquested">
+                        <TabItem Header="Services Requested">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="ServicesRequestedList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
-                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}"/>
-                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                        <DataGridTextColumn Header="Date" Width=".75*" Binding="{Binding ServiceInfo.Date}" />
+                                        <DataGridTextColumn Header="Name" Width="2*" Binding="{Binding ServiceName}"/>
+                                        <DataGridTextColumn Header="Comment" Width="1.5*"  Binding="{Binding Comment}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -215,11 +216,11 @@
                         <TabItem Header="Items Requested">
                             <Grid Width="{Binding WindowWidth - 8}">
                                 <DataGrid Name="ItemsRequestedList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal">
+                                GridLinesVisibility="Horizontal" FontSize="14">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
-                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
-                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                        <DataGridTextColumn Header="Date" Width=".75*" Binding="{Binding ServiceInfo.Date}" />
+                                        <DataGridTextColumn Header="Name" Width="2*" Binding="{Binding ItemName}" />
+                                        <DataGridTextColumn Header="Comment" Width="1.5*"  Binding="{Binding Comment}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>

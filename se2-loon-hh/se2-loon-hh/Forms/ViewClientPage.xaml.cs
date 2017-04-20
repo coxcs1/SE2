@@ -23,14 +23,15 @@ namespace se2_loon_hh.Forms
     public partial class ViewClientPage : Page
     {
         private int id;
-        private ClientController controller;
+        private ClientController clientController;
 
         public ViewClientPage(int clientId)
         {
             InitializeComponent();
-            controller = new ClientController();
+
+            clientController = new ClientController();
             id = clientId;
-            Client c = controller.GetSingleClient(clientId);
+            Client c = clientController.GetSingleClient(clientId);
 
             ClientLabel.Content = c.FirstName + " " + c.LastName + ", DOB: " + c.BirthDate;
 
@@ -46,10 +47,9 @@ namespace se2_loon_hh.Forms
 
             //points tab setup
             CurrentPointsLabel.Content = "Current Points Amount: " + c.ProgressPoints.ToString();
-            PointsList.ItemsSource = controller.GetProgressPointsList(c);
+            PointsList.ItemsSource = clientController.GetProgressPointsList(c);
 
-            SetupServiceTab(c);                       
-            
+            SetupServiceTab(c);                                   
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace se2_loon_hh.Forms
 
             GeneralTextBlock.Text = "General Information\n";
             GeneralTextBlock.Text += "• Name: " + name + "\n";
-            GeneralTextBlock.Text += "• Birth Date: " + c.BirthDate + " (" + controller.GetClientAge(c) + ")" + "\n";
+            GeneralTextBlock.Text += "• Birth Date: " + c.BirthDate + " (" + clientController.GetClientAge(c) + ")" + "\n";
             GeneralTextBlock.Text += "• Zip Code: " + c.ZipCode + "\n";
             GeneralTextBlock.Text += "• Ethnicity: " + c.Ethnicity + "\n";
             GeneralTextBlock.Text += "• Marital Status: " + c.MaritalStatus + "\n";
@@ -88,7 +88,7 @@ namespace se2_loon_hh.Forms
 
             if (c.ContinuedFromPrevYears == 1)
                 HHTextBlock.Text += "• Continued From Previous Year\n";
-            else
+            else if(c.NewThisYear == 1)
                 HHTextBlock.Text += "• New this Year\n";
 
 
@@ -149,11 +149,11 @@ namespace se2_loon_hh.Forms
 
         private void SetUpCourseAttendance(Client c)
         {
-            List<List<ClientFreshStart>> classLists = controller.GetCoursesTaken(c);
+            List<List<ClientFreshStart>> classLists = clientController.GetCoursesTaken(c);
             PrenatalList.ItemsSource = classLists[0];
             MotherhoodList.ItemsSource = classLists[1];
             ElectivesList.ItemsSource = classLists[2];
-            RelativesList.ItemsSource = controller.GetRelativeCoursesTaken(c);
+            RelativesList.ItemsSource = clientController.GetRelativeCoursesTaken(c);
 
             List<ClassAttendance> sortedByYear = c.ClassAttendances.OrderBy(x => x.Year).Reverse().ToList();
             foreach(ClassAttendance att in sortedByYear)
@@ -176,13 +176,13 @@ namespace se2_loon_hh.Forms
             Button b = ((Button)e.OriginalSource);
             string currentView = b.Tag.ToString();
 
-            Client c = controller.GetSingleClient(id);
+            Client c = clientController.GetSingleClient(id);
 
             //if they have clicked the button while on the current view -> switch to previous year view
             if(currentView == "Current")
             {
                 //gets the min and max years - min in [0], max in [1]
-                int[] minMaxYears = controller.GetMinMaxYearsForPreviousSG(c);
+                int[] minMaxYears = clientController.GetMinMaxYearsForPreviousSG(c);
 
                 //changes the label text to account for only one year, no data, or a range of years
                 if (minMaxYears[0] == minMaxYears[1])
@@ -216,7 +216,7 @@ namespace se2_loon_hh.Forms
 
         private void SetSuppotGroupsCurrentYear(Client c)
         {
-            int[] counts = controller.GetSupportGroupCountsForCurrentYear(c);
+            int[] counts = clientController.GetSupportGroupCountsForCurrentYear(c);
             SGMonths.Text = "January: " + counts[0] + "\n" +
                 "February: " + counts[1] + "\n" +
                 "March: " + counts[2] + "\n" +
@@ -233,7 +233,7 @@ namespace se2_loon_hh.Forms
 
         private void SetSupportGroupsPreviousYears(Client c)
         {
-            int[] counts = controller.GetSupportGroupCountsForPreviousYears(c);
+            int[] counts = clientController.GetSupportGroupCountsForPreviousYears(c);
             SGMonths.Text = "January: " + counts[0] + "\n" +
                 "February: " + counts[1] + "\n" +
                 "March: " + counts[2] + "\n" +
@@ -254,31 +254,51 @@ namespace se2_loon_hh.Forms
             MessageBox.Show("Points page");
         }
 
+        #region Service Tab
         private void SetupServiceTab(Client c)
         {
-            /*
-            <DataGridTextColumn Header="Date" Width=".66*" Binding="{Binding Date}" />
-                                        <DataGridTextColumn Header="New Contact" Width=".48*" Binding="{Binding NewContact}" />
-                                        <DataGridTextColumn Header="New Walk-In" Width=".48*"  Binding="{Binding NewWalk}" />
-                                        <DataGridTextColumn Header="Rep. By Someone Else" Width=".75*"  Binding="{Binding Rep}" />
-                                        <DataGridTextColumn Header="Contact Types" Width="2*"  Binding="{Binding ContactTypes}" />
-            */
             foreach(ServiceInfo s in c.ServiceInfoes)
-            {
-                string newContact = "";
-                if (s.NewContact == 1)
-                    newContact = "Yes";
-                string newWalk = "";
-                if (s.NewWalkIn == 1)
-                    newWalk = "Yes";
-
-                string contactTypes = "";
+            {   
+                //groups all contact types so it can be displayed with a single string      
+                List<string> contactTypes = new List<string>();
                 if (s.WalkIn == 1)
-                    contactTypes += "Walk In";
+                    contactTypes.Add("Walk In");
                 if (s.PhoneCenterHrs == 1)
-                    contactTypes += "Phone";
+                    contactTypes.Add("Phone");
+                if (s.PhoneAfterHrs == 1)
+                    contactTypes.Add("Phone After Hours");
+                if (s.PrankCall == 1)
+                    contactTypes.Add("Prank Call");
+                if (s.Email == 1)
+                    contactTypes.Add("Email");
+                if (s.OffSite == 1)
+                    contactTypes.Add("Offsite");
+                if (s.OutgoingCallMailEmail == 1)
+                    contactTypes.Add("Outgoing Communication");
+
+                string allContacts = "";
+                for(int i = 0; i < contactTypes.Count; i++)
+                {
+                    allContacts += contactTypes[i];
+                    if (i != contactTypes.Count - 1)
+                        allContacts += ", ";
+                }
+
+                ServiceInfoList.Items.Add(new
+                {
+                    Date = s.Date,
+                    NewContact = s.NewContact == 1 ? "Yes" : "",
+                    NewWalk = s.NewWalkIn == 1 ? "Yes" : "",
+                    Rep = s.RepBySomeoneElse ==1 ? "Yes" : "No",
+                    ContactTypes = allContacts
+                });
+
+                //gets all services and items requested that belong to the client
+                ServicesRequestedList.ItemsSource = clientController.allServices(c);
+                ItemsRequestedList.ItemsSource = clientController.allItems(c);                
 
             }
         }
+        #endregion
     }
 }
