@@ -1,0 +1,231 @@
+﻿<Page x:Class="se2_loon_hh.Forms.ViewClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="500"
+      Title="ViewClientPage" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth +5}">
+    <Page.Resources>
+        <Style TargetType="FlowDocumentScrollViewer">
+            <Setter Property="IsToolBarVisible" Value="True"/>
+            <Setter Property="Zoom" Value="100"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <Border Padding="7" DockPanel.Dock="Top">
+            <StackPanel DockPanel.Dock="Top">
+                <Grid>
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                </Grid>
+                <Separator/>
+            </StackPanel>
+        </Border>
+        <Grid DockPanel.Dock="Top">
+            <Label Name="ClientLabel" Content="ClientLabel" HorizontalAlignment="Center" FontSize="16"></Label>
+        </Grid>
+        <Grid DockPanel.Dock="Top">
+            <TabControl>
+                <TabItem Header="General">
+                    <FlowDocumentScrollViewer>
+                        <FlowDocument x:Name="GeneralDoc">
+                            <Paragraph>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Name="GeneralTextBlock" Grid.Column="0" TextWrapping="Wrap" Margin="10,0,10,0" LineHeight="30"/>
+                                    <TextBlock Name="HHTextBlock" Grid.Column="2" TextWrapping="Wrap" LineHeight="30" Margin="10,0,10,0"/>
+                                </Grid>
+                            </Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentScrollViewer>
+                </TabItem>
+                <TabItem Header="Pregnancy">
+                    <Grid Width="{Binding WindowWidth - 8}">
+                        <DataGrid Name="PregnancyList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Due Date" Width=".75*" Binding="{Binding DueDate}" />
+                                <DataGridTextColumn Header="OB Care" Width=".55*" Binding="{Binding ObCare}" />
+                                <DataGridTextColumn Header="Healthy Delivery" Width=".85*"  Binding="{Binding HealthyDelivery}" />
+                                <DataGridTextColumn Header="Birth Complications" Width="*"  Binding="{Binding BirthComplications}" />
+                                <DataGridTextColumn Header="Continued w/ Program" Width="1*"  Binding="{Binding Continued}" />
+                                <DataGridTextColumn Header="Comment" Width="*"  Binding="{Binding Comment}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Course Attendance">
+                    <TabControl Margin="10, 20, 5, 5">
+                        <TabItem Header="Prenatal">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="PrenatalList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Motherhood">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="MotherhoodList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}"/>
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Electives">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="ElectivesList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Relatives">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="RelativesList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date"  Width=".66*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="First Name" Width=".75*" Binding="{Binding FirstName}" />
+                                        <DataGridTextColumn Header="Last Name" Width=".75*" Binding="{Binding FirstName}" />
+                                        <DataGridTextColumn Header="Related" Width=".66*" Binding="{Binding RelationshipTo}" />
+                                        <DataGridTextColumn Header="Class"  Width="2*" Binding="{Binding FreshStart.Name}" />
+                                        <DataGridTextColumn Header="Status" Width=".75*" Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Class Attendance Totals">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="ClassAttendanceList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date"  Width="*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Count"  Width="*" Binding="{Binding Count}" />
+                                        <DataGridTextColumn Header="Comment" Width=".75*" Binding="{Binding Comment}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="Support Group">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Name="SupportGroupYearShowing" Content="Year(s) Showing: " FontSize="18" Grid.Column="0"/>
+                            <Button Name="ChangeYearViewSG" FontSize="14" Grid.Column="1" Margin="3,2,3,2" Click="ChangeYearViewSG_Click"/>
+                        </Grid>
+                        <Grid Width="{Binding WindowWidth - 8}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Name="SGMonths" FontSize="16" Grid.Column="0" Margin="10,5,5,5"/>
+                        </Grid>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Points">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Name="CurrentPointsLabel" FontSize="16"/>
+                            <Button Name="MakePointTransaction" Content="Transaction" Grid.Column="2" Margin="3,2,3,2" Click="MakePointTransaction_Click"/>
+                        </Grid>
+                        <Grid Width="{Binding WindowWidth - 8}">
+                            <DataGrid Name="PointsList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                            GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                    <DataGridTextColumn Header="Description" Width="2*" Binding="{Binding Description}" />
+                                    <DataGridTextColumn Header="Points Spent" Width="*"  Binding="{Binding PointsSpent}" />
+                                    <DataGridTemplateColumn Header="Other" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="{Binding Letter}"/>
+                                                    <Label Content="{Binding NoShow}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Service">
+                    <TabControl Margin="10, 20, 5, 5">
+                        <TabItem Header="Information">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="ServiceInfoList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Services REquested">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="ServicesRequestedList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}"/>
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Items Requested">
+                            <Grid Width="{Binding WindowWidth - 8}">
+                                <DataGrid Name="ItemsRequestedList" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
+                                GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="1*" Binding="{Binding Date}" />
+                                        <DataGridTextColumn Header="Class" Width="2*" Binding="{Binding FreshStart.Name}" />
+                                        <DataGridTextColumn Header="Status" Width="*"  Binding="{Binding Status}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+
+</Page>
