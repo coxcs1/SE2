@@ -1,4 +1,5 @@
-﻿using System;
+﻿using se2_loon_hh.Forms.FormsAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,18 @@ namespace se2_loon_hh.Controllers
             }
             //send the list to the view
             return freshStartPrograms;
+        }
+        /// <summary>
+        /// This function creates a list of fresh start types.
+        /// </summary>
+        /// <returns>List of fresh start types.</returns>
+        public List<ComboBoxPairs> GetFreshStartTypes()
+        {
+            List<ComboBoxPairs> freshStartTypes = new List<ComboBoxPairs>();
+            freshStartTypes.Add(new ComboBoxPairs("Parental", "Parental"));
+            freshStartTypes.Add(new ComboBoxPairs("Motherhood", "Motherhood"));
+            freshStartTypes.Add(new ComboBoxPairs("Hope House Class Electives", "Hope House Class Electives"));
+            return freshStartTypes;
         }
 
         /// <summary>
