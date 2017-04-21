@@ -112,6 +112,9 @@
     <Compile Include="Forms\AddEmergency.xaml.cs">
       <DependentUpon>AddEmergency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ClientListPage.xaml.cs">
+      <DependentUpon>ClientListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormsAPI\RadioBoolToLongConverter.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
