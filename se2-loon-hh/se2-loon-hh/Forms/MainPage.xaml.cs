@@ -58,7 +58,12 @@ namespace se2_loon_hh.Forms
         {
             this.NavigationService.Navigate(new AddServicePage());
         }
-
+        
+        private void ViewClientsMenu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ClientListPage());
+        }
+        
         private void ViewServiceMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ViewServicesPage());
