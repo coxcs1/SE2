@@ -30,7 +30,7 @@ namespace se2_loon_hh.Forms
 
         private void ViewClientsButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Placeholder Text");
+            NavigationService.Navigate(new ClientListPage());
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
