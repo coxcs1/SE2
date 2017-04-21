@@ -119,7 +119,7 @@
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\BaseBoundsValidatior.cs" />
-    <Compile Include="Forms\FormsAPI\Validation\Validators\DoesNotEqualValidator.cs"
+    <Compile Include="Forms\FormsAPI\Validation\Validators\DoesNotEqualValidator.cs"/>
     <Compile Include="Forms\FormsAPI\Validation\Validators\LengthValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\RegexValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\RequiredValidator.cs" />
