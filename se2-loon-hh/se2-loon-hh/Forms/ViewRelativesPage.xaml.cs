@@ -24,5 +24,15 @@ namespace se2_loon_hh.Forms
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditFreshStart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

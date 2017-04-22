@@ -66,10 +66,10 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Cleint:</Label>
-                                <ComboBox x:Name="CleintComboBox" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                                <ComboBox x:Name="ClientComboBox" Grid.ColumnSpan="2" Margin="135,5,5,5" />
                             </Grid>
                             <Grid>
-                                <TextBlock Foreground="Red" Text="{Binding [CleintComboBox]}" />
+                                <TextBlock Foreground="Red" Text="{Binding [ClientComboBox]}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -77,10 +77,10 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Type:</Label>
-                                <ComboBox x:Name="FreshStart" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                                <ComboBox x:Name="FreshStartComboBox" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
                             </Grid>
                             <Grid>
-                                <TextBlock Foreground="Red" Text="{Binding [FreshStart]}" />
+                                <TextBlock Foreground="Red" Text="{Binding [FreshStartComboBox]}" />
                             </Grid>
                         </StackPanel>
                     </GroupBox>

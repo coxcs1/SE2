@@ -86,7 +86,7 @@ namespace se2_loon_hh.Forms
 
         private void AddRelativeMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new AddRelativeFreshStartPage());
         }
     }
 }
