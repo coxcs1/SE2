@@ -17,6 +17,22 @@ namespace se2_loon_hh.Controllers
         }
 
         /// <summary>
+        /// This function builds a list of ComboBoxPairs to be passed to the AddService Page.
+        /// The ID and Full Name of the client are added to the pair and sent off to the page for display.
+        /// </summary>
+        /// <returns>List of clients using the ComboBoxPairs object</returns>
+        public List<ComboBoxPairs> GetClientsForComboBox()
+        {
+            List<ComboBoxPairs> clientList = new List<ComboBoxPairs>();
+            //loop through each client and add them to the combobox pairs list
+            foreach (var client in _db.Clients.ToList())
+            {
+                clientList.Add(new ComboBoxPairs(client.Id.ToString(), client.FirstName + " " + client.MiddleName + " " + client.LastName));
+            }
+            return clientList;
+        }
+
+        /// <summary>
         /// This function returns a list of fresh start programs for display in a data grid.
         /// </summary>
         /// <returns>List of generic objects for display in a data grid.</returns>
@@ -94,6 +110,21 @@ namespace se2_loon_hh.Controllers
         public FreshStart GetFreshStart(int freshStartID)
         {
             return _db.FreshStarts.Find(freshStartID);
+        }
+        /// <summary>
+        /// This function fetches a list of combobox pairs for the fresh start forms.
+        /// </summary>
+        /// <returns></returns>
+        public List<ComboBoxPairs> GetAllFreshStarts()
+        {
+            List<ComboBoxPairs> freshStarts = new List<ComboBoxPairs>();
+
+            foreach (var freshStart in _db.FreshStarts.OrderBy(fs => fs.CurriculumType).ToList())
+            {
+                freshStarts.Add(new ComboBoxPairs(freshStart.Id.ToString(), freshStart.Name));
+            }
+
+            return freshStarts;
         }
 
         public void Dispose()

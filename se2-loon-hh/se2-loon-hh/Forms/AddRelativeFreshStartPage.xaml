@@ -1,0 +1,152 @@
+﻿<Page x:Class="se2_loon_hh.Forms.AddRelativeFreshStartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      mc:Ignorable="d"
+      Title="Add Relative Fresh Start" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth + 5}">
+    <!--The Height and Width Bindings are for making sure the document controls are displayed-->
+    <!--TODO: Pretty much every input element will require a name for parsing later -->
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Grid>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="SubmitButton" Click="SubmitButton_Click">Submit</Button>
+            </Grid>
+            <Separator/>
+        </StackPanel>
+        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="633">
+            <FlowDocument PagePadding="5" PageWidth="500">
+                <Paragraph>
+                    <TextBlock x:Name="PageTitle" />
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Cleint and Fresh Start Program Information">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Cleint:</Label>
+                                <ComboBox x:Name="CleintComboBox" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [CleintComboBox]}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Type:</Label>
+                                <ComboBox x:Name="FreshStart" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [FreshStart]}" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Relative Information">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>First Name:</Label>
+                                <TextBox x:Name="RelativeFirstName" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [RelativeFirstName]}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Last Name:</Label>
+                                <TextBox x:Name="RelativeLastName" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [RelativeLastName]}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Date:</Label>
+                                <DatePicker x:Name="RelativeDate" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [RelativeDate]}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Status:</Label>
+                                <TextBox x:Name="RelativeStatus" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [RelativeStatus]}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>Relationship To:</Label>
+                                <TextBox x:Name="RelativeRelationshipTo" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                            <Grid>
+                                <TextBlock Foreground="Red" Text="{Binding [RelativeRelationshipTo]}" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </DockPanel>
+</Page>

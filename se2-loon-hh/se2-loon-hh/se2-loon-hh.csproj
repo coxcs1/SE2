@@ -116,6 +116,9 @@
     <Compile Include="Forms\AddFreshStart.xaml.cs">
       <DependentUpon>AddFreshStart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddRelativeFreshStartPage.xaml.cs">
+      <DependentUpon>AddRelativeFreshStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormsAPI\RadioBoolToLongConverter.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
@@ -137,6 +140,9 @@
     </Compile>
     <Compile Include="Forms\ViewFreshStartsPage.xaml.cs">
       <DependentUpon>ViewFreshStartsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewRelativesPage.xaml.cs">
+      <DependentUpon>ViewRelativesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
@@ -177,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\AddRelativeFreshStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\AddServicePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ViewFreshStartsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewRelativesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

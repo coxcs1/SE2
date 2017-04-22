@@ -23,6 +23,8 @@
                 <MenuItem Header="_Class">
                     <MenuItem Name="AddClassMenu" Header="_Add Fresh Start" Click="AddClassMenu_Click" />
                     <MenuItem Name="ViewClassMenu" Header="_View Fresh Starts" Click="ViewClassMenu_Click" />
+                    <MenuItem Name="AddRelativeMenu" Header="_Add Relative" Click="AddRelativeMenu_Click" />
+                    <MenuItem Name="ViewRelativesMenu" Header="_View Relatives" Click="ViewRelativesMenu_Click" />
                 </MenuItem>
                 <MenuItem Header="_Report">
                     <MenuItem Name="ViewReportMenu" Header="_View Reports" />

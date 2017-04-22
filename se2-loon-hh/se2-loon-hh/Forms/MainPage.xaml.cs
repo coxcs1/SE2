@@ -78,5 +78,15 @@ namespace se2_loon_hh.Forms
         {
             this.NavigationService.Navigate(new ViewFreshStartsPage());
         }
+
+        private void ViewRelativesMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddRelativeMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
