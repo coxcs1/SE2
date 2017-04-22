@@ -43,7 +43,7 @@
             </Grid>
             <Separator/>
         </StackPanel>
-        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="663">
+        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="852">
             <FlowDocument PagePadding="5" PageWidth="500">
                 <Paragraph>
                     <TextBlock>
@@ -52,8 +52,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Grid Width="{Binding WindowWidth - 8}">
-                        <DataGrid Name="FreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"
-                                GridLinesVisibility="Horizontal" FontSize="14">
+                        <DataGrid Name="FreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
+    GridLinesVisibility="Horizontal" FontSize="14">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
                                 <DataGridTextColumn Header="Curriculum Type" IsReadOnly="True" Binding="{Binding CurriculumType}"/>
@@ -68,7 +68,6 @@
                                                     </Style>
                                                 </StackPanel.Resources>
                                                 <Button Content="Edit" Click="EditFreshStart_Click"/>
-                                                <Button Content="Details" Click="FreshStartDetails_Click"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

@@ -28,15 +28,17 @@ namespace se2_loon_hh.Forms
             InitializeComponent();
             setupDataGrid();
         }
-
+        /// <summary>
+        /// This function redirects to the add fresh start page with an id for editing an existing fresh start.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditFreshStart_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void FreshStartDetails_Click(object sender, RoutedEventArgs e)
-        {
-
+            var freshStart = FreshStartsDataGrid.Items.GetItemAt(FreshStartsDataGrid.SelectedIndex);//fetch the fresh start row that was clicked
+            var freshStartID = Convert.ToInt32(freshStart.GetType().GetProperty("FreshStartID").GetValue(freshStart).ToString());//fetch the freshStartID from the generic object
+            //navigate to service detail page
+            this.NavigationService.Navigate(new AddFreshStart(freshStartID));
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

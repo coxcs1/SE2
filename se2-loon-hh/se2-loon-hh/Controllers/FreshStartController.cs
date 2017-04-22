@@ -46,6 +46,7 @@ namespace se2_loon_hh.Controllers
             foreach (var freshStart in _db.FreshStarts.OrderBy(fs => fs.CurriculumType))
             {
                 freshStarts.Add(new {
+                    FreshStartID = freshStart.Id,
                     Name = freshStart.Name,
                     CurriculumType = freshStart.CurriculumType,
                     Comment = freshStart.Comment
@@ -75,6 +76,24 @@ namespace se2_loon_hh.Controllers
         {
             _db.FreshStarts.Add(freshStart);
             _db.SaveChanges();
+        }
+        /// <summary>
+        /// This function edits an exisiting fresh start.
+        /// </summary>
+        /// <param name="freshStart"></param>
+        public void editFreshStart(FreshStart freshStart)
+        {
+            _db.Entry(freshStart).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+        /// <summary>
+        /// This function fetches a fresh start from the database by id.
+        /// </summary>
+        /// <param name="freshStartID"></param>
+        /// <returns></returns>
+        public FreshStart GetFreshStart(int freshStartID)
+        {
+            return _db.FreshStarts.Find(freshStartID);
         }
 
         public void Dispose()

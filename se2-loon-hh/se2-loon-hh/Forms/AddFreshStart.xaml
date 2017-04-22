@@ -77,7 +77,7 @@
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label>Type:</Label>
-                                <TextBox x:Name="FreshStartType" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                                <ComboBox x:Name="FreshStartType" Grid.ColumnSpan="2" Margin="0,5,5,5"/>
                             </Grid>
                             <Grid>
                                 <TextBlock Foreground="Red" Text="{Binding [FreshStartType]}" />
