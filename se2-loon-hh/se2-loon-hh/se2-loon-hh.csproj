@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
+    <Compile Include="Controllers\ProgressPointsController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Emergency.cs">
@@ -118,6 +119,9 @@
     </Compile>
     <Compile Include="Forms\ClientListPage.xaml.cs">
       <DependentUpon>ClientListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntryProgressPointsPage.xaml.cs">
+      <DependentUpon>EntryProgressPointsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormsAPI\RadioBoolToLongConverter.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="Forms\ViewClientPage.xaml.cs">
       <DependentUpon>ViewClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewProgressPointsPage.xaml.cs">
+      <DependentUpon>ViewProgressPointsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
@@ -194,6 +201,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\EntryProgressPointsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\HelpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ViewClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewProgressPointsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

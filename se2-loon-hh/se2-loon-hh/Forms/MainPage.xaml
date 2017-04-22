@@ -38,6 +38,10 @@
                     <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" Click="AddVolunteerMenu_Click" />
                     <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" Click="ViewVolunteerMenu_Click" />
                 </MenuItem>
+                <MenuItem Header="_Points">
+                    <MenuItem Name="EntryProgressPointsMenu" Header="_Enter Points" Click="EntryPointsMenu_Click" />
+                    <MenuItem Name="ViewProgressPointsMenu" Header="_View Points" Click="ViewPointsMenu_Click" />
+                </MenuItem>
             </Menu>
         </Grid>
         <Grid DockPanel.Dock="Top">
