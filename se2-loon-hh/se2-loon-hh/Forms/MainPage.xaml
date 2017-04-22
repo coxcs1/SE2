@@ -35,8 +35,8 @@
                     <MenuItem Name="ViewEmergencyMenu" Header="_View Emergency Aid" />
                 </MenuItem>
                 <MenuItem Header="_Volunteer">
-                    <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" />
-                    <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" />
+                    <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" Click="AddVolunteerMenu_Click" />
+                    <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" Click="ViewVolunteerMenu_Click" />
                 </MenuItem>
             </Menu>
         </Grid>

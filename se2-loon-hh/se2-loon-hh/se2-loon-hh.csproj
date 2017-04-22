@@ -106,11 +106,15 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Emergency.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddEmergency.xaml.cs">
       <DependentUpon>AddEmergency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddVolunteerPage.xaml.cs">
+      <DependentUpon>AddVolunteerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ClientListPage.xaml.cs">
       <DependentUpon>ClientListPage.xaml</DependentUpon>
@@ -119,7 +123,7 @@
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Form\FormValidatorInterface.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\BaseBoundsValidatior.cs" />
-    <Compile Include="Forms\FormsAPI\Validation\Validators\DoesNotEqualValidator.cs"/>
+    <Compile Include="Forms\FormsAPI\Validation\Validators\DoesNotEqualValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\LengthValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\RegexValidator.cs" />
     <Compile Include="Forms\FormsAPI\Validation\Validators\RequiredValidator.cs" />
@@ -139,6 +143,12 @@
     </Compile>
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewVolunteerPage.xaml.cs">
+      <DependentUpon>ViewVolunteerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VolunteerDetails.xaml.cs">
+      <DependentUpon>VolunteerDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="FreshStart.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
@@ -173,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\AddEmergency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AddVolunteerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,6 +229,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ViewServicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewVolunteerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\VolunteerDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
