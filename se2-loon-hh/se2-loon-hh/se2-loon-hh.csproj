@@ -135,6 +135,9 @@
     <Compile Include="Forms\ServiceDetails.xaml.cs">
       <DependentUpon>ServiceDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewFreshStartsPage.xaml.cs">
+      <DependentUpon>ViewFreshStartsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewServicesPage.xaml.cs">
       <DependentUpon>ViewServicesPage.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Forms\ServiceDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewFreshStartsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

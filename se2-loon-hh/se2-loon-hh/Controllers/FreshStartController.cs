@@ -11,6 +11,11 @@ namespace se2_loon_hh.Controllers
     {
         Entities _db;
 
+        public FreshStartController()
+        {
+            _db = new Entities();
+        }
+
         /// <summary>
         /// This function returns a list of fresh start programs for display in a data grid.
         /// </summary>
@@ -30,6 +35,25 @@ namespace se2_loon_hh.Controllers
             //send the list to the view
             return freshStartPrograms;
         }
+        /// <summary>
+        /// This function builds a list of fresh start programs that
+        /// are ordered by curriculum type.
+        /// </summary>
+        /// <returns>List of object data for the data grid.</returns>
+        public List<object> GetFreshStartsByType()
+        {
+            List<object> freshStarts = new List<object>();
+            foreach (var freshStart in _db.FreshStarts.OrderBy(fs => fs.CurriculumType))
+            {
+                freshStarts.Add(new {
+                    Name = freshStart.Name,
+                    CurriculumType = freshStart.CurriculumType,
+                    Comment = freshStart.Comment
+                });
+            }
+            return freshStarts;
+        }
+
         /// <summary>
         /// This function creates a list of fresh start types.
         /// </summary>
