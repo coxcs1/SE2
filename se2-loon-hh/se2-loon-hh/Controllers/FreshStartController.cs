@@ -127,6 +127,52 @@ namespace se2_loon_hh.Controllers
             return freshStarts;
         }
 
+        public RelativeFreshStart GetRelative(int relativeID)
+        {
+            return _db.RelativeFreshStarts.Find(relativeID);
+        }
+
+        /// <summary>
+        /// This function persists a relative into the database...
+        /// </summary>
+        /// <param name="relative"></param>
+        public void saveRelative(RelativeFreshStart relative)
+        {
+            _db.RelativeFreshStarts.Add(relative);
+            _db.SaveChanges();
+        }
+        /// <summary>
+        /// This function updates a relative entity in the database...
+        /// </summary>
+        /// <param name="relative"></param>
+        public void editRelative(RelativeFreshStart relative)
+        {
+            _db.Entry(relative).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+        /// <summary>
+        /// This function gets a generic list of objects for the relatives data grid page...
+        /// </summary>
+        /// <returns></returns>
+        public List<object> GetAllRelatives()
+        {
+            List<object> relatives = new List<object>();
+
+            foreach (var relative in _db.RelativeFreshStarts.ToList())
+            {
+                relatives.Add(new {
+                    RelativeID = relative.Id,
+                    Relative = relative.FirstName + " " + relative.LastName,
+                    Client = relative.Client.FirstName + " " + relative.Client.MiddleName + " " + relative.Client.LastName,
+                    Relationship = relative.RelationshipTo,
+                    FreshStart = relative.FreshStart.Name,
+                    Date = relative.Date
+                });
+            }
+
+            return relatives;
+        }
+
         public void Dispose()
         {
             ((IDisposable)_db).Dispose();

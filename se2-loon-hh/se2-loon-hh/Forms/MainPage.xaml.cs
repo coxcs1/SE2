@@ -81,7 +81,7 @@ namespace se2_loon_hh.Forms
 
         private void ViewRelativesMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new ViewRelativesPage());
         }
 
         private void AddRelativeMenu_Click(object sender, RoutedEventArgs e)

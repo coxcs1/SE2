@@ -52,12 +52,14 @@
                 </Paragraph>
                 <Paragraph>
                     <Grid Width="{Binding WindowWidth - 8}">
-                        <DataGrid Name="FreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
+                        <DataGrid Name="RealtivesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
     GridLinesVisibility="Horizontal" FontSize="14">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Curriculum Type" IsReadOnly="True" Binding="{Binding CurriculumType}"/>
-                                <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
+                                <DataGridTextColumn Header="Relative" IsReadOnly="True" Binding="{Binding Relative}"/>
+                                <DataGridTextColumn Header="Cleint" IsReadOnly="True" Binding="{Binding Client}"/>
+                                <DataGridTextColumn Header="Relationship" IsReadOnly="True" Binding="{Binding Relationship}"/>
+                                <DataGridTextColumn Header="Fresh Start" IsReadOnly="True" Binding="{Binding FreshStart}"/>
+                                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Date}"/>
                                 <DataGridTemplateColumn Header="Actions">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
