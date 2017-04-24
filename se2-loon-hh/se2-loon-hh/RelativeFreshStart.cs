@@ -15,8 +15,8 @@ namespace se2_loon_hh
     public partial class RelativeFreshStart
     {
         public long Id { get; set; }
-        public long FreshStartId { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> FreshStartId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Date { get; set; }

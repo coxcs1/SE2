@@ -15,7 +15,7 @@ namespace se2_loon_hh
     public partial class Pregnancy
     {
         public long Id { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public string DueDate { get; set; }
         public Nullable<long> OBCareBeforeReg { get; set; }
         public Nullable<long> OBCareAfterReg { get; set; }

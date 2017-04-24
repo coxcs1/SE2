@@ -15,7 +15,7 @@ namespace se2_loon_hh
     public partial class ProgressPointTracking
     {
         public long Id { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public string Date { get; set; }
         public string Description { get; set; }
         public Nullable<long> PointsSpent { get; set; }
