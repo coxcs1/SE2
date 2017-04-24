@@ -105,13 +105,26 @@
     </Compile>
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmergencyController.cs" />
+    <Compile Include="Controllers\FreshStartController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Emergency.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddClientFreshStartPage.xaml.cs">
+      <DependentUpon>AddClientFreshStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddEmergency.xaml.cs">
       <DependentUpon>AddEmergency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddFreshStart.xaml.cs">
+      <DependentUpon>AddFreshStart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddRelativeFreshStartPage.xaml.cs">
+      <DependentUpon>AddRelativeFreshStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ClientFreshStartDetailsPage.xaml.cs">
+      <DependentUpon>ClientFreshStartDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddVolunteerPage.xaml.cs">
       <DependentUpon>AddVolunteerPage.xaml</DependentUpon>
@@ -137,6 +150,15 @@
     <Compile Include="Forms\FormsAPI\ComboBoxPairs.cs" />
     <Compile Include="Forms\ServiceDetails.xaml.cs">
       <DependentUpon>ServiceDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewClientFreshStartsPage.xaml.cs">
+      <DependentUpon>ViewClientFreshStartsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewFreshStartsPage.xaml.cs">
+      <DependentUpon>ViewFreshStartsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewRelativesPage.xaml.cs">
+      <DependentUpon>ViewRelativesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewClientPage.xaml.cs">
       <DependentUpon>ViewClientPage.xaml</DependentUpon>
@@ -174,6 +196,10 @@
     <Compile Include="Volunteer.cs">
       <DependentUpon>HopeHouseDB.tt</DependentUpon>
     </Compile>
+    <Page Include="Forms\AddClientFreshStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\AddClientPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -186,11 +212,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\AddFreshStart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AddRelativeFreshStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\AddVolunteerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ClientListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ClientFreshStartDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +259,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Forms\ServiceDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewClientFreshStartsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewFreshStartsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ViewRelativesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
