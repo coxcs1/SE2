@@ -15,7 +15,7 @@ namespace se2_loon_hh
     public partial class SupportGroup
     {
         public long Id { get; set; }
-        public long ClientFreshStartId { get; set; }
+        public Nullable<long> ClientFreshStartId { get; set; }
         public string MonthAttended { get; set; }
         public Nullable<long> Year { get; set; }
     
