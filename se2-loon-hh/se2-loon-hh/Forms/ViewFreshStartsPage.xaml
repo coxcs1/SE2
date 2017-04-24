@@ -1,0 +1,82 @@
+﻿<Page x:Class="se2_loon_hh.Forms.ViewFreshStartsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      mc:Ignorable="d"
+      Title="View Fresh Starts" Height="{Binding WindowHeight - 25}" Width="{Binding WindowWidth + 5}">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Grid>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+            </Grid>
+            <Separator/>
+        </StackPanel>
+        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="852">
+            <FlowDocument PagePadding="5" PageWidth="500">
+                <Paragraph>
+                    <TextBlock>
+                        View Fresh Starts
+                    </TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <Grid Width="{Binding WindowWidth - 8}">
+                        <DataGrid Name="FreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
+    GridLinesVisibility="Horizontal" FontSize="14">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Curriculum Type" IsReadOnly="True" Binding="{Binding CurriculumType}"/>
+                                <DataGridTextColumn Header="Comment" IsReadOnly="True" Binding="{Binding Comment}"/>
+                                <DataGridTemplateColumn Header="Actions">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <StackPanel.Resources>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                                    </Style>
+                                                </StackPanel.Resources>
+                                                <Button Content="Edit" Click="EditFreshStart_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </DockPanel>
+</Page>

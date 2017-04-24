@@ -73,12 +73,12 @@ namespace se2_loon_hh.Forms
             else
             {
                 DataContext = ServiceValidator.ErrorMessages;
-                foreach (var message in ServiceValidator.ErrorMessages)
+                //if adding the service didn't work then reset it
+                //because it will try persist under the edit function.
+                if (!edit)
                 {
-                    Console.WriteLine(message.Key);
-                    Console.WriteLine(message.Value);
+                    this.service = null;
                 }
-                Console.WriteLine("Form is not valid!");
             }
         }
 
