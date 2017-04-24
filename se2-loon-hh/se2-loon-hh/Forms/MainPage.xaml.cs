@@ -113,8 +113,6 @@ namespace se2_loon_hh.Forms
         {
             this.NavigationService.Navigate(new ViewClientFreshStartsPage());
         }
-    }
-}
 
         private void ViewVolunteerMenu_Click(object sender, RoutedEventArgs e)
         {
