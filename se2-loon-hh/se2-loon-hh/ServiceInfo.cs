@@ -22,7 +22,7 @@ namespace se2_loon_hh
         }
     
         public long Id { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public Nullable<long> NewContact { get; set; }
         public Nullable<long> NewWalkIn { get; set; }
         public Nullable<long> WalkIn { get; set; }

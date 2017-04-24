@@ -21,8 +21,8 @@ namespace se2_loon_hh
         }
     
         public long Id { get; set; }
-        public long FreshStartId { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> FreshStartId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public string Date { get; set; }
         public string Status { get; set; }
     

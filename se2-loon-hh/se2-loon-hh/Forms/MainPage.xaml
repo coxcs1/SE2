@@ -18,7 +18,7 @@
                 </MenuItem>
                 <MenuItem Header="_Client">
                     <MenuItem Name="AddClientMenu" Header="_Add Client" Click="AddClientMenu_Click"/>
-                    <MenuItem Name="ViewClientpMenu" Header="_View Client" />
+                    <MenuItem Name="ViewClientMenu" Header="_View Client" Click="ViewClientsMenu_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Class">
                     <MenuItem Name="AddClassMenu" Header="_Add Fresh Start" Click="AddClassMenu_Click" />
@@ -42,8 +42,8 @@
                     <MenuItem Name="ViewEmergencyMenu" Header="_View Emergency Aid" />
                 </MenuItem>
                 <MenuItem Header="_Volunteer">
-                    <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" />
-                    <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" />
+                    <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" Click="AddVolunteerMenu_Click" />
+                    <MenuItem Name="ViewVolunteerMenu" Header="_View Volunteers" Click="ViewVolunteerMenu_Click" />
                 </MenuItem>
             </Menu>
         </Grid>

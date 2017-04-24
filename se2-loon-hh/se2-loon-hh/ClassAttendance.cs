@@ -15,7 +15,7 @@ namespace se2_loon_hh
     public partial class ClassAttendance
     {
         public long Id { get; set; }
-        public long ClientId { get; set; }
+        public Nullable<long> ClientId { get; set; }
         public string Month { get; set; }
         public Nullable<long> Year { get; set; }
         public Nullable<long> Count { get; set; }

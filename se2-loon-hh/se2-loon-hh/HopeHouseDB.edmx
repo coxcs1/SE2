@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="Month" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Year" Type="integer" />
           <Property Name="Count" Type="integer" />
@@ -54,8 +54,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FreshStartId" Type="integer" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="FreshStartId" Type="integer" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="Date" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Status" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
@@ -84,7 +84,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ServiceInfoId" Type="integer" Nullable="false" />
+          <Property Name="ServiceInfoId" Type="integer" />
           <Property Name="ItemName" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
@@ -93,7 +93,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="DueDate" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="OBCareBeforeReg" Type="integer" />
           <Property Name="OBCareAfterReg" Type="integer" />
@@ -107,7 +107,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="Date" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="PointsSpent" Type="integer" />
@@ -120,8 +120,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FreshStartId" Type="integer" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="FreshStartId" Type="integer" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="LastName" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Date" Type="nvarchar" MaxLength="2147483647" />
@@ -133,7 +133,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="integer" Nullable="false" />
+          <Property Name="ClientId" Type="integer" />
           <Property Name="NewContact" Type="integer" />
           <Property Name="NewWalkIn" Type="integer" />
           <Property Name="WalkIn" Type="integer" />
@@ -151,7 +151,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ServiceInfoId" Type="integer" Nullable="false" />
+          <Property Name="ServiceInfoId" Type="integer" />
           <Property Name="ServiceName" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
@@ -160,7 +160,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientFreshStartId" Type="integer" Nullable="false" />
+          <Property Name="ClientFreshStartId" Type="integer" />
           <Property Name="MonthAttended" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Year" Type="integer" />
         </EntityType>
@@ -177,7 +177,7 @@
           <Property Name="Comment" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <Association Name="FK_ClassAttendance_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="ClassAttendance" Type="Self.ClassAttendance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -189,7 +189,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientFreshStart_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="ClientFreshStart" Type="Self.ClientFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -201,7 +201,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientFreshStart_1_0">
-          <End Role="FreshStart" Type="Self.FreshStart" Multiplicity="1" />
+          <End Role="FreshStart" Type="Self.FreshStart" Multiplicity="0..1" />
           <End Role="ClientFreshStart" Type="Self.ClientFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FreshStart">
@@ -213,7 +213,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemRequested_0_0">
-          <End Role="ServiceInfo" Type="Self.ServiceInfo" Multiplicity="1" />
+          <End Role="ServiceInfo" Type="Self.ServiceInfo" Multiplicity="0..1" />
           <End Role="ItemRequested" Type="Self.ItemRequested" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceInfo">
@@ -225,7 +225,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pregnancy_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="Pregnancy" Type="Self.Pregnancy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -237,7 +237,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProgressPointTracking_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="ProgressPointTracking" Type="Self.ProgressPointTracking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -249,7 +249,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RelativeFreshStart_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="RelativeFreshStart" Type="Self.RelativeFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -261,7 +261,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RelativeFreshStart_1_0">
-          <End Role="FreshStart" Type="Self.FreshStart" Multiplicity="1" />
+          <End Role="FreshStart" Type="Self.FreshStart" Multiplicity="0..1" />
           <End Role="RelativeFreshStart" Type="Self.RelativeFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FreshStart">
@@ -273,7 +273,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceInfo_0_0">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="ServiceInfo" Type="Self.ServiceInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -285,7 +285,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceRequested_0_0">
-          <End Role="ServiceInfo" Type="Self.ServiceInfo" Multiplicity="1" />
+          <End Role="ServiceInfo" Type="Self.ServiceInfo" Multiplicity="0..1" />
           <End Role="ServiceRequested" Type="Self.ServiceRequested" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceInfo">
@@ -297,7 +297,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SupportGroup_0_0">
-          <End Role="ClientFreshStart" Type="Self.ClientFreshStart" Multiplicity="1" />
+          <End Role="ClientFreshStart" Type="Self.ClientFreshStart" Multiplicity="0..1" />
           <End Role="SupportGroup" Type="Self.SupportGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ClientFreshStart">
@@ -372,11 +372,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Emergencies" EntityType="Model.Emergency" />
-          <EntitySet Name="Volunteers" EntityType="Model.Volunteer" />
           <EntitySet Name="ClassAttendances" EntityType="Model.ClassAttendance" />
           <EntitySet Name="Clients" EntityType="Model.Client" />
           <EntitySet Name="ClientFreshStarts" EntityType="Model.ClientFreshStart" />
+          <EntitySet Name="Emergencies" EntityType="Model.Emergency" />
           <EntitySet Name="FreshStarts" EntityType="Model.FreshStart" />
           <EntitySet Name="ItemRequesteds" EntityType="Model.ItemRequested" />
           <EntitySet Name="Pregnancies" EntityType="Model.Pregnancy" />
@@ -385,6 +384,7 @@
           <EntitySet Name="ServiceInfoes" EntityType="Model.ServiceInfo" />
           <EntitySet Name="ServiceRequesteds" EntityType="Model.ServiceRequested" />
           <EntitySet Name="SupportGroups" EntityType="Model.SupportGroup" />
+          <EntitySet Name="Volunteers" EntityType="Model.Volunteer" />
           <AssociationSet Name="FK_ClassAttendance_0_0" Association="Model.FK_ClassAttendance_0_0">
             <End Role="Client" EntitySet="Clients" />
             <End Role="ClassAttendance" EntitySet="ClassAttendances" />
@@ -429,36 +429,13 @@
             <End Role="ServiceInfo" EntitySet="ServiceInfoes" />
             <End Role="ServiceRequested" EntitySet="ServiceRequesteds" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Emergency">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="ItemsReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Volunteer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Hours" Type="Int64" />
-          <Property Name="Service" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-        </EntityType>
+        </EntityContainer>
         <EntityType Name="ClassAttendance">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="Month" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int64" />
           <Property Name="Count" Type="Int64" />
@@ -509,13 +486,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FreshStartId" Type="Int64" Nullable="false" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="FreshStartId" Type="Int64" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="Date" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Model.FK_ClientFreshStart_0_0" FromRole="ClientFreshStart" ToRole="Client" />
           <NavigationProperty Name="FreshStart" Relationship="Model.FK_ClientFreshStart_1_0" FromRole="ClientFreshStart" ToRole="FreshStart" />
           <NavigationProperty Name="SupportGroups" Relationship="Model.FK_SupportGroup_0_0" FromRole="ClientFreshStart" ToRole="SupportGroup" />
+        </EntityType>
+        <EntityType Name="Emergency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ItemsReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FreshStart">
           <Key>
@@ -533,7 +521,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceInfoId" Type="Int64" Nullable="false" />
+          <Property Name="ServiceInfoId" Type="Int64" />
           <Property Name="ItemName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ServiceInfo" Relationship="Model.FK_ItemRequested_0_0" FromRole="ItemRequested" ToRole="ServiceInfo" />
@@ -543,7 +531,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="DueDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="OBCareBeforeReg" Type="Int64" />
           <Property Name="OBCareAfterReg" Type="Int64" />
@@ -558,7 +546,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="Date" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="PointsSpent" Type="Int64" />
@@ -572,8 +560,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FreshStartId" Type="Int64" Nullable="false" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="FreshStartId" Type="Int64" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
@@ -587,7 +575,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="ClientId" Type="Int64" />
           <Property Name="NewContact" Type="Int64" />
           <Property Name="NewWalkIn" Type="Int64" />
           <Property Name="WalkIn" Type="Int64" />
@@ -608,7 +596,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceInfoId" Type="Int64" Nullable="false" />
+          <Property Name="ServiceInfoId" Type="Int64" />
           <Property Name="ServiceName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ServiceInfo" Relationship="Model.FK_ServiceRequested_0_0" FromRole="ServiceRequested" ToRole="ServiceInfo" />
@@ -618,13 +606,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientFreshStartId" Type="Int64" Nullable="false" />
+          <Property Name="ClientFreshStartId" Type="Int64" />
           <Property Name="MonthAttended" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="Int64" />
           <NavigationProperty Name="ClientFreshStart" Relationship="Model.FK_SupportGroup_0_0" FromRole="SupportGroup" ToRole="ClientFreshStart" />
         </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="DateReceived" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Hours" Type="Int64" />
+          <Property Name="Service" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_ClassAttendance_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.ClassAttendance" Role="ClassAttendance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -636,7 +636,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientFreshStart_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.ClientFreshStart" Role="ClientFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -648,7 +648,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pregnancy_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.Pregnancy" Role="Pregnancy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -660,7 +660,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProgressPointTracking_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.ProgressPointTracking" Role="ProgressPointTracking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -672,7 +672,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RelativeFreshStart_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.RelativeFreshStart" Role="RelativeFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -684,7 +684,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceInfo_0_0">
-          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Model.ServiceInfo" Role="ServiceInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -696,7 +696,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientFreshStart_1_0">
-          <End Type="Model.FreshStart" Role="FreshStart" Multiplicity="1" />
+          <End Type="Model.FreshStart" Role="FreshStart" Multiplicity="0..1" />
           <End Type="Model.ClientFreshStart" Role="ClientFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FreshStart">
@@ -708,7 +708,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SupportGroup_0_0">
-          <End Type="Model.ClientFreshStart" Role="ClientFreshStart" Multiplicity="1" />
+          <End Type="Model.ClientFreshStart" Role="ClientFreshStart" Multiplicity="0..1" />
           <End Type="Model.SupportGroup" Role="SupportGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ClientFreshStart">
@@ -720,7 +720,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RelativeFreshStart_1_0">
-          <End Type="Model.FreshStart" Role="FreshStart" Multiplicity="1" />
+          <End Type="Model.FreshStart" Role="FreshStart" Multiplicity="0..1" />
           <End Type="Model.RelativeFreshStart" Role="RelativeFreshStart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FreshStart">
@@ -732,7 +732,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemRequested_0_0">
-          <End Type="Model.ServiceInfo" Role="ServiceInfo" Multiplicity="1" />
+          <End Type="Model.ServiceInfo" Role="ServiceInfo" Multiplicity="0..1" />
           <End Type="Model.ItemRequested" Role="ItemRequested" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceInfo">
@@ -744,7 +744,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ServiceRequested_0_0">
-          <End Type="Model.ServiceInfo" Role="ServiceInfo" Multiplicity="1" />
+          <End Type="Model.ServiceInfo" Role="ServiceInfo" Multiplicity="0..1" />
           <End Type="Model.ServiceRequested" Role="ServiceRequested" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ServiceInfo">
@@ -761,31 +761,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Emergencies">
-            <EntityTypeMapping TypeName="Model.Emergency">
-              <MappingFragment StoreEntitySet="Emergency">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="ItemsReceived" ColumnName="ItemsReceived" />
-                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Volunteers">
-            <EntityTypeMapping TypeName="Model.Volunteer">
-              <MappingFragment StoreEntitySet="Volunteer">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Service" ColumnName="Service" />
-                <ScalarProperty Name="Hours" ColumnName="Hours" />
-                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ClassAttendances">
             <EntityTypeMapping TypeName="Model.ClassAttendance">
               <MappingFragment StoreEntitySet="ClassAttendance">
@@ -839,6 +814,18 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="FreshStartId" ColumnName="FreshStartId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emergencies">
+            <EntityTypeMapping TypeName="Model.Emergency">
+              <MappingFragment StoreEntitySet="Emergency">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ItemsReceived" ColumnName="ItemsReceived" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -941,6 +928,19 @@
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="MonthAttended" ColumnName="MonthAttended" />
                 <ScalarProperty Name="ClientFreshStartId" ColumnName="ClientFreshStartId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="Model.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

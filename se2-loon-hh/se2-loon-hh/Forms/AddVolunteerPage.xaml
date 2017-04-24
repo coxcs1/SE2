@@ -1,0 +1,113 @@
+﻿<Page x:Class="se2_loon_hh.Forms.AddVolunteerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:se2_loon_hh.Forms"
+      mc:Ignorable="d" d:DesignWidth="300"
+      Title="AddVolunteerPage" Height="346">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="250"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <Popup x:Name="ValidatorPopup" StaysOpen="False" PopupAnimation="Fade" AllowsTransparency="True">
+            <StackPanel>
+                <Border CornerRadius="3" BorderThickness="3" BorderBrush="#FFFFFF8A">
+                    <Label x:Name="ValidatorPopupLabel" Background="#FFFFFF8A"/>
+                </Border>
+                <Path Grid.Row="1" Data="M3,0 L8,5 L13,0Z" Stroke="#FFFFFF8A" Fill="#FFFFFF8A" StrokeThickness="1"/>
+            </StackPanel>
+        </Popup>
+        <StackPanel DockPanel.Dock="Top">
+            <Grid>
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="SubmitButton" Click="SubmitButton_Click">Submit</Button>
+            </Grid>
+            <Separator/>
+        </StackPanel>
+        <FlowDocumentPageViewer HorizontalContentAlignment="Center">
+            <FlowDocument PagePadding="5" PageWidth="500">
+                <!-- Page width should be a little bit larger than your widest element to prevent wrapping -->
+                <Paragraph>
+                    <TextBlock x:Name="PageTitle" />
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="FirstName">
+                        <StackPanel>
+                            <Grid>
+                                <TextBox x:Name="FirstName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="LastName">
+                        <StackPanel>
+                            <Grid>
+                                <TextBox x:Name="LastName" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Date Received">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="38*"/>
+                                    <ColumnDefinition Width="59*"/>
+                                </Grid.ColumnDefinitions>
+                                <DatePicker x:Name="DateReceivedDatePicker" Grid.ColumnSpan="2" Margin="135,5,5,5" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Hours">
+                        <StackPanel>
+                            <Grid>
+                                <TextBox x:Name="Hours" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Service">
+                        <StackPanel>
+                            <Grid>
+                                <TextBox x:Name="Service" Grid.ColumnSpan="2" Margin="0,5,5,5" />
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
+                    <GroupBox Header="Comments">
+                        <StackPanel>
+                            <Grid>
+                                <TextBox x:Name="Comment" Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentPageViewer>
+    </DockPanel>
+</Page>

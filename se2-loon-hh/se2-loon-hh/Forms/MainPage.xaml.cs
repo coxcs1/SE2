@@ -30,7 +30,7 @@ namespace se2_loon_hh.Forms
 
         private void ViewClientsButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Placeholder Text");
+            NavigationService.Navigate(new ClientListPage());
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -59,7 +59,17 @@ namespace se2_loon_hh.Forms
             this.NavigationService.Navigate(new AddServicePage());
         }
 
+        private void ViewClientsMenu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ClientListPage());
+        }
+
         private void ViewServiceMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ViewServicesPage());
+        }
+
+        private void ViewServices_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ViewServicesPage());
         }
@@ -67,6 +77,11 @@ namespace se2_loon_hh.Forms
         private void AddEmergencyMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AddEmergency());
+        }
+
+        private void AddVolunteerMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AddVolunteerPage());
         }
 
         private void AddClassMenu_Click(object sender, RoutedEventArgs e)
@@ -97,6 +112,13 @@ namespace se2_loon_hh.Forms
         private void ViewCleintsFreshStartMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ViewClientFreshStartsPage());
+        }
+    }
+}
+
+        private void ViewVolunteerMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ViewVolunteerPage());
         }
     }
 }
