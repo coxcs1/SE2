@@ -54,30 +54,34 @@
             Placeholder="Search"
            Text="{Binding SearchedText, Mode=TwoWay}"
            SearchCommand="{Binding SearchCommand}"/>-->
+          
                 <Paragraph>
-                    <DataGrid x:Name="PointsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
-                            <DataGridTextColumn Header="Current Points" IsReadOnly="True" Binding="{Binding CurrentPoints}"/>
-                            <DataGridTextColumn Header="Description" IsReadOnly="True" Binding="{Binding Description}"/>
-                            <DataGridTextColumn Header="Points Entered" IsReadOnly="True" Binding="{Binding PointsSpent}"/>
-                            <DataGridTextColumn Header="Entry Date" IsReadOnly="True" Binding="{Binding Date}"/>
-                            <DataGridTemplateColumn Header="Actions">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel.Resources>
-                                                <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="Margin" Value="3, 3, 3, 3" />
-                                                </Style>
-                                            </StackPanel.Resources>
-                                            <Button Content="Edit" Click="EditPoints_Click"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Width="{Binding WindowWidth - 8}">
+                        <DataGrid x:Name="PointsDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
+                            GridLinesVisibility="Horizontal" FontSize="14">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
+                                <DataGridTextColumn Header="Current Points" IsReadOnly="True" Binding="{Binding CurrentPoints}"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True" Binding="{Binding Description}"/>
+                                <!--<DataGridTextColumn Header="Points Entered" IsReadOnly="True" Binding="{Binding PointsSpent}"/>-->
+                                <DataGridTextColumn Header="Entry Date" IsReadOnly="True" Binding="{Binding Date}"/>
+                                <DataGridTemplateColumn Header="Actions">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <StackPanel.Resources>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                                    </Style>
+                                                </StackPanel.Resources>
+                                                <Button Content="Edit" Click="EditPoints_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentPageViewer>

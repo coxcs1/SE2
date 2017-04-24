@@ -31,6 +31,7 @@ namespace se2_loon_hh.Forms
         FormValidator PointsValidator { get; set; }
         bool operation = true;//true is subtract // false is add 
         bool edit = false;
+        bool notValid = false;
         string msg;
         string tempPoints;
 
@@ -84,6 +85,7 @@ namespace se2_loon_hh.Forms
                     //Console.WriteLine(message.Value);
                 }
                 MessageBox.Show(msg);
+                this.notValid = true;
             }
             msg = "";
         }
@@ -98,7 +100,7 @@ namespace se2_loon_hh.Forms
                 new RegexValidator(this.Points.ClientId.ToString(), "[^0]+", ClientComboBox, "A client must be selected"),
                 new RequiredValidator(this.Points.Date, DatePointsDatePicker, "A date must be selected"),
                 new RequiredValidator(this.Points.Description,Description,"A description must be entered" ),
-                new RegexValidator(tempPoints,"/^[0-9.]+$/",Points_Spent,"Points must be entered" ),
+                new RegexValidator(tempPoints,"^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1][0-9][0-9][0-9])$",Points_Spent,"Points must be entered and between 1-1,999" ),
                //new RequiredValidator(this.Points.PointsSpent.ToString(),Points_Spent,"Points must be entered" ),
                //new RegexValidator(tempPoints, "[0-2000]", Points_Spent, "Range must be from 0-2000")
                //new BaseBoundsValidator(Convert.ToInt64(tempPoints),0, 2000, Points_Spent,"Must be greater than 0 and less than 2000");
@@ -118,6 +120,10 @@ namespace se2_loon_hh.Forms
             if (this.Points == null)
             {
                 Points = new ProgressPointTracking();
+            }
+            else if(this.notValid)
+            {
+                this.notValid = false;
             }
             else
             {
