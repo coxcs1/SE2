@@ -172,6 +172,95 @@ namespace se2_loon_hh.Controllers
 
             return relatives;
         }
+        /// <summary>
+        /// This function gets a list of years since 1970 up to this year..
+        /// </summary>
+        /// <returns>List of years since 1970</returns>
+        public List<ComboBoxPairs> GetYears()
+        {
+            List<ComboBoxPairs> years = new List<ComboBoxPairs>();
+
+            for (int i = (DateTime.Now.Year); i > 1970 ; i--)
+            {
+                years.Add(new ComboBoxPairs(Convert.ToString(i), Convert.ToString(i)));
+            }
+
+            return years;
+        }
+        /// <summary>
+        /// This function returns all the months in a given year..
+        /// </summary>
+        /// <returns>List of months</returns>
+        public List<ComboBoxPairs> GetMonths()
+        {
+            List<ComboBoxPairs> months = new List<ComboBoxPairs>() {
+                new ComboBoxPairs("January", "January"),
+                new ComboBoxPairs("February", "February"),
+                new ComboBoxPairs("March", "March"),
+                new ComboBoxPairs("April", "April"),
+                new ComboBoxPairs("May", "May"),
+                new ComboBoxPairs("June", "June"),
+                new ComboBoxPairs("July", "July"),
+                new ComboBoxPairs("August", "August"),
+                new ComboBoxPairs("September", "September"),
+                new ComboBoxPairs("October", "October"),
+                new ComboBoxPairs("November", "November"),
+                new ComboBoxPairs("December", "December"),
+            };
+
+            return months;
+        }
+
+        /// <summary>
+        /// This function fetches a client fresh start from the database..
+        /// </summary>
+        /// <param name="clientFreshStartID"></param>
+        /// <returns>A client fresh start entity...</returns>
+        public ClientFreshStart GetClientFreshStart(int clientFreshStartID)
+        {
+            return _db.ClientFreshStarts.Find(clientFreshStartID);
+        }
+
+        /// <summary>
+        /// This function saves a client into the database..
+        /// </summary>
+        /// <param name="client"></param>
+        public void CreateClientFreshStart(ClientFreshStart client)
+        {
+            _db.ClientFreshStarts.Add(client);
+            _db.SaveChanges();
+        }
+
+        /// <summary>
+        /// This function save a modified client fresh start into the database..
+        /// </summary>
+        /// <param name="client"></param>
+        public void EditClientFreshStart(ClientFreshStart client)
+        {
+            _db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+        /// <summary>
+        /// This function gets all client fresh start programs...
+        /// </summary>
+        /// <returns>A list of all client fresh start programs..</returns>
+        public List<object> GetAllClientFreshStarts()
+        {
+            List<object> clientFreshStarts = new List<object>();
+
+            foreach (var client in _db.ClientFreshStarts)
+            {
+                clientFreshStarts.Add(new {
+                    ClientFreshStartID = client.Id,
+                    Client = client.Client.FirstName + " " + client.Client.MiddleName + " " + client.Client.LastName,
+                    FreshStart = client.FreshStart.Name,
+                    Date = client.Date,
+                    Status = client.Status
+                });
+            }
+
+            return clientFreshStarts;
+        }
 
         public void Dispose()
         {
