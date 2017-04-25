@@ -43,39 +43,28 @@
             </Grid>
             <Separator/>
         </StackPanel>
-        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="663">
-            <FlowDocument PagePadding="5" PageWidth="500">
-                <Paragraph>
-                    <TextBlock>
-                        View Services
-                    </TextBlock>
-                </Paragraph>
-                <Paragraph>
-                    <DataGrid x:Name="ServicesDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
-                            <DataGridTextColumn Header="Date Arrived" IsReadOnly="True" Binding="{Binding Date}"/>
-                            <DataGridTextColumn Header="Items" IsReadOnly="True" Binding="{Binding Items}"/>
-                            <DataGridTextColumn Header="Services" IsReadOnly="True" Binding="{Binding ServicesRequested}"/>
-                            <DataGridTemplateColumn Header="Actions">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel.Resources>
-                                                <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="Margin" Value="3, 3, 3, 3" />
-                                                </Style>
-                                            </StackPanel.Resources>
-                                            <Button Content="Edit" Click="EditService_Click"/>
-                                            <Button Content="Details" Click="ServiceDetails_Click"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentPageViewer>
+        <DataGrid x:Name="ServicesDataGrid" AutoGenerateColumns="False" CanUserDeleteRows="True" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Client" IsReadOnly="True" Width="*" Binding="{Binding Client}"/>
+                <DataGridTextColumn Header="Date Arrived" IsReadOnly="True" Width="*"  Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Items" IsReadOnly="True" Width="*" Binding="{Binding Items}"/>
+                <DataGridTextColumn Header="Services" IsReadOnly="True" Width="*" Binding="{Binding ServicesRequested}"/>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button Content="Edit" Click="EditService_Click"/>
+                                <Button Content="Details" Click="ServiceDetails_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Page>

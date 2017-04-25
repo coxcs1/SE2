@@ -20,7 +20,12 @@ namespace se2_loon_hh.Forms
         public MainPage()
         { 
             InitializeComponent();
-            textBlock.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec volutpat enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris varius euismod sapien, eget bibendum sem pretium quis. Suspendisse potenti. Nam turpis ante, pretium sit amet ligula dictum, dapibus pharetra ligula. Morbi luctus erat tortor, at tempor ante bibendum in. Pellentesque vel dolor eleifend, consectetur libero eu, porttitor arcu. Maecenas lobortis nisi felis, ut viverra nunc congue non. Aliquam convallis rutrum eros non interdum. Donec ut lectus id nisi fermentum sagittis sit amet eu est. Nulla facilisi. Ut dui dolor, lacinia sit amet congue vel, volutpat id odio.";
+            textBlock.FontSize = 14;
+            textBlock.Text = "From the Founder of Hope House, Wes Patten:  Hope House was born out of a dream that I had in August of 1998. Hope House didn't begin for another 3 ½ years, but God was preparing my family and I to make a huge step of faith to begin this ministry. I was a Pastor in Seattle, WA and had always spoken out against abortion, but felt like God was calling me to do more… to go beyond just standing against something (abortion, which I certainly do) and to stand for something; to stand for life!\n\n" +
+                             "The dream continued to swell in my heart to the point that I could no longer ignore it and I began to search out the place where God would make Hope House a reality. In the late 1980's I attended graduate school in East Tennessee. I loved the area and learned that there was not an organization like Hope House around, but one was certainly needed. In late August 2001 we left our jobs/schools, our home, our church, our family, and our friends in Seattle for East Tennessee to begin Hope House. We had no place to live, we had no financial support, we didn't have work, and our children were already 2 weeks late to start school that fall. However, we believed fully that this was the time and the place that God wanted to start Hope House, so we trusted Him to provide all that we needed. And He did!\n\n" +
+                             "Hope House officially started in January of 2002 in our small rental home. We took our first girl in and began to get support from churches and individuals who shared our vision for Hope House. For the next 18 months, we had girls come in and out of our home getting the support they needed and giving their babies the opportunity for life.\n\n" +
+                             "In August of 2003, we were able to purchase our first maternity home with the help of some investors so we could expand our capacity to reach out to more young ladies in crisis pregnancy. We have not only been able to reach numerous young ladies in residence, but we are also providing needy families in our community with the resources they need for their babies.\n\n" +
+                             "2017 begins our 15th year in the ministry and what an incredible journey it has been! Today, Hope House operates a maternity home, transitional apartment housing as well as a community pregnancy resource center.";
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)
@@ -109,7 +114,7 @@ namespace se2_loon_hh.Forms
             this.NavigationService.Navigate(new AddClientFreshStartPage());
         }
 
-        private void ViewCleintsFreshStartMenu_Click(object sender, RoutedEventArgs e)
+        private void ViewClientsFreshStartMenu_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ViewClientFreshStartsPage());
         }

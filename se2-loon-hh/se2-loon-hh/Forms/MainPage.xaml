@@ -24,14 +24,11 @@
                     <MenuItem Name="AddClassMenu" Header="_Add Fresh Start" Click="AddClassMenu_Click" />
                     <MenuItem Name="ViewClassMenu" Header="_View Fresh Starts" Click="ViewClassMenu_Click" />
                     <Separator />
-                    <MenuItem Name="AddClientFreshStartMenu" Header="_Add Cleint" Click="AddClientFreshStartMenu_Click" />
-                    <MenuItem Name="ViewCleintsFreshStartMenu" Header="_View Cleints" Click="ViewCleintsFreshStartMenu_Click" />
+                    <MenuItem Name="AddClientFreshStartMenu" Header="_Add Client" Click="AddClientFreshStartMenu_Click" />
+                    <MenuItem Name="ViewClientsFreshStartMenu" Header="_View Clients" Click="ViewClientsFreshStartMenu_Click" />
                     <Separator />
                     <MenuItem Name="AddRelativeMenu" Header="_Add Relative" Click="AddRelativeMenu_Click" />
                     <MenuItem Name="ViewRelativesMenu" Header="_View Relatives" Click="ViewRelativesMenu_Click" />
-                </MenuItem>
-                <MenuItem Header="_Report">
-                    <MenuItem Name="ViewReportMenu" Header="_View Reports" />
                 </MenuItem>
                 <MenuItem Header="_Service">
                     <MenuItem Name="AddServiceMenu" Header="_Add Service" Click="AddServiceMenu_Click" />
@@ -58,10 +55,15 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width=".66*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -73,6 +75,7 @@
             <Button x:Name="ViewClientsButton" Content="View Clients" Margin="5" Grid.Column="0" Grid.Row="1" Click="ViewClientsButton_Click"/>
             <Button x:Name="ExitButton" Content="Exit" Margin="5" Grid.Column="0" Grid.Row="2" Click="ExitButton_Click"/>
             <TextBlock Grid.Column="1" Grid.RowSpan="6" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,5,5,5" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+            <Image Grid.Column="1" Grid.RowSpan="3" Grid.Row="7"  Source="/se2-loon-hh;component/Resources/hopeHousePic.jpg"/>
         </Grid>
     </DockPanel>
 </Page>
