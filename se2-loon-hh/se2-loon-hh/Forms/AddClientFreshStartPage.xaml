@@ -52,7 +52,7 @@
                     <TextBlock x:Name="PageTitle" />
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Cleint and Fresh Start Program Information">
+                    <GroupBox Header="Client and Fresh Start Program Information">
                         <StackPanel>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -65,7 +65,7 @@
                                     <ColumnDefinition Width="38*"/>
                                     <ColumnDefinition Width="59*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label>Cleint:</Label>
+                                <Label>Client:</Label>
                                 <ComboBox x:Name="ClientComboBox" Grid.ColumnSpan="2" Margin="135,5,5,5" />
                             </Grid>
                             <Grid>

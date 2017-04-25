@@ -43,42 +43,37 @@
             </Grid>
             <Separator/>
         </StackPanel>
-        <FlowDocumentPageViewer HorizontalContentAlignment="Center" Height="852">
-            <FlowDocument PagePadding="5" PageWidth="500">
-                <Paragraph>
-                    <TextBlock>
+        <Grid DockPanel.Dock="Top">
+            <TextBlock FontSize="18" Margin="5,5,5,5">
                         View Client Fresh Starts
-                    </TextBlock>
-                </Paragraph>
-                <Paragraph>
-                    <Grid Width="{Binding WindowWidth - 8}">
-                        <DataGrid Name="ClientFreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
+            </TextBlock>
+        </Grid>
+        
+        <Grid Width="{Binding WindowWidth - 8}">
+            <DataGrid Name="ClientFreshStartsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Width="{Binding WindowWidth-8}" ColumnWidth="*"    
     GridLinesVisibility="Horizontal" FontSize="14">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
-                                <DataGridTextColumn Header="Fresh Start" IsReadOnly="True" Binding="{Binding FreshStart}"/>
-                                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Date}"/>
-                                <DataGridTextColumn Header="Status" IsReadOnly="True" Binding="{Binding Status}"/>
-                                <DataGridTemplateColumn Header="Actions">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel.Resources>
-                                                    <Style TargetType="{x:Type Button}">
-                                                        <Setter Property="Margin" Value="3, 3, 3, 3" />
-                                                    </Style>
-                                                </StackPanel.Resources>
-                                                <Button Content="Edit" Click="EditClientFreshStart_Click"/>
-                                                <Button Content="Details" Click="ClientFreshStartDetails_Click"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentPageViewer>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Client" IsReadOnly="True" Binding="{Binding Client}"/>
+                    <DataGridTextColumn Header="Fresh Start" IsReadOnly="True" Binding="{Binding FreshStart}"/>
+                    <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Status" IsReadOnly="True" Binding="{Binding Status}"/>
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                        </Style>
+                                    </StackPanel.Resources>
+                                    <Button Content="Edit" Click="EditClientFreshStart_Click"/>
+                                    <Button Content="Details" Click="ClientFreshStartDetails_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </DockPanel>
 </Page>

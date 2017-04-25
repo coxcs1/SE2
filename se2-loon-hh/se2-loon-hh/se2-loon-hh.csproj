@@ -373,6 +373,7 @@
       <DependentUpon>HopeHouseDB.edmx</DependentUpon>
       <LastGenOutput>HopeHouseDB.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\hopeHousePic.jpg" />
     <Resource Include="Resources\house.png" />
     <Resource Include="Resources\hopehouse.png" />
   </ItemGroup>

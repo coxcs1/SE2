@@ -52,7 +52,7 @@ namespace se2_loon_hh.Forms
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             populateClient();//populate the entity from our form
-            //if the form is valid then store the cleint
+            //if the form is valid then store the Client
             //else show some error messages...
             if (isValid())
             {
