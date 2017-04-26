@@ -26,10 +26,40 @@ namespace se2_loon_hh.Forms
             PageTitle.Text = "Emergency Aid Details";
             emergencyController = new EmergencyController();
             emergency = emergencyController.viewEmergency(id);
-            DataContext = new
+            setupComponents();
+        }
+
+        private void setupComponents()
+        {
+            EmergencyDetailsItem.Items.Add(new
             {
-                emergency
-            };
+                Label = "First Name",
+                Text = emergency.FirstName
+            });
+
+            EmergencyDetailsItem.Items.Add(new
+            {
+                Label = "Last Name",
+                Text = emergency.LastName
+            });
+
+            EmergencyDetailsItem.Items.Add(new
+            {
+                Label = "Date Given",
+                Text = emergency.DateReceived
+            });
+
+            EmergencyDetailsItem.Items.Add(new
+            {
+                Label = "Items Given",
+                Text = emergency.ItemsReceived
+            });
+
+            EmergencyDetailsItem.Items.Add(new
+            {
+                Label = "Comments",
+                Text = emergency.Comment
+            });
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +69,7 @@ namespace se2_loon_hh.Forms
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new EditEmergency(emergency));
+            NavigationService.Navigate(new AddEmergency(Convert.ToInt32(emergency.Id)));
         }
     }
 }

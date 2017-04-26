@@ -45,6 +45,7 @@
         <StackPanel DockPanel.Dock="Top">
             <Grid>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="CreateButton" Click="CreateButton_Click">Give Emergency Aid</Button>
             </Grid>
             <Separator/>
         </StackPanel>
@@ -55,13 +56,14 @@
                 <DataGridTextColumn Header="Last Name" IsReadOnly="True" Binding="{Binding LastName}"/>
                 <DataGridTextColumn Header="Date Given" IsReadOnly="True" Binding="{Binding DateReceived}"/>
                 <DataGridTextColumn Header="Items Given" IsReadOnly="True" Binding="{Binding ItemsReceived}"/>
+                <DataGridTextColumn Header="Comments" IsReadOnly="True" Binding="{Binding Comment}"/>
                 <DataGridTemplateColumn Header="Actions">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel.Resources>
                                     <Style TargetType="{x:Type Button}">
-                                        <Setter Property="Margin" Value="3, 3, 3, 3" />
+                                        <Setter Property="Margin" Value="3" />
                                     </Style>
                                 </StackPanel.Resources>
                                 <Button Content="Edit" Click="EditButton_Click"/>

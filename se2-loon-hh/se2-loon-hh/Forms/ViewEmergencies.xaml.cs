@@ -37,16 +37,23 @@ namespace se2_loon_hh.Forms
             NavigationService.Navigate(new MainPage());
         }
 
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddEmergency());
+        }
+
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
             var emergency = EmergencyGrid.Items.GetItemAt(EmergencyGrid.SelectedIndex);
-            var emergencyID = Convert.ToInt32(emergency.GetType().GetProperty("ID").GetValue(emergency).ToString());
+            var emergencyID = Convert.ToInt32(emergency.GetType().GetProperty("Id").GetValue(emergency).ToString());
             NavigationService.Navigate(new EmergencyDetails(emergencyID));
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new EditEmergency(Emergency emergency));
+            var emergency = EmergencyGrid.Items.GetItemAt(EmergencyGrid.SelectedIndex);
+            var emergencyID = Convert.ToInt32(emergency.GetType().GetProperty("Id").GetValue(emergency).ToString());
+            NavigationService.Navigate(new AddEmergency(emergencyID));
         }
     }
 
