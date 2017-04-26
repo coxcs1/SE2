@@ -36,7 +36,7 @@
                 </MenuItem>
                 <MenuItem Header="_Emergency Aid">
                     <MenuItem Name="AddEmergencyMenu" Header="_Give Emergency Aid" Click="AddEmergencyMenu_Click"/>
-                    <MenuItem Name="ViewEmergencyMenu" Header="_View Emergency Aid" />
+                    <MenuItem Name="ViewEmergencyMenu" Header="_View Emergency Aid" Click="ViewEmergencyMenu_Click" />
                 </MenuItem>
                 <MenuItem Header="_Volunteer">
                     <MenuItem Name="AddVolunteerMenu" Header="_Add Volunteer" Click="AddVolunteerMenu_Click" />
