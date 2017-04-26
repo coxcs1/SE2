@@ -141,12 +141,13 @@ namespace se2_loon_hh.Forms
             if (edit)
             {
                 freshStartController.EditClientFreshStart(this.client);
+                this.NavigationService.Navigate(new ViewClientFreshStartsPage());
             }
             else
             {
                 freshStartController.CreateClientFreshStart(this.client);
+                this.NavigationService.Navigate(new MainPage());
             }
-            this.NavigationService.Navigate(new MainPage());
         }
 
         /// <summary>
@@ -156,7 +157,14 @@ namespace se2_loon_hh.Forms
         /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainPage());
+            if (edit)
+            {
+                this.NavigationService.Navigate(new ViewClientFreshStartsPage());
+            }
+            else
+            {
+                this.NavigationService.Navigate(new MainPage());
+            }
         }
 
         /// <summary>

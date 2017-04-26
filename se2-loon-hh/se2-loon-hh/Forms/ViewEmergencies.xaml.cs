@@ -25,7 +25,7 @@ namespace se2_loon_hh.Forms
             InitializeComponent();
             emergencyController = new EmergencyController();
             emergencies = emergencyController.viewAllEmergencies();
-            PageTitle.Text = "Emergency Aid History";
+            
             foreach (var e in emergencies)
             {
                 EmergencyGrid.Items.Add(e);

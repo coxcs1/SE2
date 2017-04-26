@@ -24,8 +24,8 @@
                     <MenuItem Name="AddClassMenu" Header="_Add Fresh Start" Click="AddClassMenu_Click" />
                     <MenuItem Name="ViewClassMenu" Header="_View Fresh Starts" Click="ViewClassMenu_Click" />
                     <Separator />
-                    <MenuItem Name="AddClientFreshStartMenu" Header="_Add Client" Click="AddClientFreshStartMenu_Click" />
-                    <MenuItem Name="ViewClientsFreshStartMenu" Header="_View Clients" Click="ViewClientsFreshStartMenu_Click" />
+                    <MenuItem Name="AddClientFreshStartMenu" Header="_Add Fresh Start Client" Click="AddClientFreshStartMenu_Click" />
+                    <MenuItem Name="ViewClientsFreshStartMenu" Header="_View Fresh Start Clients" Click="ViewClientsFreshStartMenu_Click" />
                     <Separator />
                     <MenuItem Name="AddRelativeMenu" Header="_Add Relative" Click="AddRelativeMenu_Click" />
                     <MenuItem Name="ViewRelativesMenu" Header="_View Relatives" Click="ViewRelativesMenu_Click" />

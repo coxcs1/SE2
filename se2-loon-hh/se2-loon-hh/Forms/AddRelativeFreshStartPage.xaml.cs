@@ -60,7 +60,14 @@ namespace se2_loon_hh.Forms
         /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainPage());
+            if (!edit)
+            {
+                this.NavigationService.Navigate(new MainPage());
+            }
+            else
+            {
+                this.NavigationService.Navigate(new ViewRelativesPage());
+            }
         }
         /// <summary>
         /// This function populates the relative object with the form data
@@ -135,12 +142,13 @@ namespace se2_loon_hh.Forms
             if (!edit)
             {
                 freshStartController.saveRelative(this.relative);
+                this.NavigationService.Navigate(new MainPage());
             }
             else
             {
                 freshStartController.editRelative(this.relative);
+                this.NavigationService.Navigate(new ViewRelativesPage());
             }
-            this.NavigationService.Navigate(new MainPage());
         }
         /// <summary>
         /// This function populates the form from a relative fresh start in the database..

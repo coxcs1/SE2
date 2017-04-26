@@ -125,12 +125,13 @@ namespace se2_loon_hh.Forms
             if (!edit)
             {
                 freshStartController.saveFreshStart(this.freshStart);
+                this.NavigationService.Navigate(new MainPage());
             }
             else
             {
                 freshStartController.editFreshStart(this.freshStart);
+                this.NavigationService.Navigate(new ViewFreshStartsPage());
             }
-            this.NavigationService.Navigate(new MainPage());
         }
         /// <summary>
         /// This function takes the user back to the home page.
@@ -139,7 +140,14 @@ namespace se2_loon_hh.Forms
         /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainPage());
+            if (!edit)
+            {
+                this.NavigationService.Navigate(new MainPage());
+            }
+            else
+            {
+                this.NavigationService.Navigate(new ViewFreshStartsPage());
+            }
         }
     }
 }

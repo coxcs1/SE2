@@ -1,6 +1,7 @@
 ﻿using se2_loon_hh.Controllers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,7 @@ namespace se2_loon_hh.Forms
         private void setupDataGrid()
         {
             FreshStartsDataGrid.ItemsSource = freshStartController.GetFreshStartsByType();
+            FreshStartsDataGrid.Items.SortDescriptions.Add(new SortDescription(FreshStartsDataGrid.Columns[0].SortMemberPath, ListSortDirection.Ascending));
         }
     }
 }
