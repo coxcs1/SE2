@@ -57,7 +57,7 @@ namespace se2_loon_hh.Forms
             //client's id
             Button b = ((Button)e.OriginalSource);
             int clientId = Int32.Parse(b.Tag.ToString());
-            MessageBox.Show("Edit Client with ID: " + clientId);
+            NavigationService.Navigate(new AddClientPage(clientId));
         }
     }
 }

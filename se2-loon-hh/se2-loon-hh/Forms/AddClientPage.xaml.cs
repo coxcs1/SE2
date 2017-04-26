@@ -16,10 +16,11 @@ namespace se2_loon_hh.Forms
     /// </summary>
     public partial class AddClientPage : Page
     {
-        ClientController clientController;
-        Client client;
-        Pregnancy pregnancy;
-        FormValidator ClientValidator;
+        private ClientController clientController;
+        private Client client;
+        private Pregnancy pregnancy;
+        private FormValidator ClientValidator;
+        private bool AddMode = true;
 
         public AddClientPage()
         {
@@ -35,34 +36,66 @@ namespace se2_loon_hh.Forms
             DataContext = new
             {
                 client,
-                pregnancy
-            }; 
+                pregnancy,
+                AddMode
+            };
+        }
+
+        public AddClientPage(int id)
+        {
+            InitializeComponent();
+
+            clientController = new ClientController();
+
+            client = clientController.GetSingleClient(id);
+
+            AddMode = false;
+
+            DataContext = new
+            {
+                client,
+                AddMode
+            };
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainPage());
+            if (AddMode)
+            {
+                this.NavigationService.Navigate(new MainPage());
+            }
+            else 
+            {
+                this.NavigationService.Navigate(new ClientListPage());
+            }
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             if (isValid())
             {
-                // Add default values for new client
-                client.ActiveInactiveStatus = "Active";
-                client.ProgressPoints = 0;
-
-                if ((bool)IsPregnant.IsChecked) // Create new client and pregnancy
+                if (AddMode) // New Client
                 {
-                    pregnancy.ClientId = client.Id;
-                    clientController.addClient(client, pregnancy);
-                }
-                else                           // Create new client
-                {
-                    clientController.addClient(client);
-                }
+                    // Add default values for new client
+                    client.ActiveInactiveStatus = "Active";
+                    client.ProgressPoints = 0;
 
-                this.NavigationService.Navigate(new MainPage());
+                    if ((bool)IsPregnant.IsChecked) // Create new client and pregnancy
+                    {
+                        pregnancy.ClientId = client.Id;
+                        clientController.addClient(client, pregnancy);
+                    }
+                    else                           // Create new client
+                    {
+                        clientController.addClient(client);
+                    }
+                    this.NavigationService.Navigate(new MainPage());
+                }
+                else // Edit existing client
+                {
+                    clientController.editClient(client);
+                    this.NavigationService.Navigate(new ClientListPage());
+                }
             }
             else
             {
@@ -88,6 +121,7 @@ namespace se2_loon_hh.Forms
                 new RequiredValidator(client.MaritalStatus, MaritalStatusComboBox, "Marital Status Selection is Required"),
                 new RequiredValidator(client.CurrentStudentEnrollment, CurrentStudentEnrollmentComboBox, "Current Student Enrollment Selection is Required"),
                 new RequiredValidator(client.EducationalBackground, EducationalBackgroundComboBox, "Educational Background Selection is Required"),
+                new RequiredValidator(client.ActiveInactiveStatus, ActiveInactiveStatusComboBox, "Activity Status is Required"),
                 new RequiredValidator(client.ApplicationDate, ApplicationDateDatePicker, "Application Date is Required"),
                 new RequiredValidator(client.MotherhoodProgram.ToString(), MotherhoodProgramYesRadioButton, "Motherhood Program Selection is Required"),
                 new RequiredValidator(client.ParentingProgram.ToString(), ParentingProgramYesRadioButton, "Parenting Program Selection is Required")

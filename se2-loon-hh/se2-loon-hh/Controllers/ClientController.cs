@@ -27,7 +27,13 @@ namespace se2_loon_hh.Controllers
             _db.Pregnancies.Add(preg);
             _db.SaveChanges();
         }
-        
+
+        public void editClient(Client client)
+        {
+            _db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+        }
+
         public List<Client> GetClientList()
         {
             return _db.Clients.ToList();
@@ -45,10 +51,17 @@ namespace se2_loon_hh.Controllers
 
         public string GetClientAge(Client c)
         {
-            DateTime now = DateTime.Today;
-            DateTime birth = Convert.ToDateTime(c.BirthDate);
-            string yearsOld = ((int)(((now - birth).TotalDays) / 365)).ToString();
-            return yearsOld;
+            DateTime birth;
+            if (DateTime.TryParse(c.BirthDate, out birth))
+            {
+                DateTime now = DateTime.Today;
+                string yearsOld = ((int)(((now - birth).TotalDays) / 365)).ToString();
+                return yearsOld;
+            }
+            else
+            {
+                return "?";
+            }
         }
 
         #region Support Group Tab

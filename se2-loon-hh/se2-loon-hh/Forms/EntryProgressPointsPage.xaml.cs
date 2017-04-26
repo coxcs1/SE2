@@ -108,6 +108,7 @@ namespace se2_loon_hh.Forms
             if (!(bool)Increase.IsChecked && !(bool)Decrease.IsChecked)
             {
                 this.msg += "Error: Please select Increase or Decrease\n";
+                return false;
             }
             return (PointsValidator.isValid()) ? true : false;
         }

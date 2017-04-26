@@ -68,7 +68,6 @@ namespace se2_loon_hh.Forms
                 }
                 Console.WriteLine("Form is valid!");
                 storeVolunteer();//save the service
-                this.NavigationService.Navigate(new ViewVolunteerPage());//go to home page
             }
             else
             {

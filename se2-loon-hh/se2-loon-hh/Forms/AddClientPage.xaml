@@ -98,21 +98,6 @@
                                     <ComboBoxItem>Unknown</ComboBoxItem>
                                 </ComboBox>
                             </Grid>
-                            <!-- This code was for entering a custom value for Other, but probably isn't needed -->
-                            <!--<Grid>
-                                <Grid.Style>
-                                    <Style>
-                                        <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=EthnicityComboBox, Path=SelectedItem.Tag}" Value="OtherEthnicity">
-                                                <Setter Property="Label.Visibility" Value="Visible"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Grid.Style>
-                                <Label>Specify Race:</Label>
-                                <TextBox x:Name="OtherEthnicityTextBox" Text="{Binding ElementName=EthnicityComboBox, Path=SelectedItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Grid>-->
                         </StackPanel>
                     </GroupBox>
                 </Paragraph>
@@ -126,11 +111,6 @@
                         <Grid>
                             <Label>Does anyone smoke?</Label>
                             <TextBox x:Name="SmokingTextBox"  Height="125" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Text="{Binding client.Smoker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <!-- Old code for boolean based smoking selection -->
-                            <!--<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                <RadioButton x:Name="SmokingYesRadioButton" IsChecked="{Binding Path=client.Smoking, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
-                                <RadioButton x:Name="SmokingNoRadioButton" IsChecked="{Binding Path=client.Smoking, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
-                            </StackPanel>-->
                         </Grid>
                     </GroupBox>
                 </Paragraph>
@@ -177,7 +157,7 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
-                    <GroupBox Header="Pregnancy Information">
+                    <GroupBox Header="Pregnancy Information" Visibility="{Binding AddMode, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel>
                             <Grid>
                                 <Label>Are you pregnant today?</Label>
@@ -219,6 +199,47 @@
                     </GroupBox>
                 </Paragraph>
                 <Paragraph>
+                    <GroupBox Header="Activity">
+                        <StackPanel>
+                            <Grid>
+                                <Label>Status:</Label>
+                                <ComboBox x:Name="ActiveInactiveStatusComboBox" SelectedValuePath="Content" SelectedValue="{Binding client.ActiveInactiveStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBoxItem>Active</ComboBoxItem>
+                                    <ComboBoxItem>Inactive</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Label>Became Inactive This Year:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="BecameInactiveYesRadioButton" IsChecked="{Binding Path=client.BecameInactive, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="BecameInactiveNoRadioButton" IsChecked="{Binding Path=client.BecameInactive, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>No Activity This Year:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="NoActivityNewYearYesRadioButton" IsChecked="{Binding Path=client.NoActivityNewYear, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="NoActivityNewYearNoRadioButton" IsChecked="{Binding Path=client.NoActivityNewYear, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Still Active at End of Year:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="StillActiveYEYesRadioButton" IsChecked="{Binding Path=client.StillActiveYE, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="StillActiveYENoRadioButton" IsChecked="{Binding Path=client.StillActiveYE, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Grace Period:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="GracePeriodYesRadioButton" IsChecked="{Binding Path=client.GracePeriod, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="GracePeriodNoRadioButton" IsChecked="{Binding Path=client.GracePeriod, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+                </Paragraph>
+                <Paragraph>
                     <GroupBox Header="Hope House Information">
                         <StackPanel>
                             <Grid>
@@ -228,6 +249,20 @@
                             <Grid>
                                 <Label>Status:</Label>
                                 <TextBox x:Name="CurrentStatusTextBox" Text="{Binding client.CurrentStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                            <Grid>
+                                <Label>New or Continuing Client:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="ContinuedFromPrevYearsRadioButton" IsChecked="{Binding client.NewThisYear}">New</RadioButton>
+                                    <RadioButton x:Name="NewThisYearRadioButton" IsChecked="{Binding client.ContinuedFromPrevYears}">Continuing</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Returned with New Pregnancy:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="ReturnNewPregnancyYesRadioButton" IsChecked="{Binding Path=client.ReturnNewPregnancy, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="ReturnNewPregnancyNoRadioButton" IsChecked="{Binding Path=client.ReturnNewPregnancy, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
                             </Grid>
                             <Grid>
                                 <Label>Enrolled in Motherhood Program:</Label>
@@ -241,6 +276,13 @@
                                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                     <RadioButton x:Name="ParentingProgramYesRadioButton" IsChecked="{Binding Path=client.ParentingProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
                                     <RadioButton x:Name="ParentingProgramNoRadioButton" IsChecked="{Binding Path=client.ParentingProgram, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
+                                </StackPanel>
+                            </Grid>
+                            <Grid>
+                                <Label>Left Program Before Birth:</Label>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <RadioButton x:Name="LeftProgramBeforeBirthYesRadioButton" IsChecked="{Binding Path=client.LeftProgramBeforeBirth, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=1}">Yes</RadioButton>
+                                    <RadioButton x:Name="LeftProgramBeforeBirthNoRadioButton" IsChecked="{Binding Path=client.LeftProgramBeforeBirth, Converter={StaticResource RadioBoolToLongConverter}, ConverterParameter=0}">No</RadioButton>
                                 </StackPanel>
                             </Grid>
                             <Grid>

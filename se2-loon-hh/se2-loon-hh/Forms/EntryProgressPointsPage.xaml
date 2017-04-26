@@ -47,7 +47,7 @@
             <Separator/>
         </StackPanel>
         <FlowDocumentPageViewer HorizontalContentAlignment="Center">
-            <FlowDocument PagePadding="5" PageWidth="500" PageHeight="300">
+            <FlowDocument PagePadding="5" PageWidth="500">
                 <Paragraph>
                     <TextBlock x:Name="PageTitle" />
                 </Paragraph>
