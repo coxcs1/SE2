@@ -19,7 +19,7 @@ namespace se2_loon_hh.Controllers
         public void addEmergency(Emergency emergency)
         {
             _db.Emergencies.Add(emergency);
-            _db.SaveChanges();
+            _db.SaveChanges();            
         }
 
         public List<Emergency> viewAllEmergencies()

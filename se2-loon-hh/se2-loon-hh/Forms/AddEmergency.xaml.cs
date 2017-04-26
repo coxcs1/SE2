@@ -20,6 +20,7 @@ namespace se2_loon_hh.Forms
         EmergencyController emergencyController;
         Emergency emergency;
         FormValidator emergencyValidator;
+        bool edit = false;
 
         public AddEmergency()
         {
@@ -35,6 +36,28 @@ namespace se2_loon_hh.Forms
             };
         }
 
+        public AddEmergency(int id)
+        {
+            InitializeComponent();
+            emergencyController = new EmergencyController();
+            emergency = emergencyController.viewEmergency(id);
+            edit = true;
+            PageTitle.Text = "Edit Emergency Aid";
+            //This allows for binding with emergency
+            //Changes to the form will immediately change the associated emergency attributes
+            DataContext = new
+            {
+                emergency
+            };
+
+            firstName.Text = emergency.FirstName;
+            lastName.Text = emergency.LastName;
+            goods.Text = emergency.ItemsReceived;
+            dateGiven.Text = emergency.ItemsReceived;
+            comments.Text = emergency.Comment;
+
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPage());
@@ -45,8 +68,17 @@ namespace se2_loon_hh.Forms
 
             if (isValid())
             {
-                emergencyController.addEmergency(emergency);
-                NavigationService.Navigate(new MainPage());
+                if(!edit)
+                {
+                    emergencyController.addEmergency(emergency);
+                    NavigationService.Navigate(new MainPage());
+                }
+                else
+                {
+                    emergencyController.editEmergency(emergency);
+                    NavigationService.Navigate(new ViewEmergencies());
+                }
+                
             }
             else
             {
