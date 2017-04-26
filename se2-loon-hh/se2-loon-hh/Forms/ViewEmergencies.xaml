@@ -45,7 +45,7 @@
         <StackPanel DockPanel.Dock="Top">
             <Grid>
                 <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Name="BackButton" Click="BackButton_Click">Back</Button>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Name="CreateButton" Click="CreateButton_Click">Give Emergency Aid</Button>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Name="CreateButton" Click="CreateButton_Click">Give Emergency Aid</Button>
             </Grid>
             <Separator/>
         </StackPanel>
